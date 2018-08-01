@@ -1,17 +1,18 @@
-package pizzaco.domain.entities.ingredients;
+package pizzaco.domain.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table(name = "spices")
-public class Spice {
+@MappedSuperclass
+public abstract class BaseEntity {
 
     private String id;
-    private String name;
 
-    public Spice() {
+    public BaseEntity() {
     }
 
     @Id
@@ -24,14 +25,5 @@ public class Spice {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    @Column(name = "name", nullable = false, unique = true, updatable = false)
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

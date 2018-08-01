@@ -6,9 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "addresses")
-public class Address {
+public class Address extends BaseEntity {
 
-    private String id;
     private String name;
     private String street;
     private Integer number;
@@ -22,18 +21,6 @@ public class Address {
     private Integer entrance;
 
     public Address() {
-    }
-
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     @Column(name = "name")

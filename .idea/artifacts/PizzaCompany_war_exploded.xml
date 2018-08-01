@@ -70,10 +70,10 @@
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-devtools:2.0.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:2.0.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.0.3.RELEASE" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.46" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.0.6.RELEASE" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.46" />
         </element>
       </element>
       <element id="directory" name="META-INF">

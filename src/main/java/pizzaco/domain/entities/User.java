@@ -9,9 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User extends BaseEntity implements UserDetails {
 
-    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -28,18 +27,6 @@ public class User implements UserDetails {
     public User() {
         this.addresses = new HashSet<>();
 //        TODO: this.orders = new HashSet<>();
-    }
-
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     @Column(name = "first_name", nullable = false)

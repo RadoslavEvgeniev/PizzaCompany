@@ -1,17 +1,17 @@
-package pizzaco.domain.entities;
+package pizzaco.domain.entities.menu;
 
 import org.hibernate.annotations.GenericGenerator;
-import pizzaco.domain.entities.ingredients.*;
+import pizzaco.domain.entities.BaseEntity;
+import pizzaco.domain.entities.pizza.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
 @Table(name = "pizzas")
-public class Pizza {
+public class Pizza extends MenuItem {
 
-    private String id;
-    private String name;
     private String description;
     private Size size;
     private Dough dough;
@@ -21,28 +21,8 @@ public class Pizza {
     private Set<Meat> meats;
     private Set<Vegetable> vegetables;
 
+
     public Pizza() {
-    }
-
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Column(name = "name")
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Column(name = "description")

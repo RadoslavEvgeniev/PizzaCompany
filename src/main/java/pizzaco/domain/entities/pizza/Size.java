@@ -1,32 +1,20 @@
-package pizzaco.domain.entities.ingredients;
+package pizzaco.domain.entities.pizza;
 
 import org.hibernate.annotations.GenericGenerator;
+import pizzaco.domain.entities.BaseEntity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "sizes")
-public class Size {
+public class Size extends BaseEntity {
 
-    private String id;
     private String size;
     private BigDecimal price;
     private Integer numberOfSlices;
 
     public Size() {
-    }
-
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     @Column(name = "size", nullable = false, unique = true, updatable = false)

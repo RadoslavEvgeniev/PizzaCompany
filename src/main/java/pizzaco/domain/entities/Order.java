@@ -1,14 +1,12 @@
 package pizzaco.domain.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+//import javax.persistence.Entity;
+//import javax.persistence.Table;
 
 //@Entity
 //@Table(name = "orders")
-public class Order {
+public class Order extends BaseEntity {
     //    TODO:
-    private String id;
-
     public Order() {
     }
 
