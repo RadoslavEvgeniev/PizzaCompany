@@ -74,6 +74,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.0.6.RELEASE" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.46" />
+          <element id="library" level="project" name="Maven: org.modelmapper:modelmapper:2.1.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
