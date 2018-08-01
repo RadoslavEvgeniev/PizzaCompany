@@ -1,0 +1,38 @@
+<th:block th:fragment>
+
+    <nav class="navbar navbar-expand-lg bg-red-candy-apple">
+        <a class="navbar-brand h4" th:href="@{/}">
+            <img class="img-responsive pizza-png" src="http://gdurl.com/WbOi" alt="">
+            <span class="text-white">Pizza Company &copy;</span>
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end row" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown col-md-4">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <h5>Register</h5>
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+
+                        <th:block th:include="~{fragments/register-form}"></th:block>
+
+                    </div>
+                </li>
+                <li class="nav-item active col-md-4">
+                    <a class="nav-link h5 text-white" th:href="@{/home}">Home</a>
+                </li>
+                <li class="nav-item active col-md-4">
+                    <a class="nav-link h5" th:href="@{/login}">Login</a>
+                </li>
+
+                <!--<li class="nav-item active col-md-4">-->
+                    <!--<a class="nav-link h5" th:href="@{/register}">Register</a>-->
+                <!--</li>-->
+
+            </ul>
+        </div>
+    </nav>
+
+</th:block>

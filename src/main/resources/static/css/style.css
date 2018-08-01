@@ -1,46 +1,21 @@
-.bg-color {
-    background-color: #AFEEEE;
-    color: black;
+.pizza-png {
+    width: 40px;
+    height: 40px;
 }
 
-.footer {
-    background-color: #AFEEEE;
-    color: black;
+.pizza-bg-img {
+
 }
 
-.jumbotron {
-    background-color: #AFEEEE;
-    color: black;
+.bg-red-candy-apple {
+    background-color: #FF0800;
+
 }
 
-.nav-item>a:hover, .navbar-brand:hover {
-    color: #FFFFFF;
-}
-
-iframe {
-    overflow:hidden;
-}
-
-.hr-black {
-    background-color: black;
-    height: 3px;
-}
-
-.hr-blue {
-    background-color: #AFEEEE;
-    height: 3px;
-}
-
-.btn-blue {
-    background-color: #AFEEEE;
-}
-
-.btn-logout {
-    background-color: #AFEEEE;
-    border: #AFEEEE;
-}
-
-.border-blue {
-    border: solid;
-    border-color: #AFEEEE;
+.bg-body {
+    background: url(https://gdurl.com/qlHM) no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;
 }
