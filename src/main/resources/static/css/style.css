@@ -33,3 +33,8 @@
     background: url(https://gdurl.com/nleE);
     background-color: wheat;
 }
+
+.hr {
+    background-color: #FF0800;
+    height: 1px;
+}
