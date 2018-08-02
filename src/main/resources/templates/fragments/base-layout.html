@@ -13,10 +13,12 @@
     </header>
     <main >
 
-
+        <th:block th:include="${view}"></th:block>
 
     </main>
-    <footer>
+    <footer >
+
+        <th:block th:include="~{fragments/footer}"></th:block>
 
     </footer>
 </body>

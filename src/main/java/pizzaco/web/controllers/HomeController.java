@@ -11,6 +11,6 @@ public class HomeController extends BaseController {
     public ModelAndView index() {
         // TODO: List some top offers
 
-        return super.view("/");
+        return super.view("index");
     }
 }

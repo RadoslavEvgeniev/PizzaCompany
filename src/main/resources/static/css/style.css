@@ -19,3 +19,12 @@
     -o-background-size: cover;      /* Opera*/
     background-size: cover;
 }
+
+.bg-jumbotron {
+    background: url(https://gdurl.com/R7Dl);
+    background-color: wheat;
+}
+
+.special-offer {
+    background: url("https://gdurl.com/mNk9");
+}
