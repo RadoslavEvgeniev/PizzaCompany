@@ -14,17 +14,22 @@
 
 .bg-body {
     background: url(https://gdurl.com/qlHM) no-repeat center center fixed;
-    -webkit-background-size: cover; /* For WebKit*/
-    -moz-background-size: cover;    /* Mozilla*/
-    -o-background-size: cover;      /* Opera*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 
 .bg-jumbotron {
-    background: url(https://gdurl.com/R7Dl);
+    background: url(https://gdurl.com/kyjF);
     background-color: wheat;
 }
 
 .special-offer {
     background: url("https://gdurl.com/mNk9");
+}
+
+.bg-forms {
+    background: url(https://gdurl.com/nleE);
+    background-color: wheat;
 }
