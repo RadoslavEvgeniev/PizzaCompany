@@ -13,7 +13,6 @@ import pizzaco.repository.RoleRepository;
 import pizzaco.repository.UserRepository;
 
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -76,7 +75,7 @@ public class UserServiceImpl implements UserService {
         userEntity = this.modelMapper.map(userServiceModel, User.class);
         userEntity.setId(userServiceModel.getId());
         userEntity.setUsername(userServiceModel.getEmail());
-        userEntity.setPassword(this.bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
+        userEntity.setPassword(this.bCryptPasswordEncoder.encode(userEntity.getPassword()));
 
         this.userRepository.save(userEntity);
 

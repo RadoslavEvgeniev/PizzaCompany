@@ -1,7 +1,10 @@
 package pizzaco.domain.models.binding;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class UserRegisterBindingModel {
 
@@ -14,8 +17,9 @@ public class UserRegisterBindingModel {
     public UserRegisterBindingModel() {
     }
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Email cannot be null.")
+    @NotEmpty(message = "Email cannot be empty.")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Invalid email.")
     public String getEmail() {
         return this.email;
     }
@@ -24,6 +28,9 @@ public class UserRegisterBindingModel {
         this.email = email;
     }
 
+    @NotNull(message = "Password cannot be null.")
+    @NotEmpty(message = "Password cannot be empty.")
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getPassword() {
         return this.password;
     }
@@ -32,6 +39,9 @@ public class UserRegisterBindingModel {
         this.password = password;
     }
 
+    @NotNull(message = "Password cannot be null.")
+    @NotEmpty(message = "Password cannot be empty.")
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getConfirmPassword() {
         return this.confirmPassword;
     }
@@ -40,8 +50,10 @@ public class UserRegisterBindingModel {
         this.confirmPassword = confirmPassword;
     }
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "First name cannot be null.")
+    @NotEmpty(message = "First name cannot be empty.")
+    @Length(min = 2, message = "First name must be at least 2 symbols long.")
+    @Pattern(regexp = "^[A-Z][a-zA-Z]+", message = "First name must start with capital letter.")
     public String getFirstName() {
         return this.firstName;
     }
@@ -50,8 +62,10 @@ public class UserRegisterBindingModel {
         this.firstName = firstName;
     }
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Last name cannot be null.")
+    @NotEmpty(message = "Last name cannot be empty.")
+    @Length(min = 2, message = "Last name must be at least 2 symbols long.")
+    @Pattern(regexp = "^[A-Z][a-zA-Z]+", message = "Last name must start with capital letter.")
     public String getLastName() {
         return this.lastName;
     }

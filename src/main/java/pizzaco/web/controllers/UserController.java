@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,9 +38,14 @@ public class UserController extends BaseController {
     @PreAuthorize("isAnonymous()")
     public ModelAndView registerConfirm(@Valid @ModelAttribute("userRegisterBindingModel") UserRegisterBindingModel userRegisterBindingModel
             , BindingResult bindingResult) {
+        if (!userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())) {
+            bindingResult.addError(new FieldError("userRegisterBindingModel", "password", "Passwords don't match."));
+        }
+
         if (bindingResult.hasErrors()) {
             return super.view("index", "userRegisterBindingModel", userRegisterBindingModel);
         }
+
         UserServiceModel userServiceModel = this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
         this.userService.registerUser(userServiceModel);
 
@@ -47,42 +53,34 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/profiles/my")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView profile(@ModelAttribute("userEditBindingModel")UserEditBindingModel userEditBindingModel, Principal principal) {
-        userEditBindingModel = this.prepareBindingModel(userEditBindingModel, principal.getName());
+        userEditBindingModel = this.modelMapper.map(this.userService.extractUserByEmail(principal.getName()), UserEditBindingModel.class);
 
         return super.view("users/profile-user", "userEditBindingModel", userEditBindingModel);
     }
 
     @PostMapping("/edit")
-    public ModelAndView editConfirm(@Valid @ModelAttribute("userEditBindingModel")UserEditBindingModel userEditBindingModel) {
-        if (!this.checkPassword(userEditBindingModel)) {
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView editConfirm(@Valid @ModelAttribute("userEditBindingModel")UserEditBindingModel userEditBindingModel, BindingResult bindingResult) {
+        UserServiceModel userServiceModel = this.userService.extractUserByEmail(userEditBindingModel.getEmail());
+
+        if (!this.bCryptPasswordEncoder.matches(userEditBindingModel.getPassword(), userServiceModel.getPassword())) {
+            bindingResult.addError(new FieldError("userEditBindingModel", "password", "Incorrect password."));
+        } else if (!userEditBindingModel.getNewPassword().equals(userEditBindingModel.getConfirmPassword())) {
+            bindingResult.addError(new FieldError("userEditBindingModel", "password", "Passwords don't match."));
+        }
+
+        if (bindingResult.hasErrors()) {
             return super.view("users/profile-user", "userEditBindingModel", userEditBindingModel);
         }
 
-        userEditBindingModel.setPassword(userEditBindingModel.getNewPassword());
+        if (!userEditBindingModel.getNewPassword().equals("")) {
+            userEditBindingModel.setPassword(userEditBindingModel.getNewPassword());
+        }
 
         this.userService.editUser(this.modelMapper.map(userEditBindingModel, UserServiceModel.class));
 
         return super.redirect("/profiles/my");
-    }
-
-    private UserEditBindingModel prepareBindingModel(UserEditBindingModel userEditBindingModel, String email) {
-        if (userEditBindingModel.getId() != null) {
-            return userEditBindingModel;
-        }
-
-        userEditBindingModel = this.modelMapper.map(this.userService.extractUserByEmail(email), UserEditBindingModel.class);
-        return userEditBindingModel;
-    }
-
-    private boolean checkPassword(UserEditBindingModel userEditBindingModel) {
-        UserServiceModel userServiceModel = this.userService.extractUserByEmail(userEditBindingModel.getEmail());
-
-        if (!userEditBindingModel.getNewPassword().equals(userEditBindingModel.getConfirmPassword()) ||
-                !this.bCryptPasswordEncoder.matches(userEditBindingModel.getPassword(), userServiceModel.getPassword())) {
-            return false;
-        }
-
-        return true;
     }
 }

@@ -33,14 +33,14 @@
             <div class="col">
                 <label for="firstName">First Name
                     <input class="form-control" th:field="*{firstName}" th:styleappend="${#fields.hasErrors('firstName')} ? border-color: red"
-                           id="firstName" type="text" name="firstName" placeholder="First Name...">
+                           id="firstName" type="text" name="firstName" placeholder="First Name..." required>
                     <small style="color: red" th:each="error : ${#fields.errors('firstName')}" th:text="${error}"></small>
                 </label>
             </div>
             <div class="col">
                 <label for="lastName">Last Name
                     <input class="form-control" th:field="*{lastName}" th:styleappend="${#fields.hasErrors('lastName')} ? border-color: red"
-                           id="lastName" type="text" name="lastName" placeholder="Last Name...">
+                           id="lastName" type="text" name="lastName" placeholder="Last Name..." required>
                     <small style="color: red" th:each="error : ${#fields.errors('lastName')}" th:text="${error}"></small>
                 </label>
             </div>

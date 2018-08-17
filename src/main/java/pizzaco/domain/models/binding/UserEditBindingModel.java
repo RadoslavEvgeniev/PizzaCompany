@@ -1,5 +1,11 @@
 package pizzaco.domain.models.binding;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class UserEditBindingModel {
 
     private String id;
@@ -21,6 +27,9 @@ public class UserEditBindingModel {
         this.id = id;
     }
 
+    @NotNull(message = "Email cannot be null.")
+    @NotEmpty(message = "Email cannot be empty.")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Invalid email.")
     public String getEmail() {
         return this.email;
     }
@@ -53,6 +62,10 @@ public class UserEditBindingModel {
         this.confirmPassword = confirmPassword;
     }
 
+    @NotNull(message = "First name cannot be null.")
+    @NotEmpty(message = "First name cannot be empty.")
+    @Length(min = 2, message = "First name must be at least 2 symbols long.")
+    @Pattern(regexp = "^[A-Z][a-zA-Z]+", message = "First name must start with capital letter.")
     public String getFirstName() {
         return this.firstName;
     }
@@ -61,6 +74,10 @@ public class UserEditBindingModel {
         this.firstName = firstName;
     }
 
+    @NotNull(message = "Last name cannot be null.")
+    @NotEmpty(message = "Last name cannot be empty.")
+    @Length(min = 2, message = "Last name must be at least 2 symbols long.")
+    @Pattern(regexp = "^[A-Z][a-zA-Z]+", message = "Last name must start with capital letter.")
     public String getLastName() {
         return this.lastName;
     }
