@@ -38,6 +38,9 @@ public class UserEditBindingModel {
         this.email = email;
     }
 
+    @NotNull(message = "Password cannot be null.")
+    @NotEmpty(message = "Password cannot be empty.")
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getPassword() {
         return this.password;
     }
@@ -46,6 +49,7 @@ public class UserEditBindingModel {
         this.password = password;
     }
 
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getNewPassword() {
         return this.newPassword;
     }
@@ -54,6 +58,7 @@ public class UserEditBindingModel {
         this.newPassword = newPassword;
     }
 
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getConfirmPassword() {
         return this.confirmPassword;
     }

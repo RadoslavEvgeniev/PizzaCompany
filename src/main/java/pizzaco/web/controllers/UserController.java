@@ -68,7 +68,8 @@ public class UserController extends BaseController {
         if (!this.bCryptPasswordEncoder.matches(userEditBindingModel.getPassword(), userServiceModel.getPassword())) {
             bindingResult.addError(new FieldError("userEditBindingModel", "password", "Incorrect password."));
         } else if (!userEditBindingModel.getNewPassword().equals(userEditBindingModel.getConfirmPassword())) {
-            bindingResult.addError(new FieldError("userEditBindingModel", "password", "Passwords don't match."));
+            // TODO: Fix errors when empty new password given
+            bindingResult.addError(new FieldError("userEditBindingModel", "newPassword", "Passwords don't match."));
         }
 
         if (bindingResult.hasErrors()) {
