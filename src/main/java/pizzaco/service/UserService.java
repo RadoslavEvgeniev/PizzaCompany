@@ -6,4 +6,8 @@ import pizzaco.domain.models.service.UserServiceModel;
 public interface UserService extends UserDetailsService {
 
     boolean registerUser(UserServiceModel userServiceModel);
+
+    boolean editUser(UserServiceModel userServiceModel);
+
+    UserServiceModel extractUserByEmail(String email);
 }

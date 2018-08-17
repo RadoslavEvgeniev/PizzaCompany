@@ -1,0 +1,89 @@
+<th:block>
+    <div class="jumbotron bg-forms col-md-11 mx-5 text text-center" th:object="${userEditBindingModel}">
+        <h1 class="text text-center">My Profile</h1>
+        <div class="text text-center">
+            <h4 th:text="'Email: ' + *{email}"></h4>
+            <h4 th:text="'First Name: ' + *{firstName}"></h4>
+            <h4 th:text="'Last Name: ' + *{lastName}"></h4>
+        </div>
+        <hr class="hr" />
+        <button class="btn btn-success" id="toggle-edit-profile">Edit</button>
+        <form id="edit-form" th:action="@{/edit}" th:method="post" hidden>
+            <div class="form-row">
+                <div class="col">
+                    <label for="email">Email
+                        <input class="form-control" th:field="*{email}" th:styleappend="${#fields.hasErrors('email')} ? border-color: red"
+                               id="email" type="email" name="email" placeholder="Email..." readonly>
+                        <small style="color: red" th:each="error : ${#fields.errors('email')}" th:text="${error}"></small>
+                    </label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="password">Password
+                        <input class="form-control" th:field="*{password}" th:styleappend="${#fields.hasErrors('password')} ? border-color: red"
+                               id="password" type="password" name="password" placeholder="Password..." required>
+                        <small style="color: red" th:each="error : ${#fields.errors('password')}" th:text="${error}"></small>
+                    </label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="newPassword">New Password
+                        <input class="form-control" th:field="*{newPassword}" th:styleappend="${#fields.hasErrors('newPassword')} ? border-color: red"
+                               id="newPassword" type="password" name="newPassword" placeholder="New Password..." required>
+                        <small style="color: red" th:each="error : ${#fields.errors('newPassword')}" th:text="${error}"></small>
+                    </label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="confirmPassword">Confirm Password
+                        <input class="form-control" th:field="*{confirmPassword}" th:styleappend="${#fields.hasErrors('password')} ? border-color: red"
+                               id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm Password..." required>
+                        <small style="color: red" th:each="error : ${#fields.errors('password')}" th:text="${error}"></small>
+                    </label>
+                </div>
+            </div>
+            <hr class="hr" />
+            <div class="form-row">
+                <div class="col">
+                    <label for="firstName">First Name
+                        <input class="form-control" th:field="*{firstName}" th:styleappend="${#fields.hasErrors('firstName')} ? border-color: red"
+                               id="firstName" type="text" name="firstName" placeholder="First Name...">
+                        <small style="color: red" th:each="error : ${#fields.errors('firstName')}" th:text="${error}"></small>
+                    </label>
+                </div>
+                <div class="col">
+                    <label for="lastName">Last Name
+                        <input class="form-control" th:field="*{lastName}" th:styleappend="${#fields.hasErrors('lastName')} ? border-color: red"
+                               id="lastName" type="text" name="lastName" placeholder="Last Name...">
+                        <small style="color: red" th:each="error : ${#fields.errors('lastName')}" th:text="${error}"></small>
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" th:field="*{id}">
+            <hr class="hr" />
+            <div class="form-row my-5">
+                <div class="col">
+                    <button type="submit" class="btn btn-success">Edit</button>
+                    <button id="cancel-edit-profile" type="button" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        let editProfileBtn = $('#toggle-edit-profile');
+        let cancelEditProfileBtn = $('#cancel-edit-profile');
+
+        editProfileBtn.click(function () {
+            $('#edit-form').prop('hidden', false);
+            editProfileBtn.prop('hidden', true);
+        });
+
+        cancelEditProfileBtn.click(function () {
+            $('#edit-form').prop('hidden', true);
+            editProfileBtn.prop('hidden', false);
+        });
+    </script>
+</th:block>

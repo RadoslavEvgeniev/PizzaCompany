@@ -26,6 +26,7 @@ public class User extends BaseEntity implements UserDetails {
 
     public User() {
         this.addresses = new HashSet<>();
+        this.authorities = new HashSet<>();
 //        TODO: this.orders = new HashSet<>();
     }
 
