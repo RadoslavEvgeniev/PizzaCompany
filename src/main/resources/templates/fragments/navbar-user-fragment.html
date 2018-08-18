@@ -1,6 +1,8 @@
 <th:block th:fragment>
     <li class="nav-link active col-md-4">
-        <a class="text text-white h5" th:href="@{/menu}">Menu</a>
+        <a class="text text-white h5" th:href="@{/menu}">
+            <img class="img-responsive" src="http://gdurl.com/yWKj" alt="menu-icon.png" width="40" height="40">
+        </a>
     </li>
     <li class="col-md-4">
         <div class="dropdown show">
@@ -32,7 +34,12 @@
                         <a class="dropdown-item" th:href="@{/orders/all}">All Orders</a>
                         <hr class="hr" />
                     </th:block>
-                    <a class="dropdown-item" href="#">Administration</a>
+                    <a class="dropdown-item" th:href="@{/menu/addMenuItems}">Add Menu Items</a>
+                    <a class="dropdown-item" href="#">Add Pizza Ingredients</a>
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <hr class="hr" />
+                        <a class="dropdown-item" href="#">Logs</a>
+                    </th:block>
                     <hr class="hr" />
                 </th:block>
                 <form class="dropdown-item" th:action="@{/logout}" method="post">
