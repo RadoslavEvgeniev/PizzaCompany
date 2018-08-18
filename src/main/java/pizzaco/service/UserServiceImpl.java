@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 import pizzaco.domain.entities.User;
 import pizzaco.domain.entities.UserRole;
 import pizzaco.domain.models.service.UserServiceModel;
+import pizzaco.errors.IdNotFoundException;
 import pizzaco.repository.RoleRepository;
 import pizzaco.repository.UserRepository;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,7 +38,7 @@ public class UserServiceImpl implements UserService {
         UserDetails userDetails = this.userRepository.findByUsername(email).orElse(null);
 
         if (userDetails == null) {
-            throw new UsernameNotFoundException("Non-existent user.");
+            throw new UsernameNotFoundException("Wrong or non-existent email.");
         }
 
         return userDetails;
@@ -60,9 +63,22 @@ public class UserServiceImpl implements UserService {
         User userEntity = this.userRepository.findByUsername(email).orElse(null);
 
         if (userEntity == null) {
-            throw new UsernameNotFoundException("Non-existent user.");
+            throw new UsernameNotFoundException("Wrong or non-existent email.");
         }
 
+        UserServiceModel userServiceModel = this.modelMapper.map(userEntity, UserServiceModel.class);
+        userServiceModel.setEmail(userEntity.getUsername());
+
+        return userServiceModel;
+    }
+
+    @Override
+    public UserServiceModel extractUserById(String id) {
+        User userEntity = this.userRepository.findById(id).orElse(null);
+
+        if (userEntity == null) {
+            throw new IdNotFoundException("Wrong or non-existent id.");
+        }
         UserServiceModel userServiceModel = this.modelMapper.map(userEntity, UserServiceModel.class);
         userServiceModel.setEmail(userEntity.getUsername());
 
@@ -80,6 +96,22 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(userEntity);
 
         return true;
+    }
+
+    @Override
+    public List<UserServiceModel> extractAllUsersOrderedAlphabetically() {
+        List<User> userEntities = this.userRepository.findAllOrderedAlphabetically();
+
+        List<UserServiceModel> userServiceModels = userEntities.stream()
+                .map(u -> {
+                    UserServiceModel userServiceModel = this.modelMapper.map(u, UserServiceModel.class);
+                    userServiceModel.setEmail(u.getUsername());
+
+                    return userServiceModel;
+                }).collect(Collectors.toList());
+
+
+        return userServiceModels;
     }
 
     private void seedRolesInDb() {
