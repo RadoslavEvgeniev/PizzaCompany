@@ -1,0 +1,32 @@
+<th:block>
+    <div class="modal-header text text-center">
+        <h1 class="modal-title" id="dipModalLabel">Add Dip</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <hr class="hr" />
+    <form th:action="@{/menu/dips/add}" method="post">
+        <div class="form-row">
+            <div class="col">
+                <label for="dip-name">Name
+                    <input class="form-control" id="dip-name" type="text" name="name" placeholder="Name..." required>
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="dip-price">Price
+                    <input class="form-control" id="dip-price" type="number" step="any" name="price" placeholder="Price..." required>
+                </label>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row my-5">
+            <div class="col">
+                <button type="submit" class="btn btn-success">Add Dip</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </form>
+</th:block>
