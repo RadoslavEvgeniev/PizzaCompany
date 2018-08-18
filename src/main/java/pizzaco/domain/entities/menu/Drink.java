@@ -1,15 +1,11 @@
 package pizzaco.domain.entities.menu;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "drinks")
 public class Drink extends MenuItem {
-
-    private BigDecimal price;
 
     public Drink() {
     }
