@@ -13,6 +13,7 @@ public class UserServiceModel {
     private String email;
     private String password;
     private Set<AddressServiceModel> addresses;
+    private Set<UserRoleServiceModel> authorities;
 
     public UserServiceModel() {
         this.addresses = new HashSet<>();
@@ -64,5 +65,13 @@ public class UserServiceModel {
 
     public void setAddresses(Set<AddressServiceModel> addresses) {
         this.addresses = addresses;
+    }
+
+    public Set<UserRoleServiceModel> getAuthorities() {
+        return this.authorities;
+    }
+
+    public void setAuthorities(Set<UserRoleServiceModel> authorities) {
+        this.authorities = authorities;
     }
 }
