@@ -6,7 +6,7 @@
         </button>
     </div>
     <hr class="hr" />
-    <form th:action="@{/menu/drinks/add}" method="post">
+    <form th:action="@{/menu/drinks/add}" method="post" enctype="multipart/form-data">
         <div class="form-row">
             <div class="col">
                 <label for="drink-name">Name
@@ -19,6 +19,13 @@
                 <label for="drink-price">Price
                     <input class="form-control" id="drink-price" type="number" step="any" name="price" placeholder="Price..." required>
                 </label>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row">
+            <div class="col">
+                <label for="drink-image">Drink Image</label>
+                <input type="file" class="form-control-file" id="drink-image" name="dipImage">
             </div>
         </div>
         <hr class="hr" />

@@ -1,4 +1,6 @@
-package pizzaco.domain.models.binding;
+package pizzaco.domain.models.binding.menu;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -6,6 +8,7 @@ public class AddDrinkBindingModel {
 
     private String name;
     private BigDecimal price;
+    private MultipartFile drinkImage;
 
     public AddDrinkBindingModel() {
     }
@@ -24,5 +27,13 @@ public class AddDrinkBindingModel {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public MultipartFile getDrinkImage() {
+        return this.drinkImage;
+    }
+
+    public void setDrinkImage(MultipartFile drinkImage) {
+        this.drinkImage = drinkImage;
     }
 }

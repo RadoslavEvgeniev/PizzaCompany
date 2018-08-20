@@ -1,4 +1,4 @@
-package pizzaco.domain.models.service;
+package pizzaco.domain.models.service.menu;
 
 import java.math.BigDecimal;
 
@@ -7,6 +7,7 @@ public class DrinkServiceModel {
     private String id;
     private String name;
     private BigDecimal price;
+    private String imageUrl;
 
     public DrinkServiceModel() {
     }
@@ -33,5 +34,13 @@ public class DrinkServiceModel {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getImageUrl() {
+        return this.imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

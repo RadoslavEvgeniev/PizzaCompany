@@ -35,10 +35,10 @@
                         <hr class="hr" />
                     </th:block>
                     <a class="dropdown-item" th:href="@{/menu/addMenuItems}">Add Menu Items</a>
-                    <a class="dropdown-item" href="#">Add Pizza Ingredients</a>
+                    <a class="dropdown-item" th:href="@{/pizza/addPizzaIngredients}">Add Pizza Ingredients</a>
                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                         <hr class="hr" />
-                        <a class="dropdown-item" href="#">Logs</a>
+                        <a class="dropdown-item" th:href="@{/logs}">Logs</a>
                     </th:block>
                     <hr class="hr" />
                 </th:block>

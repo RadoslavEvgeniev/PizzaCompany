@@ -132,6 +132,7 @@ public class UserServiceImpl implements UserService {
                 throw new IllegalArgumentException("Non-existent role.");
             }
 
+            userEntity.setAuthorities(new HashSet<>());
             userEntity.getAuthorities().add(roleUser);
         }
     }

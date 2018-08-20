@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Table(name = "cheeses")
 public class Cheese extends Ingredient {
 
-    private String name;
     private BigDecimal price;
 
     public Cheese() {

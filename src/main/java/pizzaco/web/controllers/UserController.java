@@ -2,6 +2,7 @@ package pizzaco.web.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,27 +10,31 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.binding.UserEditBindingModel;
 import pizzaco.domain.models.binding.UserRegisterBindingModel;
 import pizzaco.domain.models.service.UserServiceModel;
+import pizzaco.errors.UserEditFailureException;
+import pizzaco.errors.UserRegisterFailureException;
 import pizzaco.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDateTime;
 
 @Controller
 public class UserController extends BaseController {
 
     private final UserService userService;
+    private final JmsTemplate jmsTemplate;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder, ModelMapper modelMapper) {
+    public UserController(UserService userService, JmsTemplate jmsTemplate, BCryptPasswordEncoder bCryptPasswordEncoder, ModelMapper modelMapper) {
         this.userService = userService;
+        this.jmsTemplate = jmsTemplate;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.modelMapper = modelMapper;
     }
@@ -47,7 +52,12 @@ public class UserController extends BaseController {
         }
 
         UserServiceModel userServiceModel = this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
-        this.userService.registerUser(userServiceModel);
+
+        if (!this.userService.registerUser(userServiceModel)) {
+            throw new UserRegisterFailureException("Registering user " + userServiceModel.getEmail() + " failed.");
+        }
+
+        this.logAction(userServiceModel, "Registered successfully.");
 
         return super.redirect("/");
     }
@@ -80,8 +90,16 @@ public class UserController extends BaseController {
             userEditBindingModel.setPassword(userEditBindingModel.getNewPassword());
         }
 
-        this.userService.editUser(this.modelMapper.map(userEditBindingModel, UserServiceModel.class));
+        if (!this.userService.editUser(this.modelMapper.map(userEditBindingModel, UserServiceModel.class))) {
+            throw new UserEditFailureException("Editing user " + userServiceModel.getEmail() + " failed.");
+        }
+
+        this.logAction(userServiceModel, "Edited profile successfully.");
 
         return super.redirect("/profiles/my");
+    }
+
+    private void logAction(UserServiceModel userServiceModel, String event) {
+        this.jmsTemplate.convertAndSend(String.format("%s;%s;%s", LocalDateTime.now(), userServiceModel.getEmail(), event));
     }
 }

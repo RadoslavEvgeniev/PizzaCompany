@@ -11,6 +11,7 @@ public abstract class MenuItem extends BaseEntity {
 
     private String name;
     private BigDecimal price;
+    private String imageUrl;
 
     public MenuItem() {
     }
@@ -24,12 +25,21 @@ public abstract class MenuItem extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     public BigDecimal getPrice() {
         return this.price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Column(name = "image_url", nullable = false)
+    public String getImageUrl() {
+        return this.imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

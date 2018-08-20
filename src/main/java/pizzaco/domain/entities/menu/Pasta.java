@@ -15,7 +15,7 @@ public class Pasta extends MenuItem {
     public Pasta() {
     }
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", columnDefinition = "text", nullable = false)
     public String getDescription() {
         return this.description;
     }
