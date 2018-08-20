@@ -1,0 +1,39 @@
+<th:block>
+    <div class="modal-header text text-center">
+        <h1 class="modal-title" id="drinksModalLabel">Add Drink</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <hr class="hr" />
+    <form th:action="@{/menu/drinks/add}" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="col">
+                <label for="drink-name">Name
+                    <input class="form-control" id="drink-name" type="text" name="name" placeholder="Name..." required>
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="drink-price">Price
+                    <input class="form-control" id="drink-price" type="number" step="any" name="price" placeholder="Price..." required>
+                </label>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row">
+            <div class="col">
+                <label for="drink-image">Drink Image</label>
+                <input type="file" class="form-control-file" id="drink-image" name="dipImage">
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row my-5">
+            <div class="col">
+                <button type="submit" class="btn btn-success">Add Drink</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </form>
+</th:block>

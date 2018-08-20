@@ -1,0 +1,22 @@
+<th:block>
+    <div class="jumbotron bg-forms col-md-11 mx-5 text text-center" th:object="${userViewModel}">
+        <h1 class="text text-center">Profile</h1>
+        <div class="text text-center">
+            <h4 th:text="'Email: ' + *{email}"></h4>
+            <h4 th:text="'First Name: ' + *{firstName}"></h4>
+            <h4 th:text="'Last Name: ' + *{lastName}"></h4>
+            <h4 th:text="'Roles: ' + *{}"></h4>
+        </div>
+        <hr class="hr" />
+        <div class="text text-center">
+            <form action=""></form>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        let roles = [[${userViewModel.roles}]];
+
+        if (roles.indexOf('ROLE_ADMIN') > -1) {
+
+        }
+    </script>
+</th:block>

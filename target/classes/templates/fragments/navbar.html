@@ -1,0 +1,25 @@
+<th:block th:fragment>
+
+    <nav class="navbar navbar-expand-lg bg-red-candy-apple">
+        <a class="navbar-brand h4" th:href="@{/}">
+            <img class="img-responsive pizza-png" src="http://gdurl.com/WbOi" alt="">
+            <span class="text-white">Pizza Company &copy;</span>
+        </a>
+        <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggle-label text-white">Actions</span>
+
+            <span class="navbar-toggle-icon">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end row mr-3" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <th:block  sec:authorize="isAnonymous()" th:include="~{fragments/navbar-guest-fragment}"></th:block>
+                <th:block  sec:authorize="isAuthenticated()" th:include="~{fragments/navbar-user-fragment}"></th:block>
+            </ul>
+        </div>
+    </nav>
+
+</th:block>

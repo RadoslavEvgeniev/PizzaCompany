@@ -1,0 +1,51 @@
+<th:block th:fragment>
+    <li class="nav-link active col-md-4">
+        <a class="text text-white h5" th:href="@{/menu}">
+            <img class="img-responsive" src="http://gdurl.com/yWKj" alt="menu-icon.png" width="40" height="40">
+        </a>
+    </li>
+    <li class="col-md-4">
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle text-white border-0 bg-transparent " href="#" role="button" id="cartDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="img-responsive" src="http://gdurl.com/mqzH" alt="">
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right bg-forms" aria-labelledby="cartDropDown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+    </li>
+    <li class="col-md-4">
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle text-white border-0 bg-transparent" href="#" role="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="img-responsive" src="http://gdurl.com/3IFV" alt="">
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right   bg-forms" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" th:href="@{/profiles/my}">My Profile</a>
+                <a class="dropdown-item" th:href="@{/addresses/my}">My Addresses</a>
+                <a class="dropdown-item" th:href="@{/orders/my}">My Orders</a>
+                <hr class="hr" />
+                <th:block sec:authorize="hasRole('ROLE_MODERATOR')">
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="dropdown-item" th:href="@{/profiles/all}">All Profiles</a>
+                        <a class="dropdown-item" th:href="@{/orders/all}">All Orders</a>
+                        <hr class="hr" />
+                    </th:block>
+                    <a class="dropdown-item" th:href="@{/menu/addMenuItems}">Add Menu Items</a>
+                    <a class="dropdown-item" th:href="@{/pizza/addPizzaIngredients}">Add Pizza Ingredients</a>
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <hr class="hr" />
+                        <a class="dropdown-item" th:href="@{/logs}">Logs</a>
+                    </th:block>
+                    <hr class="hr" />
+                </th:block>
+                <form class="dropdown-item" th:action="@{/logout}" method="post">
+                    <button class="border-0 bg-transparent">Logout</button>
+                </form>
+            </div>
+        </div>
+    </li>
+</th:block>

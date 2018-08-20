@@ -1,0 +1,40 @@
+<th:block>
+    <div class="modal-header text text-center">
+        <h1 class="modal-title" id="sizesModalLabel">Add Size</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <hr class="hr" />
+    <form th:action="@{/pizza/sizes/add}" method="post">
+        <div class="form-row">
+            <div class="col">
+                <label for="size-name">Size
+                    <input class="form-control" id="size-name" type="text" name="size" placeholder="Size..." required>
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="size-price">Price
+                    <input class="form-control" id="size-price" type="number" step="any" name="price" placeholder="Price..." required>
+                </label>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row">
+            <div class="col">
+                <label for="size-number-of-slices">Number of Slices
+                    <input class="form-control" id="size-number-of-slices" type="number" name="numberOfSlices" placeholder="Number of Slices..." required>
+                </label>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row my-5">
+            <div class="col">
+                <button type="submit" class="btn btn-success">Add Size</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </form>
+</th:block>

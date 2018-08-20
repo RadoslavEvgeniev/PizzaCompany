@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <th:block th:include="~{fragments/head}"></th:block>
+
+</head>
+<body class="bg-body">
+<header>
+
+    <nav class="navbar navbar-expand-lg bg-red-candy-apple">
+        <a class="navbar-brand h4" th:href="@{/}">
+            <img class="img-responsive pizza-png" src="http://gdurl.com/WbOi" alt="">
+            <span class="text-white">Pizza Company &copy;</span>
+        </a>
+    </nav>
+
+</header>
+<main>
+
+    <div class="jumbotron bg-forms col-md-11 mx-5">
+        <div class="container text text-center">
+            <h1 class="text-danger">404: Not Found</h1>
+            <hr class="hr"/>
+            <p>The page or resource you are looking for cannot be found.</p>
+        </div>
+    </div>
+
+</main>
+<footer>
+
+    <th:block th:include="~{fragments/footer}"></th:block>
+
+</footer>
+</body>
+</html>

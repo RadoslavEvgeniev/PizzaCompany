@@ -1,0 +1,40 @@
+.pizza-png {
+    width: 40px;
+    height: 40px;
+}
+
+.pizza-bg-img {
+
+}
+
+.bg-red-candy-apple {
+    background-color: #FF0800;
+
+}
+
+.bg-body {
+    background: url(https://gdurl.com/qlHM) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-jumbotron {
+    background: url(https://gdurl.com/kyjF);
+    background-color: wheat;
+}
+
+.special-offer {
+    background: url("https://gdurl.com/mNk9");
+}
+
+.bg-forms {
+    background: url(https://gdurl.com/nleE);
+    background-color: wheat;
+}
+
+.hr {
+    background-color: #FF0800;
+    height: 1px;
+}
