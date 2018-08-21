@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pizzaco.domain.entities.menu.Dip;
 import pizzaco.domain.entities.menu.Drink;
 import pizzaco.domain.entities.menu.Pasta;
+import pizzaco.domain.entities.menu.Pizza;
 import pizzaco.domain.models.service.menu.DipServiceModel;
 import pizzaco.domain.models.service.menu.DrinkServiceModel;
 import pizzaco.domain.models.service.menu.PastaServiceModel;
@@ -79,6 +80,16 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public boolean addPizza(PizzaServiceModel pizzaServiceModel) {
-        return false;
+        Pizza pizzaEntity = this.pizzaRepository.findByName(pizzaServiceModel.getName()).orElse(null);
+
+        if (pizzaEntity != null) {
+            throw new ItemAlreadyExistsException("Pizza already exists.");
+        }
+
+        pizzaEntity = this.modelMapper.map(pizzaServiceModel, Pizza.class);
+
+        this.pizzaRepository.save(pizzaEntity);
+
+        return true;
     }
 }

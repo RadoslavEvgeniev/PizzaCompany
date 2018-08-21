@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.binding.ingredients.*;
 import pizzaco.domain.models.service.ingredients.*;
 import pizzaco.errors.IngredientAddFailureException;
-import pizzaco.service.PizzaService;
+import pizzaco.service.IngredientService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -22,13 +22,13 @@ import java.time.LocalDateTime;
 @Controller
 public class PizzaController extends BaseController {
 
-    private final PizzaService pizzaService;
+    private final IngredientService ingredientService;
     private final JmsTemplate jmsTemplate;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public PizzaController(PizzaService pizzaService, JmsTemplate jmsTemplate, ModelMapper modelMapper) {
-        this.pizzaService = pizzaService;
+    public PizzaController(IngredientService ingredientService, JmsTemplate jmsTemplate, ModelMapper modelMapper) {
+        this.ingredientService = ingredientService;
         this.jmsTemplate = jmsTemplate;
         this.modelMapper = modelMapper;
     }
@@ -49,7 +49,7 @@ public class PizzaController extends BaseController {
 
         SizeServiceModel sizeServiceModel = this.modelMapper.map(addSizeBindingModel, SizeServiceModel.class);
 
-        boolean result = this.pizzaService.addSize(sizeServiceModel);
+        boolean result = this.ingredientService.addSize(sizeServiceModel);
 
         if (!result) {
             throw new IngredientAddFailureException("Adding size " + sizeServiceModel.getSize() + " failed.");
@@ -70,7 +70,7 @@ public class PizzaController extends BaseController {
 
         DoughServiceModel doughServiceModel = this.modelMapper.map(addDoughBindingModel, DoughServiceModel.class);
 
-        boolean result = this.pizzaService.addDough(doughServiceModel);
+        boolean result = this.ingredientService.addDough(doughServiceModel);
 
         if (!result) {
             throw new IngredientAddFailureException("Adding dough " + doughServiceModel.getName() + " failed.");
@@ -91,7 +91,7 @@ public class PizzaController extends BaseController {
 
         SauceServiceModel sauceServiceModel = this.modelMapper.map(addSauceBindingModel, SauceServiceModel.class);
 
-        boolean result = this.pizzaService.addSauce(sauceServiceModel);
+        boolean result = this.ingredientService.addSauce(sauceServiceModel);
 
         if (!result) {
             throw new IngredientAddFailureException("Adding sauce " + sauceServiceModel.getName() + " failed.");
@@ -112,7 +112,7 @@ public class PizzaController extends BaseController {
 
         SpiceServiceModel spiceServiceModel = this.modelMapper.map(addSpiceBindingModel, SpiceServiceModel.class);
 
-        boolean result = this.pizzaService.addSpice(spiceServiceModel);
+        boolean result = this.ingredientService.addSpice(spiceServiceModel);
 
         if (!result) {
             throw new IngredientAddFailureException("Adding spice " + spiceServiceModel.getName() + " failed.");
@@ -133,7 +133,7 @@ public class PizzaController extends BaseController {
 
         CheeseServiceModel cheeseServiceModel = this.modelMapper.map(addCheeseBindingModel, CheeseServiceModel.class);
 
-        boolean result = this.pizzaService.addCheese(cheeseServiceModel);
+        boolean result = this.ingredientService.addCheese(cheeseServiceModel);
 
         if (!result) {
             throw new IngredientAddFailureException("Adding cheese " + cheeseServiceModel.getName() + " failed.");
@@ -154,7 +154,7 @@ public class PizzaController extends BaseController {
 
         MeatServiceModel meatServiceModel = this.modelMapper.map(addMeatBindingModel, MeatServiceModel.class);
 
-        boolean result = this.pizzaService.addMeat(meatServiceModel);
+        boolean result = this.ingredientService.addMeat(meatServiceModel);
 
         if (!result) {
             throw new IngredientAddFailureException("Adding meat " + meatServiceModel.getName() + " failed.");
@@ -175,7 +175,7 @@ public class PizzaController extends BaseController {
 
         VegetableServiceModel vegetableServiceModel = this.modelMapper.map(addVegetableBindingModel, VegetableServiceModel.class);
 
-        boolean result = this.pizzaService.addVegetable(vegetableServiceModel);
+        boolean result = this.ingredientService.addVegetable(vegetableServiceModel);
 
         if (!result) {
             throw new IngredientAddFailureException("Adding vegetable " + vegetableServiceModel.getName() + " failed.");

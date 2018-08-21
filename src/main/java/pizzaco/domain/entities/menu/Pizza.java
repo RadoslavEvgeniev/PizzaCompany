@@ -13,14 +13,11 @@ import java.util.Set;
 public class Pizza extends MenuItem {
 
     private String description;
-    private Size size;
-    private Dough dough;
     private Sauce sauce;
     private Set<Spice> spices;
     private Set<Cheese> cheeses;
     private Set<Meat> meats;
     private Set<Vegetable> vegetables;
-
 
     public Pizza() {
     }
@@ -32,30 +29,6 @@ public class Pizza extends MenuItem {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @ManyToOne(targetEntity = Size.class)
-    @JoinTable(name = "pizzas_sizes"
-            , joinColumns = @JoinColumn(name = "pizza_id")
-            , inverseJoinColumns = @JoinColumn(name = "size_id"))
-    public Size getSize() {
-        return this.size;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
-    @ManyToOne(targetEntity = Dough.class)
-    @JoinTable(name = "pizzas_doughs"
-            , joinColumns = @JoinColumn(name = "pizza_id")
-            , inverseJoinColumns = @JoinColumn(name = "dough_id"))
-    public Dough getDough() {
-        return this.dough;
-    }
-
-    public void setDough(Dough dough) {
-        this.dough = dough;
     }
 
     @ManyToOne(targetEntity = Sauce.class)

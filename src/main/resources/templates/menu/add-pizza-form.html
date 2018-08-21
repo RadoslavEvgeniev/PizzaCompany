@@ -1,0 +1,97 @@
+<th:block>
+    <div class="modal-header text text-center">
+        <h1 class="modal-title" id="pizzaModalLabel">Add Pizza</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <hr class="hr" />
+    <form th:action="@{/menu/pizza/add}" method="post" enctype="multipart/form-data">
+        <div class="form-row d-flex justify-content-center">
+            <div class="col">
+                <label for="pizza-name">Name
+                    <input class="form-control" id="pizza-name" type="text" name="name" placeholder="Name..." required>
+                </label>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row d-flex justify-content-center">
+            <div class="col">
+                <label for="pizza-sauce">Sauce</label>
+                <div class=" d-flex justify-content-center">
+                    <select class="form-control w-75" id="pizza-sauce" name="sauce">
+                        <th:block th:each="sauce : ${allIngredientsViewModel.sauces}">
+                            <option th:value="${sauce.name}" th:text="${sauce.name}"></option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col">
+                <label for="pizza-spices">Spices</label>
+                <div class=" d-flex justify-content-center">
+                    <select multiple class="form-control w-75 mb-5" id="pizza-spices" name="spices">
+                        <th:block th:each="spice : ${allIngredientsViewModel.spices}">
+                            <option th:value="${spice.name}" th:text="${spice.name}"></option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-row d-flex justify-content-center">
+            <div class="col col-md-4">
+                <label for="pizza-cheeses">Cheeses</label>
+                <hr  />
+                <div class="form-check pl-5" id="pizza-cheeses">
+                    <th:block th:each="cheese: ${allIngredientsViewModel.cheeses}">
+                        <div class="row"  style="overflow: hidden; white-space: nowrap">
+                            <input class="form-check-input" type="checkbox" th:value="${cheese.name}" id="pizza-cheese" name="cheeses">
+                            <label class="form-check-label" for="pizza-cheese" th:text="${cheese.name}"></label>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <label for="pizza-vegetables">Vegetables</label>
+                <hr  />
+                <div class="form-check pl-5" id="pizza-vegetables">
+                    <th:block th:each="vegetable: ${allIngredientsViewModel.vegetables}">
+                        <div class="row" style="overflow: hidden; white-space: nowrap">
+                            <input class="form-check-input" type="checkbox" th:value="${vegetable.name}" id="pizza-vegetable" name="vegetables">
+                            <label class="form-check-label" for="pizza-vegetable" th:text="${vegetable.name}"></label>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <label for="pizza-meats">Meats</label>
+                <hr  />
+                <div class="form-check pl-5" id="pizza-meats">
+                    <th:block th:each="meat: ${allIngredientsViewModel.meats}">
+                        <div class="row"  style="overflow: hidden; white-space: nowrap">
+                            <input class="form-check-input" type="checkbox" th:value="${meat.name}" id="pizza-meat" name="meats">
+                            <label class="form-check-label" for="pizza-meat" th:text="${meat.name}"></label>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row d-flex justify-content-center">
+            <div class="col">
+                <label for="pizza-image">Pizza Image</label>
+                <div class="row d-flex justify-content-center">
+                    <input type="file" class="form-control-file w-50" id="pizza-image" name="pizzaImage">
+                </div>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="form-row my-5 d-flex justify-content-center">
+            <div class="col">
+                <button type="submit" class="btn btn-success">Add Pizza</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </form>
+</th:block>
