@@ -6,7 +6,7 @@
         </button>
     </div>
     <hr class="hr" />
-    <form th:action="@{/menu/pasta/add}" method="post">
+    <form th:action="@{/menu/pasta/add}" method="post" enctype="multipart/form-data">
         <div class="form-row">
             <div class="col">
                 <label for="pasta-name">Name
@@ -24,7 +24,7 @@
         <div class="form-row">
             <div class="col">
                 <label for="pasta-description">Description
-                    <textarea class="form-control " id="pasta-description" type="text" name="name" ></textarea>
+                    <textarea class="form-control " id="pasta-description" type="text" name="description" ></textarea>
                 </label>
             </div>
         </div>

@@ -64,14 +64,15 @@ public class MenuController extends BaseController {
             throw new ItemAddFailureException("Adding drink " + drinkServiceModel.getName() + " failed.");
         }
 
-        this.logAction(principal.getName(), "Added drink " + drinkServiceModel.getName() + " with price " + drinkServiceModel.getPrice() + "$");
+        this.logAction(principal.getName(), "Added drink " + drinkServiceModel.getName() + " with price " + drinkServiceModel.getPrice() + "$.");
 
-        return super.redirect("/menu");
+        return super.redirect("/menu/addMenuItems");
     }
 
     @PostMapping("/menu/dips/add")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
-    public ModelAndView addDip(@Valid @ModelAttribute(name = "addDipBindingModel") AddDipBindingModel addDipBindingModel, BindingResult bindingResult) throws IOException {
+    public ModelAndView addDip(@Valid @ModelAttribute(name = "addDipBindingModel") AddDipBindingModel addDipBindingModel
+            , BindingResult bindingResult, Principal principal) throws IOException {
         if (bindingResult.hasErrors()) {
             return super.view("menu/add-menu-items");
         }
@@ -85,12 +86,15 @@ public class MenuController extends BaseController {
             throw new ItemAddFailureException("Adding dip " + dipServiceModel.getName() + " failed.");
         }
 
-        return super.redirect("/menu");
+        this.logAction(principal.getName(), "Added dip " + dipServiceModel.getName() + " with price " + dipServiceModel.getPrice() + "$.");
+
+        return super.redirect("/menu/addMenuItems");
     }
 
     @PostMapping("/menu/pasta/add")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
-    public ModelAndView addPasta(@Valid @ModelAttribute(name = "addPastaBindingModel") AddPastaBindingModel addPastaBindingModel, BindingResult bindingResult) throws IOException {
+    public ModelAndView addPasta(@Valid @ModelAttribute(name = "addPastaBindingModel") AddPastaBindingModel addPastaBindingModel
+            , BindingResult bindingResult, Principal principal) throws IOException {
         if (bindingResult.hasErrors()) {
             return super.view("menu/add-menu-items");
         }
@@ -104,7 +108,9 @@ public class MenuController extends BaseController {
             throw new ItemAddFailureException("Adding pasta " + pastaServiceModel.getName() + " failed.");
         }
 
-        return super.redirect("/menu");
+        this.logAction(principal.getName(), "Added pasta " + pastaServiceModel.getName() + " with price " + pastaServiceModel.getPrice() + "$.");
+
+        return super.redirect("/menu/addMenuItems");
     }
 
     private void logAction(String email, String event) {

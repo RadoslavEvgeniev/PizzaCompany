@@ -1,181 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed5a8976-2b97-46c9-a9f9-9c0306121c2c" name="Default Changelist" comment="Added&#10;&#10;Add Pizza Ingredients functionality and messaging service for logging all actions like &quot;register&quot;, &quot;add drink&quot; etc.">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/config/ApplicationCloudConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/config/ApplicationMessagingConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddCheeseBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddDoughBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddMeatBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddSauceBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddSizeBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddSpiceBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddVegetableBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/menu/AddDipBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/menu/AddPastaBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/CheeseServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/DoughServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/MeatServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/SauceServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/SizeServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/SpiceServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/VegetableServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/DipServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/PastaServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/PizzaServiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/errors/IngredientAddFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/errors/IngredientAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/errors/ItemAddFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/errors/ItemAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/errors/UserEditFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/errors/UserRegisterFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/ingredients/CheeseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/ingredients/DoughRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/ingredients/MeatRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/ingredients/SauceRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/ingredients/SizeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/ingredients/SpiceRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/ingredients/VegetableRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/menu/DipRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/menu/PastaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/menu/PizzaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/CloudinaryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/CloudinaryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/LogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/PizzaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/PizzaServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/PizzaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-cheese-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-dough-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-meat-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-pizza-ingredients.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-sauce-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-size-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-spice-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-vegetable-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/PizzaCompanyApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/config/ApplicationBeanConfiguration.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/config/ApplicationCloudConfiguration$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/config/ApplicationCloudConfiguration.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/config/ApplicationMessagingConfiguration.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/config/ApplicationSecurityConfiguration.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/Address.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/BaseEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/Log.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/Order.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/User.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/UserRole.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/menu/Dip.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/menu/Drink.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/menu/MenuItem.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/menu/Pasta.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/menu/Pizza.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/pizza/Cheese.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/pizza/Dough.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/pizza/Ingredient.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/pizza/Meat.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/pizza/Sauce.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/pizza/Size.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/pizza/Spice.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/pizza/Vegetable.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/UserEditBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/UserRegisterBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/ingredients/AddCheeseBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/ingredients/AddDoughBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/ingredients/AddMeatBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/ingredients/AddSauceBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/ingredients/AddSizeBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/ingredients/AddSpiceBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/ingredients/AddVegetableBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/menu/AddDipBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/menu/AddDrinkBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/binding/menu/AddPastaBindingModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/AddressServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/UserRoleServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/UserServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/ingredients/CheeseServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/ingredients/DoughServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/ingredients/MeatServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/ingredients/SauceServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/ingredients/SizeServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/ingredients/SpiceServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/ingredients/VegetableServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/menu/DipServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/menu/DrinkServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/menu/PastaServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/menu/PizzaServiceModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/view/AllUsersViewModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/view/UserViewModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/errors/IdNotFoundException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/errors/IngredientAddFailureException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/errors/IngredientAlreadyExistsException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/errors/ItemAddFailureException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/errors/ItemAlreadyExistsException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/errors/UserEditFailureException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/errors/UserRegisterFailureException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/LogRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/RoleRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/UserRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/ingredients/CheeseRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/ingredients/DoughRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/ingredients/MeatRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/ingredients/SauceRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/ingredients/SizeRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/ingredients/SpiceRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/ingredients/VegetableRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/menu/DipRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/menu/DrinkRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/menu/PastaRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/repository/menu/PizzaRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/CloudinaryService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/CloudinaryServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/LogService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/LogServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/MenuService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/MenuServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/PizzaService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/PizzaServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/UserService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/service/UserServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/web/controllers/AdminController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/web/controllers/BaseController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/web/controllers/HomeController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/web/controllers/MenuController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/web/controllers/PizzaController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pizzaco/web/controllers/UserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/css/reset.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/js/jquery-3.3.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/error/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/fragments/base-layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/fragments/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/fragments/head.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/fragments/navbar-guest-fragment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/fragments/navbar-user-fragment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/fragments/navbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/menu/add-dip-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/menu/add-drink-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/menu/add-menu-items.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/menu/add-pasta-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/pizza/add-cheese-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/pizza/add-dough-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/pizza/add-meat-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/pizza/add-pizza-ingredients.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/pizza/add-sauce-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/pizza/add-size-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/pizza/add-spice-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/pizza/add-vegetable-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/users/all-profiles-user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/users/details-user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/users/login-user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/users/profile-user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/users/register-user.html" afterDir="false" />
+    <list default="true" id="ed5a8976-2b97-46c9-a9f9-9c0306121c2c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/PizzaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/PizzaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/menu/add-dip-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/menu/add-dip-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/menu/add-drink-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/menu/add-drink-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/menu/add-pasta-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/menu/add-pasta-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-cheese-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-cheese-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-meat-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-meat-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-spice-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-spice-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-vegetable-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pizza/add-vegetable-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pizzaco/web/controllers/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pizzaco/web/controllers/MenuController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -218,31 +55,40 @@
     <session id="-182418955">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.50" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="SCHEMA:pizza_co_db" value="1" />
+          <entry key="cheeses" value="1" />
           <entry key="class" value="6" />
           <entry key="css" value="2" />
-          <entry key="drinks" value="1" />
-          <entry key="html" value="58" />
-          <entry key="java" value="214" />
-          <entry key="logs" value="2" />
+          <entry key="dips" value="2" />
+          <entry key="doughs" value="1" />
+          <entry key="drinks" value="2" />
+          <entry key="html" value="71" />
+          <entry key="java" value="219" />
+          <entry key="logs" value="3" />
+          <entry key="meats" value="1" />
+          <entry key="pastas" value="1" />
           <entry key="properties" value="4" />
           <entry key="roles" value="2" />
-          <entry key="sizes" value="1" />
+          <entry key="sauces" value="1" />
+          <entry key="sizes" value="3" />
+          <entry key="spices" value="1" />
           <entry key="sql" value="4" />
           <entry key="users" value="4" />
           <entry key="users_roles" value="3" />
+          <entry key="vegetables" value="1" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
@@ -250,9 +96,9 @@
         <counts>
           <entry key="CLASS" value="6" />
           <entry key="CSS" value="2" />
-          <entry key="Database Element" value="13" />
-          <entry key="HTML" value="58" />
-          <entry key="JAVA" value="214" />
+          <entry key="Database Element" value="26" />
+          <entry key="HTML" value="71" />
+          <entry key="JAVA" value="219" />
           <entry key="Properties" value="4" />
           <entry key="Scratch" value="4" />
           <entry key="UML" value="1" />
@@ -261,10 +107,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="cell" value="4" />
           <entry key="css" value="35" />
           <entry key="dummy" value="29" />
-          <entry key="html" value="2003" />
-          <entry key="java" value="8334" />
+          <entry key="html" value="2034" />
+          <entry key="java" value="8775" />
           <entry key="properties" value="127" />
           <entry key="sql" value="30" />
           <entry key="txt" value="635" />
@@ -274,11 +121,11 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="35" />
-          <entry key="HTML" value="2003" />
-          <entry key="JAVA" value="8334" />
+          <entry key="HTML" value="2034" />
+          <entry key="JAVA" value="8775" />
           <entry key="PLAIN_TEXT" value="664" />
           <entry key="Properties" value="127" />
-          <entry key="Scratch" value="30" />
+          <entry key="Scratch" value="34" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
@@ -287,10 +134,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/MenuController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/PizzaController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
+            <state relative-caret-position="-2383">
+              <caret line="57" column="183" selection-start-line="57" selection-start-column="183" selection-end-line="57" selection-end-column="183" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -298,11 +145,29 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/logs">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/DrinkServiceModel.java">
+        <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/vegetables">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-vegetable-form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-83">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="184">
+              <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -324,9 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/pizzaco/repository/SizeRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pizzaco/errors/ItemAlreadyExistsException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pizzaco/errors/IngredientAlreadyExistsException.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/errors/IngredientAddFailureException.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/repository/DoughRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/repository/menu/PizzaRepository.java" />
@@ -353,14 +215,9 @@
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddCheeseBindingModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddMeatBindingModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddVegetableBindingModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/PizzaController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-dough-form.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-cheese-form.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-spice-form.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-sauce-form.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-size-form.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-meat-form.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-vegetable-form.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-pizza-ingredients.html" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/PizzaCompanyApplication.java" />
@@ -372,9 +229,17 @@
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/errors/UserRegisterFailureException.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/errors/UserEditFailureException.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/MenuController.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/DrinkServiceModell.java" />
         <option value="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/DrinkServiceModel.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/menu/add-drink-form.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/menu/add-dip-form.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/menu/add-pasta-form.html" />
+        <option value="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/MenuController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/PizzaController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-spice-form.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-cheese-form.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-meat-form.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/pizza/add-vegetable-form.html" />
       </list>
     </option>
   </component>
@@ -402,8 +267,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -484,7 +349,19 @@
               <item name="pizzaco" type="462c0819:PsiDirectoryNode" />
               <item name="domain" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="binding" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pizzacompany" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pizzacompany" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pizzaco" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="binding" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pizzacompany" type="b2602c69:ProjectViewProjectNode" />
@@ -496,7 +373,6 @@
               <item name="domain" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pizzacompany" type="b2602c69:ProjectViewProjectNode" />
@@ -542,11 +418,37 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="pizzacompany" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pizzacompany" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pizzacompany" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pizzacompany" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pizzacompany" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pizzacompany" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="pizza" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -557,7 +459,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534778217487" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534841209029" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/pizza-company queries" />
   </component>
@@ -668,7 +570,8 @@
       <workItem from="1534579012574" duration="23067000" />
       <workItem from="1534660322868" duration="1726000" />
       <workItem from="1534680564936" duration="8582000" />
-      <workItem from="1534745646019" duration="22670000" />
+      <workItem from="1534745646019" duration="23004000" />
+      <workItem from="1534831349815" duration="9457000" />
     </task>
     <task id="LOCAL-00001" summary="Minor fixes;">
       <created>1534598892732</created>
@@ -803,16 +706,24 @@
       <option name="project" value="LOCAL" />
       <updated>1534777902881</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added&#10;&#10;Add Pizza Ingredients functionality and messaging service for logging all actions like &quot;register&quot;, &quot;add drink&quot; etc.">
+      <created>1534778304865</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1534778304865</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56188000" />
+    <option name="totallyTimeSpent" value="65979000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21440129" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21763754" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -823,7 +734,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290993" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3290993" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3995381" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2886836" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -832,7 +743,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" visible="true" weight="0.3290993" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.3290993" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.3290993" />
       <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -842,7 +753,7 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="right" id="SciView" order="6" />
-      <window_info anchor="right" id="Database" order="7" weight="0.16100323" />
+      <window_info active="true" anchor="right" id="Database" order="7" visible="true" weight="0.16100323" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="right" id="Bean Validation" order="10" />
@@ -918,12 +829,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pizzaco/service/CloudinaryServiceImpl.java</url>
-          <line>23</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pizzaco/service/UserServiceImpl.java</url>
           <line>89</line>
           <properties />
@@ -933,242 +838,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/CheeseServiceModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#420#421#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/MeatServiceModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#289#290#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/SizeServiceModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#295#296#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/SpiceServiceModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#201#202#0" expanded="true" />
-            <element signature="e#231#232#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/VegetableServiceModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#269#270#0" expanded="true" />
-            <element signature="e#299#300#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/DoughServiceModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/ingredients/SauceServiceModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddSizeBindingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#280#281#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddSauceBindingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="24" />
-          <folding>
-            <element signature="e#186#187#0" expanded="true" />
-            <element signature="e#218#219#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddSpiceBindingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="e#218#219#0" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#290#291#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/entities/pizza/Cheese.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/entities/pizza/Vegetable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddCheeseBindingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="7" selection-end-column="29" />
-          <folding>
-            <element signature="e#252#253#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#324#325#0" expanded="true" />
-            <element signature="e#356#357#0" expanded="true" />
-            <element signature="e#392#393#0" expanded="true" />
-            <element signature="e#425#426#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
-            <element signature="e#505#506#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddMeatBindingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-          <folding>
-            <element signature="e#276#277#0" expanded="true" />
-            <element signature="e#316#317#0" expanded="true" />
-            <element signature="e#348#349#0" expanded="true" />
-            <element signature="e#384#385#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#497#498#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddVegetableBindingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-          <folding>
-            <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#326#327#0" expanded="true" />
-            <element signature="e#358#359#0" expanded="true" />
-            <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#427#428#0" expanded="true" />
-            <element signature="e#473#474#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/ingredients/AddDoughBindingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="e#218#219#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/menu/add-pasta-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="22" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-spice-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="59" lean-forward="true" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-sauce-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-dough-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-size-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="19" column="56" lean-forward="true" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-cheese-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="14" lean-forward="true" selection-end-line="31" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-pizza-ingredients.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
           <caret line="158" column="83" selection-start-line="158" selection-start-column="83" selection-end-line="158" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-vegetable-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="26" column="75" selection-start-line="26" selection-start-column="75" selection-end-line="26" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-meat-form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="10" lean-forward="true" selection-end-line="31" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -1222,16 +895,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#359#360#0" expanded="true" />
             <element signature="e#389#390#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/PizzaController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="126" column="111" selection-start-line="126" selection-start-column="52" selection-end-line="126" selection-end-column="111" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1349,13 +1012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/logs">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
@@ -1363,20 +1019,205 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/DrinkServiceModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/service/CloudinaryServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/menu/AddDrinkBindingModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/drinks">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/menu/add-drink-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="85" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/menu/AddDipBindingModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/binding/menu/AddPastaBindingModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/dips">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/menu/add-pasta-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-74">
+          <caret line="8" column="83" selection-start-line="8" selection-start-column="83" selection-end-line="8" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/pastas">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/MenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
+        <state relative-caret-position="1959">
+          <caret line="110" column="142" selection-start-line="110" selection-start-column="142" selection-end-line="110" selection-end-column="142" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/DrinkServiceModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-size-form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-83">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="299">
+          <caret line="19" column="56" lean-forward="true" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-dough-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/sizes">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/doughs">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-sauce-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/sauces">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-spice-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-cheese-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/spices">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/menu/add-dip-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="83" selection-start-line="8" selection-start-column="83" selection-end-line="8" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-meat-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/cheeses">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/meats">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pizza/add-vegetable-form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/PizzaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2383">
+          <caret line="57" column="183" selection-start-line="57" selection-start-column="183" selection-end-line="57" selection-end-column="183" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/logs">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4e8db8d6-1b44-4ecf-bb03-d915187cfc08/schema/pizza_co_db/table/vegetables">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
