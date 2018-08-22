@@ -10,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.service.UserRoleServiceModel;
 import pizzaco.domain.models.service.UserServiceModel;
 import pizzaco.domain.models.view.AllUsersViewModel;
+import pizzaco.domain.models.view.LogViewModel;
 import pizzaco.domain.models.view.UserViewModel;
+import pizzaco.service.LogService;
 import pizzaco.service.UserService;
 
 import java.util.stream.Collectors;
@@ -19,11 +21,13 @@ import java.util.stream.Collectors;
 public class AdminController extends BaseController {
 
     private final UserService userService;
+    private final LogService logService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AdminController(UserService userService, ModelMapper modelMapper) {
+    public AdminController(UserService userService, LogService logService, ModelMapper modelMapper) {
         this.userService = userService;
+        this.logService = logService;
         this.modelMapper = modelMapper;
     }
 
@@ -41,19 +45,21 @@ public class AdminController extends BaseController {
 
     @GetMapping("/profiles/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView profile(@PathVariable(name = "id")String id) {
+    public ModelAndView profile(@PathVariable(name = "id") String id) {
         UserServiceModel userServiceModel = this.userService.extractUserById(id);
         UserViewModel userViewModel = this.modelMapper.map(userServiceModel, UserViewModel.class);
         userViewModel.setRoles(userServiceModel.getAuthorities().stream().map(UserRoleServiceModel::getAuthority).collect(Collectors.toList()));
         return super.view("users/details-user", "userViewModel", userViewModel);
     }
 
-    // TODO : Change User roles
-
-    @GetMapping("/addMenuItem")
-    @PreAuthorize("hasRole('ROLE_MODERATOR')")
-    public ModelAndView addMenuItem() {
-
-        return null;
+    @GetMapping("/logs")
+    public ModelAndView logs() {
+        return super.view(
+                "logs", "logViewModel",
+                this.logService.getLogsOrderedByDate()
+                        .stream()
+                        .map(log -> this.modelMapper.map(log, LogViewModel.class))
+                        .collect(Collectors.toList())
+        );
     }
 }
