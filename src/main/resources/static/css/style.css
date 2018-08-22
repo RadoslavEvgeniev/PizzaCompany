@@ -3,10 +3,6 @@
     height: 40px;
 }
 
-.pizza-bg-img {
-
-}
-
 .bg-red-candy-apple {
     background-color: #FF0800;
 
@@ -38,3 +34,8 @@
     background-color: #FF0800;
     height: 1px;
 }
+
+.img-menu {
+    height: 168px;
+}
+

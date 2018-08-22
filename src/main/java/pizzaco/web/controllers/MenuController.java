@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.binding.menu.AddDipBindingModel;
 import pizzaco.domain.models.binding.menu.AddDrinkBindingModel;
@@ -24,6 +25,10 @@ import pizzaco.domain.models.service.menu.PastaServiceModel;
 import pizzaco.domain.models.service.menu.PizzaServiceModel;
 import pizzaco.domain.models.view.AllIngredientsViewModel;
 import pizzaco.domain.models.view.ingredients.*;
+import pizzaco.domain.models.view.menu.DipViewModel;
+import pizzaco.domain.models.view.menu.DrinkViewModel;
+import pizzaco.domain.models.view.menu.PastaViewModel;
+import pizzaco.domain.models.view.menu.PizzaViewModel;
 import pizzaco.errors.ItemAddFailureException;
 import pizzaco.service.CloudinaryService;
 import pizzaco.service.MenuService;
@@ -35,6 +40,7 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
@@ -136,6 +142,7 @@ public class MenuController extends BaseController {
     }
 
     @PostMapping("/menu/pizza/add")
+    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public ModelAndView addPizza(@ModelAttribute(name = "addPizzaBindingModel") AddPizzaBindingModel addPizzaBindingModel
             , BindingResult bindingResult, Principal principal) throws IOException {
         if (bindingResult.hasErrors()) {
@@ -150,19 +157,61 @@ public class MenuController extends BaseController {
         boolean result = this.menuService.addPizza(pizzaServiceModel);
 
         if (!result) {
-            throw new ItemAddFailureException("Adding pizza " + pizzaServiceModel.getName() + " failed.");
+            throw new ItemAddFailureException("Adding ingredients " + pizzaServiceModel.getName() + " failed.");
         }
 
-        this.logAction(principal.getName(), "Added pizza " + pizzaServiceModel.getName() + " with description " + pizzaServiceModel.getDescription() + ".");
+        this.logAction(principal.getName(), "Added ingredients " + pizzaServiceModel.getName() + " with description " + pizzaServiceModel.getDescription() + ".");
 
         return super.redirect("/menu/addMenuItems");
+    }
+
+    @GetMapping("/menu")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView menu() {
+        return super.view("menu/menu");
+    }
+
+    @GetMapping(value = "/menu/pizza", produces = "application/json")
+    @ResponseBody
+    public List<PizzaViewModel> pizza() {
+        return this.menuService.getPizzaOrderedByName()
+                .stream()
+                .map(pizza -> this.modelMapper.map(pizza, PizzaViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping(value = "/menu/pasta", produces = "application/json")
+    @ResponseBody
+    public List<PastaViewModel> pasta() {
+        return this.menuService.getPastaOrderedByName()
+                .stream()
+                .map(pasta -> this.modelMapper.map(pasta, PastaViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping(value = "/menu/dips", produces = "application/json")
+    @ResponseBody
+    public List<DipViewModel> dips() {
+        return this.menuService.getDipsOrderedByName()
+                .stream()
+                .map(dip -> this.modelMapper.map(dip, DipViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping(value = "/menu/drinks", produces = "application/json")
+    @ResponseBody
+    public List<DrinkViewModel> drinks() {
+        return this.menuService.getDrinksOrderedByName()
+                .stream()
+                .map(drink -> this.modelMapper.map(drink, DrinkViewModel.class))
+                .collect(Collectors.toList());
     }
 
     private void logAction(String email, String event) {
         this.jmsTemplate.convertAndSend(String.format("%s;%s;%s", LocalDateTime.now(), email, event));
     }
 
-    private void prepareIngredientsViewModel(@ModelAttribute(name = "allIngredientsViewModel") AllIngredientsViewModel allIngredientsViewModel) {
+    private void prepareIngredientsViewModel(AllIngredientsViewModel allIngredientsViewModel) {
         allIngredientsViewModel
                 .setDoughs(
                         this.ingredientService.getDoughsOrderedByName()

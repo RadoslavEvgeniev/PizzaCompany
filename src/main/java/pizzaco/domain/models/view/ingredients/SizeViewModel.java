@@ -1,9 +1,6 @@
 package pizzaco.domain.models.view.ingredients;
 
-import pizzaco.domain.entities.pizza.Size;
-
 import java.math.BigDecimal;
-import java.util.List;
 
 public class SizeViewModel {
 

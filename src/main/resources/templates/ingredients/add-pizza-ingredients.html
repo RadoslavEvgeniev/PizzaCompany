@@ -1,8 +1,8 @@
 <th:block>
     <div class="jumbotron bg-jumbotron d-flex justify-content-center col-md-11 mx-5 my-5">
         <div class="container">
-            <div class="row m-3 p-0">
-                <div class="col col-md-3">
+            <div class="row m-3 p-0 d-flex justify-content-center">
+                <div class="col col-md-3 d-flex justify-content-center mb-4">
                     <div class="card bg-forms text-center">
                         <img class="card-img-top" src="https://res.cloudinary.com/rado-cloud/image/upload/v1534748228/sizes-image.jpg" alt="Card image cap">
                         <div class="card-header d-flex justify-content-center">
@@ -17,7 +17,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content text-center bg-forms">
 
-                                        <th:block th:include="~{pizza/add-size-form}"></th:block>
+                                        <th:block th:include="~{ingredients/add-size-form}"></th:block>
 
                                     </div>
                                 </div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="col col-md-3">
+                <div class="col col-md-3 d-flex justify-content-center mb-4">
                     <div class="card bg-forms text-center">
                         <img class="card-img-top" src="https://res.cloudinary.com/rado-cloud/image/upload/v1534748306/doughs-image.jpg" alt="Card image cap" >
                         <div class="card-header d-flex justify-content-center">
@@ -40,7 +40,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content text-center bg-forms">
 
-                                        <th:block th:include="~{pizza/add-dough-form}"></th:block>
+                                        <th:block th:include="~{ingredients/add-dough-form}"></th:block>
 
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="col col-md-3">
+                <div class="col col-md-3 d-flex justify-content-center mb-4">
                     <div class="card bg-forms text-center">
                         <img class="card-img-top" src="https://res.cloudinary.com/rado-cloud/image/upload/v1534748506/sauces-image.jpg" alt="Card image cap">
                         <div class="card-header d-flex justify-content-center">
@@ -63,7 +63,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content text-center bg-forms">
 
-                                        <th:block th:include="~{pizza/add-sauce-form}"></th:block>
+                                        <th:block th:include="~{ingredients/add-sauce-form}"></th:block>
 
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                <div class="col col-md-3">
+                <div class="col col-md-3 d-flex justify-content-center mb-4">
                     <div class="card bg-forms text-center">
                         <img class="card-img-top" src="https://res.cloudinary.com/rado-cloud/image/upload/v1534748729/spices-image.jpg" alt="Card image cap">
                         <div class="card-header d-flex justify-content-center">
@@ -86,7 +86,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content text-center bg-forms">
 
-                                        <th:block th:include="~{pizza/add-spice-form}"></th:block>
+                                        <th:block th:include="~{ingredients/add-spice-form}"></th:block>
 
                                     </div>
                                 </div>
@@ -94,9 +94,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row m-3 p-0">
-                <div class="col col-md-3">
+
+                <div class="col col-md-3 d-flex justify-content-center mb-4">
                     <div class="card bg-forms text-center">
                         <img class="card-img-top" src="https://res.cloudinary.com/rado-cloud/image/upload/v1534748869/cheeses-image.jpg" alt="Card image cap">
                         <div class="card-header d-flex justify-content-center">
@@ -110,7 +109,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content text-center bg-forms">
 
-                                        <th:block th:include="~{pizza/add-cheese-form}"></th:block>
+                                        <th:block th:include="~{ingredients/add-cheese-form}"></th:block>
 
                                     </div>
                                 </div>
@@ -119,7 +118,7 @@
                     </div>
                 </div>
 
-                <div class="col col-md-3">
+                <div class="col col-md-3 d-flex justify-content-center mb-4">
                     <div class="card bg-forms text-center">
                         <img class="card-img-top" src="https://res.cloudinary.com/rado-cloud/image/upload/v1534749037/meats-image.jpg" alt="Card image cap">
                         <div class="card-header d-flex justify-content-center">
@@ -133,7 +132,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content text-center bg-forms">
 
-                                        <th:block th:include="~{pizza/add-meat-form}"></th:block>
+                                        <th:block th:include="~{ingredients/add-meat-form}"></th:block>
 
                                     </div>
                                 </div>
@@ -142,7 +141,7 @@
                     </div>
                 </div>
 
-                <div class="col col-md-3 ">
+                <div class="col col-md-3 d-flex justify-content-center mb-4">
                     <div class="card bg-forms text-center">
                         <img class="card-img-top" src="https://res.cloudinary.com/rado-cloud/image/upload/v1534749327/vegetables-image.jpg" alt="Card image cap">
                         <div class="card-header d-flex justify-content-center">
@@ -156,7 +155,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content text-center bg-forms">
 
-                                        <th:block th:include="~{pizza/add-vegetable-form}"></th:block>
+                                        <th:block th:include="~{ingredients/add-vegetable-form}"></th:block>
 
                                     </div>
                                 </div>

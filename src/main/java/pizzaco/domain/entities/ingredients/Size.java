@@ -1,6 +1,5 @@
-package pizzaco.domain.entities.pizza;
+package pizzaco.domain.entities.ingredients;
 
-import org.hibernate.annotations.GenericGenerator;
 import pizzaco.domain.entities.BaseEntity;
 
 import javax.persistence.*;

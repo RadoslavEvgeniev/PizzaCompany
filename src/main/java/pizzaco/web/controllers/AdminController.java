@@ -34,13 +34,16 @@ public class AdminController extends BaseController {
     @GetMapping("/profiles/all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView allProfiles() {
-        return super.view("users/all-profiles-user", "profiles", this.userService.extractAllUsersOrderedAlphabetically()
-                .stream().map(u -> {
+        return super.view("users/all-profiles-user", "profiles",
+                this.userService.extractAllUsersOrderedAlphabetically()
+                .stream()
+                .map(u -> {
                     AllUsersViewModel allUsersViewModel = this.modelMapper.map(u, AllUsersViewModel.class);
                     allUsersViewModel.setFullName(String.format("%s %s", u.getFirstName(), u.getLastName()));
 
                     return allUsersViewModel;
-                }).collect(Collectors.toList()));
+                })
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/profiles/{id}")
@@ -49,10 +52,12 @@ public class AdminController extends BaseController {
         UserServiceModel userServiceModel = this.userService.extractUserById(id);
         UserViewModel userViewModel = this.modelMapper.map(userServiceModel, UserViewModel.class);
         userViewModel.setRoles(userServiceModel.getAuthorities().stream().map(UserRoleServiceModel::getAuthority).collect(Collectors.toList()));
+
         return super.view("users/details-user", "userViewModel", userViewModel);
     }
 
     @GetMapping("/logs")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView logs() {
         return super.view(
                 "logs", "logViewModel",

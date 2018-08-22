@@ -1,0 +1,103 @@
+<th:block>
+    <div class="jumbotron bg-forms d-flex justify-content-center col-md-11 mx-5">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <h1 class="text text-center text-danger">Menu</h1>
+            </div>
+            <hr class="hr"/>
+            <div class="row d-flex justify-content-center">
+                <div class="radio-navigation-holder w-50 mx-auto d-flex justify-content-center">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input mb-1" type="radio" id="pizzaRadio" value="pizza" name="selection">
+                        <h5>
+                            <label class="form-check-label" for="pizzaRadio">Pizza</label>
+                        </h5>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input mb-1" type="radio" id="pastaRadio" value="pasta" name="selection">
+                        <h5>
+                            <label class="form-check-label" for="pastaRadio">Pasta</label>
+                        </h5>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input mb-1" type="radio" id="dipsRadio" value="dips" name="selection">
+                        <h5>
+                            <label class="form-check-label" for="dipsRadio">Dips</label>
+                        </h5>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input mb-1" type="radio" id="drinksRadio" value="drinks" name="selection">
+                        <h5>
+                            <label class="form-check-label" for="drinksRadio">Drinks</label>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3" id="menu">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.form-check-inline>input, .form-check-inline>label').click(function () {
+            $('#menu').empty();
+
+            let value = $(this).val();
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8000/menu/' + value,
+                success: function (data) {
+                    $.get('/templates/menu-template.html', function (template) {
+                        if (value === 'pizza') {
+                            $('#menu').append(
+                                '<div class="col col-md-3 d-flex justify-content-center mb-4">\n' +
+                                '    <div class="card bg-forms text-center d-flex justify-content-center">\n' +
+                                '        <img class="card-img-top img-menu" src="https://res.cloudinary.com/rado-cloud/image/upload/v1534929580/pizza-anime-image.jpg" alt="Card image cap">\n' +
+                                '        <div class="card-header d-flex justify-content-center" style="width: 238px; height: 90px">\n' +
+                                '            <h3 class="text-danger">Make Your Own</h3>\n' +
+                                '        </div>\n' +
+                                '        <div class="card-body d-flex justify-content-center" style="width: 238px; height: 105px">\n' +
+                                '            Choose from our products and create a pizza by your own design.\n' +
+                                '        </div>\n' +
+                                '        <div class="card-body d-flex justify-content-center">\n' +
+                                '            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#order{{item}}Modal" style="width: 67px; height: 38px">\n' +
+                                '                Order\n' +
+                                '            </button>\n' +
+                                '            <div class="modal fade" id="{{item}}Modal" tabindex="-1" role="dialog" aria-labelledby="{{item}}ModalLabel" aria-hidden="true">\n' +
+                                '                <div class="modal-dialog" role="document">\n' +
+                                '                    <div class="modal-content text-center bg-forms">\n' +
+                                '\n' +
+                                '\n' +
+                                '\n' +
+                                '                    </div>\n' +
+                                '                </div>\n' +
+                                '            </div>\n' +
+                                '        </div>\n' +
+                                '    </div>\n' +
+                                '</div>'
+                            );
+                        }
+
+                        for (const object of data) {
+
+                            let renderedTemplate = template
+                                .replace('{{imageUrl}}', object['imageUrl'])
+                                .replace('{{name}}', object['name'])
+                                .replace('{{description}}', object['description'])
+                                .replace('{{item}}', value);
+
+                            if (object['description'] === undefined) {
+                                renderedTemplate = renderedTemplate.replace(undefined, object['name']);
+                            }
+
+                            $('#menu').append(renderedTemplate);
+                        }
+                    });
+                }
+            });
+        });
+
+        $('#pizzaRadio').click();
+    </script>
+</th:block>

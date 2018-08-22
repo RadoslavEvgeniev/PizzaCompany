@@ -1,0 +1,25 @@
+<div class="col col-md-3 d-flex justify-content-center mb-4">
+    <div class="card bg-forms text-center d-flex justify-content-center">
+        <img class="card-img-top img-menu" src="{{imageUrl}}" alt="Card image cap">
+        <div class="card-header d-flex justify-content-center" style="width: 238px; height: 90px">
+            <h3 class="text-danger">{{name}}</h3>
+        </div>
+        <div class="card-body d-flex justify-content-center" style="width: 238px; height: 105px">
+            {{description}}
+        </div>
+        <div class="card-body d-flex justify-content-center">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#order{{item}}Modal" style="width: 67px; height: 38px">
+                Order
+            </button>
+            <div class="modal fade" id="{{item}}Modal" tabindex="-1" role="dialog" aria-labelledby="{{item}}ModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content text-center bg-forms">
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

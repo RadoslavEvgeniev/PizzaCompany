@@ -16,6 +16,9 @@ import pizzaco.repository.menu.DrinkRepository;
 import pizzaco.repository.menu.PastaRepository;
 import pizzaco.repository.menu.PizzaRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class MenuServiceImpl implements MenuService {
 
@@ -91,5 +94,37 @@ public class MenuServiceImpl implements MenuService {
         this.pizzaRepository.save(pizzaEntity);
 
         return true;
+    }
+
+    @Override
+    public List<PizzaServiceModel> getPizzaOrderedByName() {
+        return this.pizzaRepository.findAllOrderedAlphabetically()
+                .stream()
+                .map(pizza -> this.modelMapper.map(pizza, PizzaServiceModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PastaServiceModel> getPastaOrderedByName() {
+        return this.pastaRepository.findAllOrderedAlphabetically()
+                .stream()
+                .map(pasta -> this.modelMapper.map(pasta, PastaServiceModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DipServiceModel> getDipsOrderedByName() {
+        return this.dipRepository.findAllOrderedAlphabetically()
+                .stream()
+                .map(dip -> this.modelMapper.map(dip, DipServiceModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DrinkServiceModel> getDrinksOrderedByName() {
+        return this.drinkRepository.findAllOrderedAlphabetically()
+                .stream()
+                .map(drink -> this.modelMapper.map(drink, DrinkServiceModel.class))
+                .collect(Collectors.toList());
     }
 }

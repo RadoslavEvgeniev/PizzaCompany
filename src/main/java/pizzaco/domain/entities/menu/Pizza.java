@@ -1,11 +1,8 @@
 package pizzaco.domain.entities.menu;
 
-import org.hibernate.annotations.GenericGenerator;
-import pizzaco.domain.entities.BaseEntity;
-import pizzaco.domain.entities.pizza.*;
+import pizzaco.domain.entities.ingredients.*;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity

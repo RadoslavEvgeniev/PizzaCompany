@@ -36,7 +36,7 @@ public class PizzaController extends BaseController {
     @GetMapping("/pizza/addPizzaIngredients")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public ModelAndView addPizzaIngredients() {
-        return super.view("pizza/add-pizza-ingredients");
+        return super.view("ingredients/add-pizza-ingredients");
     }
 
     @PostMapping("/pizza/sizes/add")
@@ -44,7 +44,7 @@ public class PizzaController extends BaseController {
     public ModelAndView addSize(@Valid @ModelAttribute(name = "addSizeBindingModel") AddSizeBindingModel addSizeBindingModel
             , BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return super.view("pizza/add-pizza-ingredients");
+            return super.view("ingredients/add-pizza-ingredients");
         }
 
         SizeServiceModel sizeServiceModel = this.modelMapper.map(addSizeBindingModel, SizeServiceModel.class);
@@ -65,7 +65,7 @@ public class PizzaController extends BaseController {
     public ModelAndView addDough(@Valid @ModelAttribute(name = "addDoughBindingModel") AddDoughBindingModel addDoughBindingModel
             , BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return super.view("pizza/add-pizza-ingredients");
+            return super.view("ingredients/add-pizza-ingredients");
         }
 
         DoughServiceModel doughServiceModel = this.modelMapper.map(addDoughBindingModel, DoughServiceModel.class);
@@ -86,7 +86,7 @@ public class PizzaController extends BaseController {
     public ModelAndView addSauce(@Valid @ModelAttribute(name = "addSauceBindingModel") AddSauceBindingModel addSauceBindingModel
             , BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return super.view("pizza/add-pizza-ingredients");
+            return super.view("ingredients/add-pizza-ingredients");
         }
 
         SauceServiceModel sauceServiceModel = this.modelMapper.map(addSauceBindingModel, SauceServiceModel.class);
@@ -107,7 +107,7 @@ public class PizzaController extends BaseController {
     public ModelAndView addSpice(@Valid @ModelAttribute(name = "addSpiceBindingModel") AddSpiceBindingModel addSpiceBindingModel
             , BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return super.view("pizza/add-pizza-ingredients");
+            return super.view("ingredients/add-pizza-ingredients");
         }
 
         SpiceServiceModel spiceServiceModel = this.modelMapper.map(addSpiceBindingModel, SpiceServiceModel.class);
@@ -128,7 +128,7 @@ public class PizzaController extends BaseController {
     public ModelAndView addCheese(@Valid @ModelAttribute(name = "addCheeseBindingModel") AddCheeseBindingModel addCheeseBindingModel
             , BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return super.view("pizza/add-pizza-ingredients");
+            return super.view("ingredients/add-pizza-ingredients");
         }
 
         CheeseServiceModel cheeseServiceModel = this.modelMapper.map(addCheeseBindingModel, CheeseServiceModel.class);
@@ -149,7 +149,7 @@ public class PizzaController extends BaseController {
     public ModelAndView addMeat(@Valid @ModelAttribute(name = "addMeatBindingModel") AddMeatBindingModel addMeatBindingModel
             , BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return super.view("pizza/add-pizza-ingredients");
+            return super.view("ingredients/add-pizza-ingredients");
         }
 
         MeatServiceModel meatServiceModel = this.modelMapper.map(addMeatBindingModel, MeatServiceModel.class);
@@ -170,7 +170,7 @@ public class PizzaController extends BaseController {
     public ModelAndView addVegetable(@Valid @ModelAttribute(name = "addVegetableBindingModel") AddVegetableBindingModel addVegetableBindingModel
             , BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return super.view("pizza/add-pizza-ingredients");
+            return super.view("ingredients/add-pizza-ingredients");
         }
 
         VegetableServiceModel vegetableServiceModel = this.modelMapper.map(addVegetableBindingModel, VegetableServiceModel.class);

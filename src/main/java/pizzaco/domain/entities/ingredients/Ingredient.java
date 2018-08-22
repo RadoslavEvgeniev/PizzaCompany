@@ -1,4 +1,4 @@
-package pizzaco.domain.entities.pizza;
+package pizzaco.domain.entities.ingredients;
 
 import pizzaco.domain.entities.BaseEntity;
 
