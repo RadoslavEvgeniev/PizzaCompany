@@ -3,7 +3,7 @@
         <div class="jumbotron bg-forms d-flex justify-content-center" th:object="${userViewModel}">
             <div class="container">
                 <div class="row d-flex justify-content-center">
-                    <h1 class="text text-center text-danger" th:text="*{email}"></h1>
+                    <h1 class="text text-center text-danger" th:text="*{email}" id="user-email"></h1>
                 </div>
                 <hr class="hr"/>
                 <div class="row d-flex justify-content-center">
@@ -72,7 +72,5 @@
         }
 
     </script>
-    <script>
-
-    </script>
+    <script src="/js/change-user-role.js"></script>
 </th:block>

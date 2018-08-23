@@ -2,19 +2,21 @@ package pizzaco.web.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.service.UserRoleServiceModel;
 import pizzaco.domain.models.service.UserServiceModel;
 import pizzaco.domain.models.view.AllUsersViewModel;
 import pizzaco.domain.models.view.LogViewModel;
 import pizzaco.domain.models.view.UserViewModel;
+import pizzaco.errors.UserEditFailureException;
 import pizzaco.service.LogService;
 import pizzaco.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 @Controller
@@ -22,12 +24,14 @@ public class AdminController extends BaseController {
 
     private final UserService userService;
     private final LogService logService;
+    private final JmsTemplate jmsTemplate;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AdminController(UserService userService, LogService logService, ModelMapper modelMapper) {
+    public AdminController(UserService userService, LogService logService, JmsTemplate jmsTemplate, ModelMapper modelMapper) {
         this.userService = userService;
         this.logService = logService;
+        this.jmsTemplate = jmsTemplate;
         this.modelMapper = modelMapper;
     }
 
@@ -56,6 +60,21 @@ public class AdminController extends BaseController {
         return super.view("users/details-user", "userViewModel", userViewModel);
     }
 
+    @GetMapping("/profiles/roleEdit")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseBody
+    public String roleEditConfirm(@RequestParam(name = "email") String email, @RequestParam(name = "role") String role) {
+        boolean result = this.userService.editUserRole(email, role);
+
+        if (!result) {
+            throw new UserEditFailureException("Editing user role" + email + " failed.");
+        }
+
+
+
+        return "Success";
+    }
+
     @GetMapping("/logs")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView logs() {
@@ -66,5 +85,13 @@ public class AdminController extends BaseController {
                         .map(log -> this.modelMapper.map(log, LogViewModel.class))
                         .collect(Collectors.toList())
         );
+    }
+
+    private void logAction(UserServiceModel userServiceModel, String event) {
+        this.jmsTemplate.convertAndSend(String.format("%s;%s;%s", LocalDateTime.now(), userServiceModel.getEmail(), event));
+    }
+
+    private void logAction(String email, String event) {
+        this.jmsTemplate.convertAndSend(String.format("%s;%s;%s", LocalDateTime.now(), email, event));
     }
 }

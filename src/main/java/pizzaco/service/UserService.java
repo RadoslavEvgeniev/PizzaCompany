@@ -16,4 +16,6 @@ public interface UserService extends UserDetailsService {
     UserServiceModel extractUserById(String id);
 
     List<UserServiceModel> extractAllUsersOrderedAlphabetically();
+
+    boolean editUserRole(String email, String role);
 }

@@ -79,6 +79,7 @@ public class UserServiceImpl implements UserService {
         if (userEntity == null) {
             throw new IdNotFoundException("Wrong or non-existent id.");
         }
+
         UserServiceModel userServiceModel = this.modelMapper.map(userEntity, UserServiceModel.class);
         userServiceModel.setEmail(userEntity.getUsername());
 
@@ -114,6 +115,21 @@ public class UserServiceImpl implements UserService {
         return userServiceModels;
     }
 
+    @Override
+    public boolean editUserRole(String email, String role) {
+        User userEntity = this.userRepository.findByUsername(email).orElse(null);
+
+        if (userEntity == null) {
+            throw new UsernameNotFoundException("Wrong or non-existent email.");
+        }
+
+        this.changeUserRole(userEntity, role);
+
+        this.userRepository.save(userEntity);
+
+        return true;
+    }
+
     private void seedRolesInDb() {
         if (this.roleRepository.count() == 0) {
             this.roleRepository.save(new UserRole("ROLE_ROOT"));
@@ -128,6 +144,7 @@ public class UserServiceImpl implements UserService {
             userEntity.setAuthorities(new HashSet<>(this.roleRepository.findAll()));
         } else {
             UserRole roleUser = this.roleRepository.findByAuthority("ROLE_USER").orElse(null);
+
             if (roleUser == null) {
                 throw new IllegalArgumentException("Non-existent role.");
             }
@@ -135,5 +152,21 @@ public class UserServiceImpl implements UserService {
             userEntity.setAuthorities(new HashSet<>());
             userEntity.getAuthorities().add(roleUser);
         }
+    }
+
+    private void changeUserRole(User userEntity, String role) {
+        userEntity.getAuthorities().clear();
+
+
+        switch (role) {
+            case "admin":
+                userEntity.getAuthorities().add(this.roleRepository.findByAuthority("ROLE_ADMIN").orElse(null));
+            case "moderator":
+                userEntity.getAuthorities().add(this.roleRepository.findByAuthority("ROLE_MODERATOR").orElse(null));
+            case "user":
+                userEntity.getAuthorities().add(this.roleRepository.findByAuthority("ROLE_USER").orElse(null));
+                break;
+        }
+
     }
 }
