@@ -6,10 +6,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.binding.menu.AddDipBindingModel;
 import pizzaco.domain.models.binding.menu.AddDrinkBindingModel;
@@ -44,6 +41,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping("/menu")
 public class MenuController extends BaseController {
 
     private final MenuService menuService;
@@ -61,7 +59,7 @@ public class MenuController extends BaseController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/menu/addMenuItems")
+    @GetMapping("/addMenuItems")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public ModelAndView addMenuItems(@ModelAttribute(name = "allIngredientsViewModel") AllIngredientsViewModel allIngredientsViewModel) {
         prepareIngredientsViewModel(allIngredientsViewModel);
@@ -69,7 +67,7 @@ public class MenuController extends BaseController {
         return super.view("menu/add-menu-items", "allIngredientsViewModel", allIngredientsViewModel);
     }
 
-    @PostMapping("/menu/drinks/add")
+    @PostMapping("/drinks/add")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public ModelAndView addDrink(@Valid @ModelAttribute(name = "addDrinkBindingModel") AddDrinkBindingModel addDrinkBindingModel
             , BindingResult bindingResult, Principal principal) throws IOException {
@@ -93,7 +91,7 @@ public class MenuController extends BaseController {
         return super.redirect("/menu/addMenuItems");
     }
 
-    @PostMapping("/menu/dips/add")
+    @PostMapping("/dips/add")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public ModelAndView addDip(@Valid @ModelAttribute(name = "addDipBindingModel") AddDipBindingModel addDipBindingModel
             , BindingResult bindingResult, Principal principal) throws IOException {
@@ -117,7 +115,7 @@ public class MenuController extends BaseController {
         return super.redirect("/menu/addMenuItems");
     }
 
-    @PostMapping("/menu/pasta/add")
+    @PostMapping("/pasta/add")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public ModelAndView addPasta(@Valid @ModelAttribute(name = "addPastaBindingModel") AddPastaBindingModel addPastaBindingModel
             , BindingResult bindingResult, Principal principal) throws IOException {
@@ -141,7 +139,7 @@ public class MenuController extends BaseController {
         return super.redirect("/menu/addMenuItems");
     }
 
-    @PostMapping("/menu/pizza/add")
+    @PostMapping("/pizza/add")
     @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public ModelAndView addPizza(@ModelAttribute(name = "addPizzaBindingModel") AddPizzaBindingModel addPizzaBindingModel
             , BindingResult bindingResult, Principal principal) throws IOException {
@@ -163,48 +161,6 @@ public class MenuController extends BaseController {
         this.logAction(principal.getName(), "Added ingredients " + pizzaServiceModel.getName() + " with description " + pizzaServiceModel.getDescription() + ".");
 
         return super.redirect("/menu/addMenuItems");
-    }
-
-    @GetMapping("/menu")
-    @PreAuthorize("isAuthenticated()")
-    public ModelAndView menu() {
-        return super.view("menu/menu");
-    }
-
-    @GetMapping(value = "/menu/pizza", produces = "application/json")
-    @ResponseBody
-    public List<PizzaViewModel> pizza() {
-        return this.menuService.getPizzaOrderedByName()
-                .stream()
-                .map(pizza -> this.modelMapper.map(pizza, PizzaViewModel.class))
-                .collect(Collectors.toList());
-    }
-
-    @GetMapping(value = "/menu/pasta", produces = "application/json")
-    @ResponseBody
-    public List<PastaViewModel> pasta() {
-        return this.menuService.getPastaOrderedByName()
-                .stream()
-                .map(pasta -> this.modelMapper.map(pasta, PastaViewModel.class))
-                .collect(Collectors.toList());
-    }
-
-    @GetMapping(value = "/menu/dips", produces = "application/json")
-    @ResponseBody
-    public List<DipViewModel> dips() {
-        return this.menuService.getDipsOrderedByName()
-                .stream()
-                .map(dip -> this.modelMapper.map(dip, DipViewModel.class))
-                .collect(Collectors.toList());
-    }
-
-    @GetMapping(value = "/menu/drinks", produces = "application/json")
-    @ResponseBody
-    public List<DrinkViewModel> drinks() {
-        return this.menuService.getDrinksOrderedByName()
-                .stream()
-                .map(drink -> this.modelMapper.map(drink, DrinkViewModel.class))
-                .collect(Collectors.toList());
     }
 
     private void logAction(String email, String event) {

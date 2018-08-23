@@ -62,7 +62,7 @@ public class UserController extends BaseController {
         return super.redirect("/");
     }
 
-    @GetMapping("/profiles/my")
+    @GetMapping("/profile")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView profile(@ModelAttribute("userEditBindingModel")UserEditBindingModel userEditBindingModel, Principal principal) {
         userEditBindingModel = this.modelMapper.map(this.userService.extractUserByEmail(principal.getName()), UserEditBindingModel.class);
@@ -97,6 +97,21 @@ public class UserController extends BaseController {
         this.logAction(userServiceModel, "Edited profile successfully.");
 
         return super.redirect("/profiles/my");
+    }
+
+    @GetMapping("/addresses")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView addresses(Principal principal) {
+        UserServiceModel userServiceModel = this.userService.extractUserByEmail(principal.getName());
+
+        return super.view("users/addresses-user", "addresses", null);
+    }
+
+    @GetMapping("/orders/my")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView myOrders() {
+        // TODO : Orders
+        return null;
     }
 
     private void logAction(UserServiceModel userServiceModel, String event) {

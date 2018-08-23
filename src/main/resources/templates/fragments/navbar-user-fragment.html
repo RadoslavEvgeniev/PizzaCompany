@@ -1,6 +1,6 @@
 <th:block th:fragment>
     <li class="nav-link active col-md-4 pl-4">
-        <a class="text text-white h5" th:href="@{/menu}">
+        <a class="text text-white h5" th:href="@{/order}">
             <img class="img-responsive" src="http://gdurl.com/yWKj" alt="menu-icon.png" width="40" height="40">
         </a>
     </li>
@@ -24,13 +24,13 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right   bg-forms" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" th:href="@{/profiles/my}">My Profile</a>
-                <a class="dropdown-item" th:href="@{/addresses/my}">My Addresses</a>
+                <a class="dropdown-item" th:href="@{/profile}">My Profile</a>
+                <a class="dropdown-item" th:href="@{/addresses}">My Addresses</a>
                 <a class="dropdown-item" th:href="@{/orders/my}">My Orders</a>
                 <hr class="hr" />
                 <th:block sec:authorize="hasRole('ROLE_MODERATOR')">
                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a class="dropdown-item" th:href="@{/profiles/all}">All Profiles</a>
+                        <a class="dropdown-item" th:href="@{/profiles}">All Profiles</a>
                         <a class="dropdown-item" th:href="@{/orders/all}">All Orders</a>
                         <hr class="hr" />
                     </th:block>

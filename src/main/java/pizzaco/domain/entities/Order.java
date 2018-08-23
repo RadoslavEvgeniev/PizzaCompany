@@ -15,6 +15,7 @@ import java.util.List;
 public class Order extends BaseEntity {
 
     private User user;
+    private Address address;
     private boolean isFinished;
     private LocalDateTime finishDateTime;
     private List<Drink> drinks;
@@ -42,6 +43,16 @@ public class Order extends BaseEntity {
     @Column(name = "is_finished")
     public boolean isFinished() {
         return this.isFinished;
+    }
+
+    @ManyToOne(targetEntity = Address.class)
+    @JoinColumn(name = "address_id")
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void setFinished(boolean finished) {

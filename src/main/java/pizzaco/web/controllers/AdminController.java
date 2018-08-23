@@ -16,6 +16,7 @@ import pizzaco.errors.UserEditFailureException;
 import pizzaco.service.LogService;
 import pizzaco.service.UserService;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class AdminController extends BaseController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/profiles/all")
+    @GetMapping("/profiles")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView allProfiles() {
         return super.view("users/all-profiles-user", "profiles",
@@ -50,7 +51,7 @@ public class AdminController extends BaseController {
                 .collect(Collectors.toList()));
     }
 
-    @GetMapping("/profiles/{id}")
+    @GetMapping("/profile/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView profile(@PathVariable(name = "id") String id) {
         UserServiceModel userServiceModel = this.userService.extractUserById(id);
@@ -60,17 +61,20 @@ public class AdminController extends BaseController {
         return super.view("users/details-user", "userViewModel", userViewModel);
     }
 
-    @GetMapping("/profiles/roleEdit")
+    @PostMapping("/profile/roleEdit")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseBody
-    public String roleEditConfirm(@RequestParam(name = "email") String email, @RequestParam(name = "role") String role) {
+    public String roleEditConfirm(@RequestBody String body, Principal principal) {
+        String email = body.split("&")[0].split("=")[1].replace("%40", "@");
+        String role = body.split("&")[1].split("=")[1];
+
         boolean result = this.userService.editUserRole(email, role);
 
         if (!result) {
             throw new UserEditFailureException("Editing user role" + email + " failed.");
         }
 
-
+        this.logAction(principal.getName(), "Successfully changed " + email + " role to " + role);
 
         return "Success";
     }

@@ -3,6 +3,7 @@ package pizzaco.domain.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "addresses")

@@ -1,6 +1,7 @@
 package pizzaco.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
+import pizzaco.domain.models.service.AddressServiceModel;
 import pizzaco.domain.models.service.UserServiceModel;
 
 import java.util.List;

@@ -9,11 +9,10 @@ $(function () {
         };
 
         $.ajax({
-            type : 'GET',
+            type : 'POST',
             contentType: 'application/json',
-            url: 'http://localhost:8000/profiles/roleEdit',
+            url: 'http://localhost:8000/profile/roleEdit',
             data: data,
-            dataType: 'json',
             success: function (success) {
                 console.log(success);
             },
