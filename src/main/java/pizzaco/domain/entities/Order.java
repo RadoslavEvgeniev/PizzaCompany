@@ -1,14 +1,115 @@
 package pizzaco.domain.entities;
 
-//import javax.persistence.Entity;
-//import javax.persistence.Table;
+import pizzaco.domain.entities.menu.Dip;
+import pizzaco.domain.entities.menu.Drink;
+import pizzaco.domain.entities.menu.Pasta;
+import pizzaco.domain.entities.menu.Pizza;
 
-//@Entity
-//@Table(name = "orders")
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+@Table(name = "orders")
 public class Order extends BaseEntity {
-    //    TODO:
+
+    private User user;
+    private boolean isFinished;
+    private LocalDateTime finishDateTime;
+    private List<Drink> drinks;
+    private List<Dip> dips;
+    private List<Pasta> pastas;
+//    private List<Pizza> pizzas;
+    private BigDecimal totalPrice;
+
     public Order() {
+
     }
 
+    @ManyToOne(targetEntity = User.class)
+    @JoinTable(name = "orders_users"
+            , joinColumns = @JoinColumn(name = "order_id")
+            , inverseJoinColumns = @JoinColumn(name = "user_id"))
+    public User getUser() {
+        return this.user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Column(name = "is_finished")
+    public boolean isFinished() {
+        return this.isFinished;
+    }
+
+    public void setFinished(boolean finished) {
+        isFinished = finished;
+    }
+
+    @Column(name = "finish_date_time", nullable = false, updatable = false)
+    public LocalDateTime getFinishDateTime() {
+        return this.finishDateTime;
+    }
+
+    public void setFinishDateTime(LocalDateTime finishDateTime) {
+        this.finishDateTime = finishDateTime;
+    }
+
+    @ManyToMany(targetEntity = Drink.class)
+    @JoinTable(name = "orders_drinks"
+            , joinColumns = @JoinColumn(name = "order_id")
+            , inverseJoinColumns = @JoinColumn(name = "drink_id"))
+    public List<Drink> getDrinks() {
+        return this.drinks;
+    }
+
+    public void setDrinks(List<Drink> drinks) {
+        this.drinks = drinks;
+    }
+
+    @ManyToMany(targetEntity = Dip.class)
+    @JoinTable(name = "orders_dips"
+            , joinColumns = @JoinColumn(name = "order_id")
+            , inverseJoinColumns = @JoinColumn(name = "dip_id"))
+    public List<Dip> getDips() {
+        return this.dips;
+    }
+
+    public void setDips(List<Dip> dips) {
+        this.dips = dips;
+    }
+
+    @ManyToMany(targetEntity = Pasta.class)
+    @JoinTable(name = "orders_pastas"
+            , joinColumns = @JoinColumn(name = "order_id")
+            , inverseJoinColumns = @JoinColumn(name = "pasta_id"))
+    public List<Pasta> getPastas() {
+        return this.pastas;
+    }
+
+    public void setPastas(List<Pasta> pastas) {
+        this.pastas = pastas;
+    }
+
+//    @ManyToMany(targetEntity = Pizza.class)
+//    @JoinTable(name = "orders_pizzas"
+//            , joinColumns = @JoinColumn(name = "order_id")
+//            , inverseJoinColumns = @JoinColumn(name = "drink_id"))
+//    public List<Pizza> getPizzas() {
+//        return this.pizzas;
+//    }
+//
+//    public void setPizzas(List<Pizza> pizzas) {
+//        this.pizzas = pizzas;
+//    }
+
+    public BigDecimal getTotalPrice() {
+        return this.totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

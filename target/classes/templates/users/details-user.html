@@ -1,22 +1,75 @@
 <th:block>
-    <div class="jumbotron bg-forms col-md-11 mx-5 text text-center" th:object="${userViewModel}">
-        <h1 class="text text-center">Profile</h1>
-        <div class="text text-center">
-            <h4 th:text="'Email: ' + *{email}"></h4>
-            <h4 th:text="'First Name: ' + *{firstName}"></h4>
-            <h4 th:text="'Last Name: ' + *{lastName}"></h4>
-            <h4 th:text="'Roles: ' + *{}"></h4>
-        </div>
-        <hr class="hr" />
-        <div class="text text-center">
-            <form action=""></form>
+    <div class="container justify-content-center col-md-11 my-4">
+        <div class="jumbotron bg-forms d-flex justify-content-center" th:object="${userViewModel}">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <h1 class="text text-center text-danger" th:text="*{email}"></h1>
+                </div>
+                <hr class="hr"/>
+                <div class="row d-flex justify-content-center">
+                    <h4 th:text="'First Name: ' + *{firstName}"></h4>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <h4 th:text="'Last Name: ' + *{lastName}"></h4>
+                </div>
+                <hr class="hr" />
+                <div class="row d-flex justify-content-center">
+                    <h5 th:text="'Orders'"></h5>
+                </div>
+                <hr class="hr" />
+                <div class="row d-flex justify-content-center">
+                    <h4 th:text="'Roles'"></h4>
+                </div>
+                <div class="row d-flex justify-content-center" id="role-radios">
+                    <div class="radio-navigation-holder w-50 mx-auto d-flex justify-content-center">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mb-1" type="radio" id="user-radio" value="user" name="selection">
+                            <h5>
+                                <label class="form-check-label" for="user-radio">User</label>
+                            </h5>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mb-1" type="radio" id="moderator-radio" value="moderator" name="selection">
+                            <h5>
+                                <label class="form-check-label" for="moderator-radio">Moderator</label>
+                            </h5>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mb-1" type="radio" id="admin-radio" value="admin" name="selection">
+                            <h5>
+                                <label class="form-check-label" for="admin-radio">Admin</label>
+                            </h5>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mb-1" type="radio" id="root-radio" value="root" name="selection" disabled>
+                            <h5>
+                                <label class="form-check-label" for="root-radio">Root</label>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row my-5 d-flex justify-content-center">
+                    <button id="cancel-edit-roles" type="button" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
-    <script th:inline="javascript">
+    <script th:inline="javascript" >
+
         let roles = [[${userViewModel.roles}]];
 
-        if (roles.indexOf('ROLE_ADMIN') > -1) {
-
+        if (roles.indexOf('ROLE_ROOT') > -1) {
+            $('#root-radio').prop('checked', true);
+            $('#admin-radio').prop('disabled', true);
+            $('#moderator-radio').prop('disabled', true);
+            $('#user-radio').prop('disabled', true);
+        } else if (roles.indexOf('ROLE_ADMIN') > -1) {
+            $('#admin-radio').prop('checked', true);
+        } else if (roles.indexOf('ROLE_MODERATOR') > -1) {
+            $('#moderator-radio').prop('checked', true);
+        } else if (roles.indexOf('ROLE_USER') > -1) {
+            $('#user-radio').prop('checked', true);
         }
+
     </script>
 </th:block>

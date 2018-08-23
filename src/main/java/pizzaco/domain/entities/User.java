@@ -16,7 +16,7 @@ public class User extends BaseEntity implements UserDetails {
     private String email;
     private String password;
     private Set<Address> addresses;
-//    TODO: private Set<Order> orders;
+    private Set<Order> orders;
 
     private boolean isAccountNonLocked;
     private boolean isAccountNonExpired;
@@ -27,7 +27,7 @@ public class User extends BaseEntity implements UserDetails {
     public User() {
         this.addresses = new HashSet<>();
         this.authorities = new HashSet<>();
-//        TODO: this.orders = new HashSet<>();
+        this.orders = new HashSet<>();
     }
 
     @Column(name = "first_name", nullable = false)
@@ -78,6 +78,15 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public Set<Order> getOrders() {
+        return this.orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

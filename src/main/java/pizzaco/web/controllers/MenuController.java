@@ -82,7 +82,7 @@ public class MenuController extends BaseController {
         DrinkServiceModel drinkServiceModel = this.modelMapper.map(addDrinkBindingModel, DrinkServiceModel.class);
         drinkServiceModel.setImageUrl(imageUrl);
 
-        boolean result = !this.menuService.addDrink(drinkServiceModel);
+        boolean result = this.menuService.addDrink(drinkServiceModel);
 
         if (!result) {
             throw new ItemAddFailureException("Adding drink " + drinkServiceModel.getName() + " failed.");
@@ -106,7 +106,7 @@ public class MenuController extends BaseController {
         DipServiceModel dipServiceModel = this.modelMapper.map(addDipBindingModel, DipServiceModel.class);
         dipServiceModel.setImageUrl(imageUrl);
 
-        boolean result = !this.menuService.addDip(dipServiceModel);
+        boolean result = this.menuService.addDip(dipServiceModel);
 
         if (!result) {
             throw new ItemAddFailureException("Adding dip " + dipServiceModel.getName() + " failed.");
@@ -130,7 +130,7 @@ public class MenuController extends BaseController {
         PastaServiceModel pastaServiceModel = this.modelMapper.map(addPastaBindingModel, PastaServiceModel.class);
         pastaServiceModel.setImageUrl(imageUrl);
 
-        boolean result = !this.menuService.addPasta(pastaServiceModel);
+        boolean result = this.menuService.addPasta(pastaServiceModel);
 
         if (!result) {
             throw new ItemAddFailureException("Adding pasta " + pastaServiceModel.getName() + " failed.");
