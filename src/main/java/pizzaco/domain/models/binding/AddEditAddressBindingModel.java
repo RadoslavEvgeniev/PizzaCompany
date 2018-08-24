@@ -1,6 +1,6 @@
-package pizzaco.domain.models.service;
+package pizzaco.domain.models.binding;
 
-public class AddressServiceModel {
+public class AddEditAddressBindingModel {
 
     private String id;
     private String name;
@@ -13,9 +13,8 @@ public class AddressServiceModel {
     private Integer block;
     private Integer apartment;
     private Character entrance;
-    private UserServiceModel owner;
 
-    public AddressServiceModel() {
+    public AddEditAddressBindingModel() {
     }
 
     public String getId() {
@@ -104,13 +103,5 @@ public class AddressServiceModel {
 
     public void setEntrance(Character entrance) {
         this.entrance = entrance;
-    }
-
-    public UserServiceModel getOwner() {
-        return this.owner;
-    }
-
-    public void setOwner(UserServiceModel owner) {
-        this.owner = owner;
     }
 }

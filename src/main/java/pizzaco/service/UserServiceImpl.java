@@ -130,6 +130,15 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public boolean addAddress(UserServiceModel userServiceModel) {
+        User userEntity = this.modelMapper.map(userServiceModel, User.class);
+
+        this.userRepository.save(userEntity);
+
+        return true;
+    }
+
     private void seedRolesInDb() {
         if (this.roleRepository.count() == 0) {
             this.roleRepository.save(new UserRole("ROLE_ROOT"));

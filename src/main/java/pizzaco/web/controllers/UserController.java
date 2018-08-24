@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.binding.UserEditBindingModel;
 import pizzaco.domain.models.binding.UserRegisterBindingModel;
 import pizzaco.domain.models.service.UserServiceModel;
+import pizzaco.domain.models.view.AddressViewModel;
 import pizzaco.errors.UserEditFailureException;
 import pizzaco.errors.UserRegisterFailureException;
 import pizzaco.service.UserService;
@@ -22,6 +23,7 @@ import pizzaco.service.UserService;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserController extends BaseController {
@@ -97,14 +99,6 @@ public class UserController extends BaseController {
         this.logAction(userServiceModel, "Edited profile successfully.");
 
         return super.redirect("/profiles/my");
-    }
-
-    @GetMapping("/addresses")
-    @PreAuthorize("isAuthenticated()")
-    public ModelAndView addresses(Principal principal) {
-        UserServiceModel userServiceModel = this.userService.extractUserByEmail(principal.getName());
-
-        return super.view("users/addresses-user", "addresses", null);
     }
 
     @GetMapping("/orders/my")

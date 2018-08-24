@@ -2,7 +2,9 @@ package pizzaco.domain.models.service;
 
 import pizzaco.domain.entities.Address;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserServiceModel {
@@ -12,11 +14,12 @@ public class UserServiceModel {
     private String lastName;
     private String email;
     private String password;
-    private Set<AddressServiceModel> addresses;
-    private Set<UserRoleServiceModel> authorities;
+    private List<OrderServiceModel> orders;
+    private List<AddressServiceModel> addresses;
+    private List<UserRoleServiceModel> authorities;
 
     public UserServiceModel() {
-        this.addresses = new HashSet<>();
+        this.addresses = new ArrayList<>();
     }
 
     public String getId() {
@@ -59,19 +62,27 @@ public class UserServiceModel {
         this.password = password;
     }
 
-    public Set<AddressServiceModel> getAddresses() {
+    public List<OrderServiceModel> getOrders() {
+        return this.orders;
+    }
+
+    public void setOrders(List<OrderServiceModel> orders) {
+        this.orders = orders;
+    }
+
+    public List<AddressServiceModel> getAddresses() {
         return this.addresses;
     }
 
-    public void setAddresses(Set<AddressServiceModel> addresses) {
+    public void setAddresses(List<AddressServiceModel> addresses) {
         this.addresses = addresses;
     }
 
-    public Set<UserRoleServiceModel> getAuthorities() {
+    public List<UserRoleServiceModel> getAuthorities() {
         return this.authorities;
     }
 
-    public void setAuthorities(Set<UserRoleServiceModel> authorities) {
+    public void setAuthorities(List<UserRoleServiceModel> authorities) {
         this.authorities = authorities;
     }
 }

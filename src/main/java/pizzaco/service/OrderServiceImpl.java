@@ -6,6 +6,11 @@ import pizzaco.domain.models.service.OrderServiceModel;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Override
+    public OrderServiceModel getOrderUnfinishedOrder() {
+        return null;
+    }
+
+    @Override
     public boolean startOrder(OrderServiceModel orderServiceModel) {
         return false;
     }

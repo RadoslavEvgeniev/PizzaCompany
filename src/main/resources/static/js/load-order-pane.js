@@ -6,36 +6,19 @@ $(function () {
 
         let tab = $(this).val();
 
+        $('#pane-header').text(tab[0].toUpperCase() + tab.substr(1, tab.length));
+
         $.ajax({
             type: 'GET',
             url: 'http://localhost:8000/order/' + tab,
             success: function (data) {
-                $.get('/templates/order-template.html', function (template) {
-                    if (tab === 'pizza') {
-                        $('#order').append(getMakeOurOwnTemplate());
-                    }
+                if (tab === 'address') {
+                    loadAddresses(data);
+                } else if (tab === 'order') {
 
-                    for (const object of data) {
-
-                        let renderedTemplate = template
-                            .replace('{{imageUrl}}', object['imageUrl'])
-                            .replace('{{name}}', object['name'])
-                            .replace('{{description}}', object['description'])
-                            .replace('{{item}}', tab);
-
-                        if (object['description'] === undefined) {
-                            renderedTemplate = renderedTemplate.replace(undefined, object['name']);
-                        }
-
-                        $('#order').append(renderedTemplate);
-
-                        let orderItemCheckbox = $('#order-item-checkbox');
-                        orderItemCheckbox.val(tab);
-                        orderItemCheckbox.prop('id', object['name']);
-
-                        orderItemCheckbox.click(sendItemToOrder);
-                    }
-                });
+                } else {
+                    loadMenuItems(data, tab);
+                }
             },
             error: function (error) {
                 console.log(error);
@@ -43,11 +26,68 @@ $(function () {
         });
     });
 
-    $('#pizzaRadio').click();
+    $('#addressRadio').click();
 });
 
-function sendItemToOrder() {
+function loadAddresses(data) {
+    $.get('/templates/order-addresses-template.html', function (template) {
+        let templateObj = $(template);
+        let select = $('<select class="form-control">');
+        select.change(sendAddressToOrder);
 
+        select.append($('<option disabled selected>Select address</option>'));
+
+        for (const object of data) {
+            let option = $('<option>');
+            option.val(object.id);
+            option.text(`${object.municipality}, ${object.street} ${object.number}`);
+
+            select.append(option);
+        }
+
+        templateObj.append(select);
+
+        $('#order').append(templateObj);
+    })
+}
+
+function loadMenuItems(data, tab) {
+    $.get('/templates/order-items-template.html', function (template) {
+        if (tab === 'pizza') {
+            $('#order').append(getMakeOurOwnTemplate());
+        }
+
+        for (const object of data) {
+            let renderedTemplate = template
+                .replace('{{imageUrl}}', object['imageUrl'])
+                .replace('{{name}}', object['name'])
+                .replace('{{description}}', object['description'])
+                .replace('{{item}}', tab);
+
+            if (object['description'] === undefined) {
+                renderedTemplate = renderedTemplate.replace(undefined, object['name']);
+            }
+
+            $('#order').append(renderedTemplate);
+
+            let orderItemCheckbox = $('#order-item-checkbox');
+            orderItemCheckbox.val(tab);
+            orderItemCheckbox.prop('id', object['name']);
+
+            orderItemCheckbox.click(sendItemToOrder);
+        }
+    });
+}
+
+function loadOrder() {
+
+}
+
+function sendAddressToOrder() {
+
+}
+
+function sendItemToOrder() {
     let itemType = $(this).val();
     let itemName = $(this).prop('id');
     let isChecked = $(this).is(':checked');

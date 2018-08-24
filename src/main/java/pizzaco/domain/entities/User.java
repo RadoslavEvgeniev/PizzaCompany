@@ -68,10 +68,7 @@ public class User extends BaseEntity implements UserDetails {
         this.password = password;
     }
 
-    @ManyToMany(targetEntity = Address.class)
-    @JoinTable(name = "users_addresses"
-            , joinColumns = @JoinColumn(name = "user_id")
-            , inverseJoinColumns = @JoinColumn(name = "address_id"))
+    @OneToMany(targetEntity = Address.class, mappedBy = "owner")
     public Set<Address> getAddresses() {
         return this.addresses;
     }

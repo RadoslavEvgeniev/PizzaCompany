@@ -15,11 +15,11 @@ public class Address extends BaseEntity {
     private Integer postCode;
     private String municipality;
     private String phoneNumber;
-    private Integer doorBell;
     private Integer floor;
     private Integer block;
     private Integer apartment;
-    private Integer entrance;
+    private Character entrance;
+    private User owner;
 
     public Address() {
     }
@@ -78,15 +78,6 @@ public class Address extends BaseEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    @Column(name = "door_bell")
-    public Integer getDoorBell() {
-        return this.doorBell;
-    }
-
-    public void setDoorBell(Integer doorBell) {
-        this.doorBell = doorBell;
-    }
-
     @Column(name = "floor")
     public Integer getFloor() {
         return this.floor;
@@ -115,11 +106,23 @@ public class Address extends BaseEntity {
     }
 
     @Column(name = "entrance")
-    public Integer getEntrance() {
+    public Character getEntrance() {
         return this.entrance;
     }
 
-    public void setEntrance(Integer entrance) {
+    public void setEntrance(Character entrance) {
         this.entrance = entrance;
+    }
+
+    @ManyToOne(targetEntity = User.class)
+    @JoinTable(name = "addresses_users"
+            , joinColumns = @JoinColumn(name = "address_id")
+            , inverseJoinColumns = @JoinColumn(name = "user_id"))
+    public User getOwner() {
+        return this.owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

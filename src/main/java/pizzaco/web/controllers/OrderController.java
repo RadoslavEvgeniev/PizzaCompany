@@ -8,12 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.binding.order.OrderBindingModel;
+import pizzaco.domain.models.view.AddressViewModel;
 import pizzaco.domain.models.view.menu.DipViewModel;
 import pizzaco.domain.models.view.menu.DrinkViewModel;
 import pizzaco.domain.models.view.menu.PastaViewModel;
 import pizzaco.domain.models.view.menu.PizzaViewModel;
+import pizzaco.service.AddressService;
 import pizzaco.service.MenuService;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,11 +25,13 @@ import java.util.stream.Collectors;
 public class OrderController extends BaseController {
 
     private final MenuService menuService;
+    private final AddressService addressService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public OrderController(MenuService menuService, ModelMapper modelMapper) {
+    public OrderController(MenuService menuService, AddressService addressService, ModelMapper modelMapper) {
         this.menuService = menuService;
+        this.addressService = addressService;
         this.modelMapper = modelMapper;
     }
 
@@ -36,7 +41,18 @@ public class OrderController extends BaseController {
         return super.view("order/order-pane");
     }
 
+    @GetMapping(value = "/address", produces = "application/json")
+    @PreAuthorize("isAuthenticated()")
+    @ResponseBody
+    public List<AddressViewModel> addresses(Principal principal) {
+        return this.addressService.getUserAddressesOrderedByName(principal.getName())
+                .stream()
+                .map(address -> this.modelMapper.map(address, AddressViewModel.class))
+                .collect(Collectors.toList());
+    }
+
     @GetMapping(value = "/pizza", produces = "application/json")
+    @PreAuthorize("isAuthenticated()")
     @ResponseBody
     public List<PizzaViewModel> pizza() {
         return this.menuService.getPizzaOrderedByName()
@@ -46,6 +62,7 @@ public class OrderController extends BaseController {
     }
 
     @GetMapping(value = "/pasta", produces = "application/json")
+    @PreAuthorize("isAuthenticated()")
     @ResponseBody
     public List<PastaViewModel> pasta() {
         return this.menuService.getPastaOrderedByName()
@@ -55,6 +72,7 @@ public class OrderController extends BaseController {
     }
 
     @PostMapping(value = "/pasta", consumes = "application/json")
+    @PreAuthorize("isAuthenticated()")
     @ResponseBody
     public ResponseEntity<String> addPastaToOrder(@RequestBody OrderBindingModel orderBindingModel) {
 
@@ -63,6 +81,7 @@ public class OrderController extends BaseController {
     }
 
     @GetMapping(value = "/dips", produces = "application/json")
+    @PreAuthorize("isAuthenticated()")
     @ResponseBody
     public List<DipViewModel> dips() {
         return this.menuService.getDipsOrderedByName()
@@ -72,6 +91,7 @@ public class OrderController extends BaseController {
     }
 
     @GetMapping(value = "/drinks", produces = "application/json")
+    @PreAuthorize("isAuthenticated()")
     @ResponseBody
     public List<DrinkViewModel> drinks() {
         return this.menuService.getDrinksOrderedByName()
@@ -79,11 +99,4 @@ public class OrderController extends BaseController {
                 .map(drink -> this.modelMapper.map(drink, DrinkViewModel.class))
                 .collect(Collectors.toList());
     }
-
-//    @PostMapping(value = "/order/pasta/add")
-//    public ResponseEntity<String> addPastaToOrder(@RequestBody String body) {
-//        String pastaName = body.split("=")[1];
-//
-//        return ResponseEntity.ok("success");
-//    }
 }

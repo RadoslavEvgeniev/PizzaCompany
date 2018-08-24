@@ -14,8 +14,8 @@
                 <span class="icon-bar"></span>
             </span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end row mr-3" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse justify-content-end row" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-3">
                 <th:block  sec:authorize="isAnonymous()" th:include="~{fragments/navbar-guest-fragment}"></th:block>
                 <th:block  sec:authorize="isAuthenticated()" th:include="~{fragments/navbar-user-fragment}"></th:block>
             </ul>

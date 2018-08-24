@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, String> {
 
-
+    @Query("SELECT a FROM Address a WHERE a.owner.username = :email")
+    List<Address> findAllUserAdressesOrderedByName(@Param("email") String email);
 }
