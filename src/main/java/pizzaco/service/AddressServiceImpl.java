@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import pizzaco.domain.entities.Address;
 import pizzaco.domain.models.service.AddressServiceModel;
-import pizzaco.domain.models.view.AddressViewModel;
 import pizzaco.errors.IdNotFoundException;
 import pizzaco.repository.AddressRepository;
 
@@ -57,7 +56,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public List<AddressServiceModel> getUserAddressesOrderedByName(String email) {
-        return this.addressRepository.findAllUserAdressesOrderedByName(email)
+        return this.addressRepository.findAllUserAddressesOrderedByName(email)
                 .stream()
                 .map(address -> this.modelMapper.map(address, AddressServiceModel.class))
                 .collect(Collectors.toList());

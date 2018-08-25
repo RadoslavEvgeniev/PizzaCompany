@@ -1,6 +1,7 @@
 package pizzaco.service;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pizzaco.domain.entities.menu.Dip;
 import pizzaco.domain.entities.menu.Drink;
@@ -11,6 +12,7 @@ import pizzaco.domain.models.service.menu.DrinkServiceModel;
 import pizzaco.domain.models.service.menu.PastaServiceModel;
 import pizzaco.domain.models.service.menu.PizzaServiceModel;
 import pizzaco.errors.ItemAlreadyExistsException;
+import pizzaco.errors.NameNotFoundException;
 import pizzaco.repository.menu.DipRepository;
 import pizzaco.repository.menu.DrinkRepository;
 import pizzaco.repository.menu.PastaRepository;
@@ -22,46 +24,32 @@ import java.util.stream.Collectors;
 @Service
 public class MenuServiceImpl implements MenuService {
 
-    private final DrinkRepository drinkRepository;
-    private final DipRepository dipRepository;
-    private final PastaRepository pastaRepository;
     private final PizzaRepository pizzaRepository;
+    private final PastaRepository pastaRepository;
+    private final DipRepository dipRepository;
+    private final DrinkRepository drinkRepository;
     private final ModelMapper modelMapper;
 
-    public MenuServiceImpl(DrinkRepository drinkRepository, DipRepository dipRepository, PastaRepository pastaRepository, PizzaRepository pizzaRepository, ModelMapper modelMapper) {
-        this.drinkRepository = drinkRepository;
-        this.dipRepository = dipRepository;
-        this.pastaRepository = pastaRepository;
+    @Autowired
+    public MenuServiceImpl(PizzaRepository pizzaRepository, PastaRepository pastaRepository, DipRepository dipRepository, DrinkRepository drinkRepository, ModelMapper modelMapper) {
         this.pizzaRepository = pizzaRepository;
+        this.pastaRepository = pastaRepository;
+        this.dipRepository = dipRepository;
+        this.drinkRepository = drinkRepository;
         this.modelMapper = modelMapper;
     }
 
     @Override
-    public boolean addDrink(DrinkServiceModel drinkServiceModel) {
-        Drink drinkEntity = this.drinkRepository.findByName(drinkServiceModel.getName()).orElse(null);
+    public boolean addPizza(PizzaServiceModel pizzaServiceModel) {
+        Pizza pizzaEntity = this.pizzaRepository.findByName(pizzaServiceModel.getName()).orElse(null);
 
-        if (drinkEntity != null) {
-            throw new ItemAlreadyExistsException("Drink already exists.");
+        if (pizzaEntity != null) {
+            throw new ItemAlreadyExistsException("Pizza already exists.");
         }
 
-        drinkEntity = this.modelMapper.map(drinkServiceModel, Drink.class);
+        pizzaEntity = this.modelMapper.map(pizzaServiceModel, Pizza.class);
 
-        this.drinkRepository.save(drinkEntity);
-
-        return true;
-    }
-
-    @Override
-    public boolean addDip(DipServiceModel dipServiceModel) {
-        Dip dipEntity = this.dipRepository.findByName(dipServiceModel.getName()).orElse(null);
-
-        if (dipEntity != null) {
-            throw new ItemAlreadyExistsException("Dip already exists.");
-        }
-
-        dipEntity = this.modelMapper.map(dipServiceModel, Dip.class);
-
-        this.dipRepository.save(dipEntity);
+        this.pizzaRepository.save(pizzaEntity);
 
         return true;
     }
@@ -82,16 +70,31 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public boolean addPizza(PizzaServiceModel pizzaServiceModel) {
-        Pizza pizzaEntity = this.pizzaRepository.findByName(pizzaServiceModel.getName()).orElse(null);
+    public boolean addDip(DipServiceModel dipServiceModel) {
+        Dip dipEntity = this.dipRepository.findByName(dipServiceModel.getName()).orElse(null);
 
-        if (pizzaEntity != null) {
-            throw new ItemAlreadyExistsException("Pizza already exists.");
+        if (dipEntity != null) {
+            throw new ItemAlreadyExistsException("Dip already exists.");
         }
 
-        pizzaEntity = this.modelMapper.map(pizzaServiceModel, Pizza.class);
+        dipEntity = this.modelMapper.map(dipServiceModel, Dip.class);
 
-        this.pizzaRepository.save(pizzaEntity);
+        this.dipRepository.save(dipEntity);
+
+        return true;
+    }
+
+    @Override
+    public boolean addDrink(DrinkServiceModel drinkServiceModel) {
+        Drink drinkEntity = this.drinkRepository.findByName(drinkServiceModel.getName()).orElse(null);
+
+        if (drinkEntity != null) {
+            throw new ItemAlreadyExistsException("Drink already exists.");
+        }
+
+        drinkEntity = this.modelMapper.map(drinkServiceModel, Drink.class);
+
+        this.drinkRepository.save(drinkEntity);
 
         return true;
     }
@@ -126,5 +129,49 @@ public class MenuServiceImpl implements MenuService {
                 .stream()
                 .map(drink -> this.modelMapper.map(drink, DrinkServiceModel.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PizzaServiceModel getPizzaByName(String name) {
+        Pizza pizzaEntity = this.pizzaRepository.findByName(name).orElse(null);
+
+        if (pizzaEntity == null) {
+            throw new NameNotFoundException("Wrong or non-existent name.");
+        }
+
+        return this.modelMapper.map(pizzaEntity, PizzaServiceModel.class);
+    }
+
+    @Override
+    public PastaServiceModel getPastaByName(String name) {
+        Pasta pastaEntity = this.pastaRepository.findByName(name).orElse(null);
+
+        if (pastaEntity == null) {
+            throw new NameNotFoundException("Wrong or non-existent name.");
+        }
+
+        return this.modelMapper.map(pastaEntity, PastaServiceModel.class);
+    }
+
+    @Override
+    public DipServiceModel getDipByName(String name) {
+        Dip dipEntity = this.dipRepository.findByName(name).orElse(null);
+
+        if (dipEntity == null) {
+            throw new NameNotFoundException("Wrong or non-existent name.");
+        }
+
+        return this.modelMapper.map(dipEntity, DipServiceModel.class);
+    }
+
+    @Override
+    public DrinkServiceModel getDrinkByName(String name) {
+        Drink drinkEntity = this.drinkRepository.findByName(name).orElse(null);
+
+        if (drinkEntity == null) {
+            throw new NameNotFoundException("Wrong or non-existent name.");
+        }
+
+        return this.modelMapper.map(drinkEntity, DrinkServiceModel.class);
     }
 }

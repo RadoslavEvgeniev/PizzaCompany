@@ -9,13 +9,13 @@ import java.util.List;
 
 public interface MenuService {
 
-    boolean addDrink(DrinkServiceModel drinkServiceModel);
-
-    boolean addDip(DipServiceModel dipServiceModel);
+    boolean addPizza(PizzaServiceModel pizzaServiceModel);
 
     boolean addPasta(PastaServiceModel pastaServiceModel);
 
-    boolean addPizza(PizzaServiceModel pizzaServiceModel);
+    boolean addDip(DipServiceModel dipServiceModel);
+
+    boolean addDrink(DrinkServiceModel drinkServiceModel);
 
     List<PizzaServiceModel> getPizzaOrderedByName();
 
@@ -24,4 +24,12 @@ public interface MenuService {
     List<DipServiceModel> getDipsOrderedByName();
 
     List<DrinkServiceModel> getDrinksOrderedByName();
+
+    PizzaServiceModel getPizzaByName(String name);
+
+    PastaServiceModel getPastaByName(String name);
+
+    DipServiceModel getDipByName(String name);
+
+    DrinkServiceModel getDrinkByName(String name);
 }

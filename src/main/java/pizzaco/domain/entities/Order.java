@@ -59,7 +59,7 @@ public class Order extends BaseEntity {
         isFinished = finished;
     }
 
-    @Column(name = "finish_date_time", nullable = false, updatable = false)
+    @Column(name = "finish_date_time", updatable = false)
     public LocalDateTime getFinishDateTime() {
         return this.finishDateTime;
     }

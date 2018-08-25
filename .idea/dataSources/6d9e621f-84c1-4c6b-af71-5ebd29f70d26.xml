@@ -1448,7 +1448,6 @@
     <column id="365" parent="289" name="finish_date_time">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="366" parent="289" name="is_finished">
