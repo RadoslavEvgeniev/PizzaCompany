@@ -1,0 +1,72 @@
+<form action="/orders/pizza" method="post" >
+    <div class="form-row d-flex justify-content-center mb-3">
+        <div class="col col-md-4">
+            <label for="pizza-size">Size</label>
+            <div class=" d-flex justify-content-center">
+                <select class="form-control mr-2" id="pizza-size" name="size">
+
+                </select>
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <label for="pizza-dough">Dough</label>
+            <div class=" d-flex justify-content-center">
+                <select class="form-control ml-2" id="pizza-dough" name="dough">
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-row d-flex justify-content-center mb-5">
+        <div class="col col-md-4">
+            <label for="pizza-sauce">Sauce</label>
+            <div class=" d-flex justify-content-center">
+                <select class="form-control mr-2" id="pizza-sauce" name="sauce">
+
+                </select>
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <label for="pizza-spices">Spices</label>
+            <div class=" d-flex justify-content-center">
+                <select multiple class="form-control ml-2" id="pizza-spices" name="spices">
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-row d-flex justify-content-center">
+        <div class="col col-md-4">
+            <label for="pizza-cheeses">Cheeses</label>
+            <hr  />
+            <div class="form-check pl-5" id="pizza-cheeses">
+
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <label for="pizza-vegetables">Vegetables</label>
+            <hr  />
+            <div class="form-check pl-5" id="pizza-vegetables">
+
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <label for="pizza-meats">Meats</label>
+            <hr  />
+            <div class="form-check pl-5" id="pizza-meats">
+
+            </div>
+        </div>
+    </div>
+    <hr class="hr" />
+    <div class="form-row d-flex justify-content-center">
+        <h4 class="text text-success" id="pizza-price"></h4>
+    </div>
+    <hr class="hr"/>
+    <div class="form-row my-5 d-flex justify-content-center">
+        <div class="col">
+            <button type="submit" class="btn btn-success">Order Pizza</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</form>

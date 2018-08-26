@@ -12,12 +12,16 @@ import pizzaco.domain.models.binding.order.OrderAddressBindingModel;
 import pizzaco.domain.models.binding.order.OrderItemBindingModel;
 import pizzaco.domain.models.service.OrderServiceModel;
 import pizzaco.domain.models.view.AddressViewModel;
+import pizzaco.domain.models.view.AllIngredientsViewModel;
+import pizzaco.domain.models.view.OrderPizzaViewModel;
 import pizzaco.domain.models.view.OrderViewModel;
+import pizzaco.domain.models.view.ingredients.*;
 import pizzaco.domain.models.view.menu.DipViewModel;
 import pizzaco.domain.models.view.menu.DrinkViewModel;
 import pizzaco.domain.models.view.menu.PastaViewModel;
 import pizzaco.domain.models.view.menu.PizzaViewModel;
 import pizzaco.service.AddressService;
+import pizzaco.service.IngredientService;
 import pizzaco.service.MenuService;
 import pizzaco.service.OrderService;
 
@@ -32,14 +36,16 @@ public class OrderController extends BaseController {
 
     private final MenuService menuService;
     private final AddressService addressService;
+    private final IngredientService ingredientService;
     private final OrderService orderService;
     private final JmsTemplate jmsTemplate;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public OrderController(MenuService menuService, AddressService addressService, OrderService orderService, JmsTemplate jmsTemplate, ModelMapper modelMapper) {
+    public OrderController(MenuService menuService, AddressService addressService, IngredientService ingredientService, OrderService orderService, JmsTemplate jmsTemplate, ModelMapper modelMapper) {
         this.menuService = menuService;
         this.addressService = addressService;
+        this.ingredientService = ingredientService;
         this.orderService = orderService;
         this.jmsTemplate = jmsTemplate;
         this.modelMapper = modelMapper;
@@ -81,6 +87,20 @@ public class OrderController extends BaseController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping(value = "/prepare-pizza", produces = "application/json", consumes = "application/json")
+    @PreAuthorize("isAuthenticated()")
+    @ResponseBody
+    public OrderPizzaViewModel orderPizza(@RequestParam(name = "pizzaName") String pizzaName) {
+        OrderPizzaViewModel orderPizzaViewModel = new OrderPizzaViewModel();
+        orderPizzaViewModel.setPizza(this.modelMapper.map(this.menuService.getPizzaByName(pizzaName), PizzaViewModel.class));
+
+        AllIngredientsViewModel allIngredientsViewModel = new AllIngredientsViewModel();
+        this.prepareIngredientsViewModel(allIngredientsViewModel);
+        orderPizzaViewModel.setIngredients(allIngredientsViewModel);
+
+        return orderPizzaViewModel;
+    }
+
     @GetMapping(value = "/pasta", produces = "application/json")
     @PreAuthorize("isAuthenticated()")
     @ResponseBody
@@ -97,12 +117,11 @@ public class OrderController extends BaseController {
     public ResponseEntity<String> addPastaToOrder(@RequestBody OrderItemBindingModel orderItemBindingModel, Principal principal) {
         OrderServiceModel orderServiceModel = this.orderService.getUserUnfinishedOrder(principal.getName());
 
-        if (orderItemBindingModel.getChecked()) {
+        if (orderItemBindingModel.isAdded()) {
             this.orderService.addPastaToOrder(orderServiceModel, this.menuService.getPastaByName(orderItemBindingModel.getName()));
         } else {
             this.orderService.removePastaFromOrder(orderServiceModel, this.menuService.getPastaByName(orderItemBindingModel.getName()));
         }
-
 
         return ResponseEntity.ok("success");
     }
@@ -123,7 +142,7 @@ public class OrderController extends BaseController {
     public ResponseEntity<String> addDipsToOrder(@RequestBody OrderItemBindingModel orderItemBindingModel, Principal principal) {
         OrderServiceModel orderServiceModel = this.orderService.getUserUnfinishedOrder(principal.getName());
 
-        if (orderItemBindingModel.getChecked()) {
+        if (orderItemBindingModel.isAdded()) {
             this.orderService.addDipToOrder(orderServiceModel, this.menuService.getDipByName(orderItemBindingModel.getName()));
         } else {
             this.orderService.removeDipFromOrder(orderServiceModel, this.menuService.getDipByName(orderItemBindingModel.getName()));
@@ -148,7 +167,7 @@ public class OrderController extends BaseController {
     public ResponseEntity<String> addDrinksToOrder(@RequestBody OrderItemBindingModel orderItemBindingModel, Principal principal) {
         OrderServiceModel orderServiceModel = this.orderService.getUserUnfinishedOrder(principal.getName());
 
-        if (orderItemBindingModel.getChecked()) {
+        if (orderItemBindingModel.isAdded()) {
             this.orderService.addDrinkToOrder(orderServiceModel, this.menuService.getDrinkByName(orderItemBindingModel.getName()));
         } else {
             this.orderService.removeDrinkFromOrder(orderServiceModel, this.menuService.getDrinkByName(orderItemBindingModel.getName()));
@@ -177,5 +196,63 @@ public class OrderController extends BaseController {
 
     private void logAction(String email, String event) {
         this.jmsTemplate.convertAndSend(String.format("%s;%s;%s", LocalDateTime.now(), email, event));
+    }
+
+    private void prepareIngredientsViewModel(AllIngredientsViewModel allIngredientsViewModel) {
+        allIngredientsViewModel
+                .setSizes(
+                        this.ingredientService.getSizesOrderedByNumberOfSlices()
+                                .stream()
+                                .map(size -> this.modelMapper.map(size, SizeViewModel.class))
+                                .collect(Collectors.toList())
+                );
+
+        allIngredientsViewModel
+                .setDoughs(
+                        this.ingredientService.getDoughsOrderedByName()
+                                .stream()
+                                .map(dough -> this.modelMapper.map(dough, DoughViewModel.class))
+                                .collect(Collectors.toList())
+                );
+
+        allIngredientsViewModel
+                .setSauces(
+                        this.ingredientService.getSaucesOrderedByName()
+                                .stream()
+                                .map(sauce -> this.modelMapper.map(sauce, SauceViewModel.class))
+                                .collect(Collectors.toList())
+                );
+
+        allIngredientsViewModel
+                .setSpices(
+                        this.ingredientService.getSpicesOrderedByName()
+                                .stream()
+                                .map(spice -> this.modelMapper.map(spice, SpiceViewModel.class))
+                                .collect(Collectors.toList())
+                );
+
+        allIngredientsViewModel
+                .setCheeses(
+                        this.ingredientService.getCheesesOrderedByName()
+                                .stream()
+                                .map(cheese -> this.modelMapper.map(cheese, CheeseViewModel.class))
+                                .collect(Collectors.toList())
+                );
+
+        allIngredientsViewModel
+                .setMeats(
+                        this.ingredientService.getMeatsOrderedByName()
+                                .stream()
+                                .map(meat -> this.modelMapper.map(meat, MeatViewModel.class))
+                                .collect(Collectors.toList())
+                );
+
+        allIngredientsViewModel
+                .setVegetables(
+                        this.ingredientService.getVegetablesOrderedByName()
+                                .stream()
+                                .map(vegetable -> this.modelMapper.map(vegetable, VegetableViewModel.class))
+                                .collect(Collectors.toList())
+                );
     }
 }

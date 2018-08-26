@@ -16,6 +16,8 @@ import pizzaco.errors.IdNotFoundException;
 import pizzaco.repository.OrderRepository;
 import pizzaco.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -91,12 +93,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean removePastaFromOrder(OrderServiceModel orderServiceModel, PastaServiceModel pastaServiceModel) {
-        orderServiceModel.setPastas(
-                orderServiceModel.getPastas()
-                .stream()
-                .filter(pasta -> !pasta.getName().equals(pastaServiceModel.getName()))
-                .collect(Collectors.toList())
-        );
+        boolean isFound = false;
+        List<PastaServiceModel> pastaServiceModels = new ArrayList<>();
+
+        for (PastaServiceModel pasta : orderServiceModel.getPastas()) {
+            if (pasta.getName().equals(pastaServiceModel.getName()) && !isFound) {
+                isFound = true;
+            } else {
+                pastaServiceModels.add(pasta);
+            }
+        }
+
+        orderServiceModel.setPastas(pastaServiceModels);
 
         Order orderEntity = this.modelMapper.map(orderServiceModel, Order.class);
 
@@ -118,12 +126,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean removeDipFromOrder(OrderServiceModel orderServiceModel, DipServiceModel dipServiceModel) {
-        orderServiceModel.setDips(
-                orderServiceModel.getDips()
-                        .stream()
-                        .filter(dip -> !dip.getName().equals(dipServiceModel.getName()))
-                        .collect(Collectors.toList())
-        );
+        boolean isFound = false;
+        List<DipServiceModel> dipServiceModels = new ArrayList<>();
+
+        for (DipServiceModel dip : orderServiceModel.getDips()) {
+            if (dip.getName().equals(dipServiceModel.getName()) && !isFound) {
+                isFound = true;
+            } else {
+                dipServiceModels.add(dip);
+            }
+        }
+
+        orderServiceModel.setDips(dipServiceModels);
 
         Order orderEntity = this.modelMapper.map(orderServiceModel, Order.class);
 
@@ -145,12 +159,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean removeDrinkFromOrder(OrderServiceModel orderServiceModel, DrinkServiceModel drinkServiceModel) {
-        orderServiceModel.setDrinks(
-                orderServiceModel.getDrinks()
-                        .stream()
-                        .filter(drink -> !drink.getName().equals(drinkServiceModel.getName()))
-                        .collect(Collectors.toList())
-        );
+        boolean isFound = false;
+        List<DrinkServiceModel> drinkServiceModels = new ArrayList<>();
+
+        for (DrinkServiceModel drink : orderServiceModel.getDrinks()) {
+            if (drink.getName().equals(drinkServiceModel.getName()) && !isFound) {
+                isFound = true;
+            } else {
+                drinkServiceModels.add(drink);
+            }
+        }
+        orderServiceModel.setDrinks(drinkServiceModels);
 
         Order orderEntity = this.modelMapper.map(orderServiceModel, Order.class);
 

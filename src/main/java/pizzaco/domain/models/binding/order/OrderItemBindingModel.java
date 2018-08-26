@@ -3,8 +3,7 @@ package pizzaco.domain.models.binding.order;
 public class OrderItemBindingModel {
 
     private String name;
-    private Integer quantity;
-    private Boolean isChecked;
+    private boolean isAdded;
 
     public OrderItemBindingModel() {
     }
@@ -17,19 +16,11 @@ public class OrderItemBindingModel {
         this.name = name;
     }
 
-    public Integer getQuantity() {
-        return this.quantity;
+    public boolean isAdded() {
+        return this.isAdded;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Boolean getChecked() {
-        return this.isChecked;
-    }
-
-    public void setChecked(Boolean checked) {
-        isChecked = checked;
+    public void setAdded(boolean added) {
+        isAdded = added;
     }
 }
