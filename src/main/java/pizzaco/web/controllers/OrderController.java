@@ -219,6 +219,14 @@ public class OrderController extends BaseController {
         return ResponseEntity.ok("success");
     }
 
+    @PostMapping("/{id}")
+    public ModelAndView orderOffer(@PathVariable(name = "id") String id, Principal principal) {
+        OrderServiceModel orderServiceModel = this.orderService.getUserUnfinishedOrder(principal.getName());
+
+
+        return super.redirect("/order");
+    }
+
     private void logAction(String email, String event) {
         this.jmsTemplate.convertAndSend(String.format("%s;%s;%s", LocalDateTime.now(), email, event));
     }

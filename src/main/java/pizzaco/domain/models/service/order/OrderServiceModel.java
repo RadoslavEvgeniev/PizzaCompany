@@ -1,6 +1,7 @@
 package pizzaco.domain.models.service.order;
 
 import pizzaco.domain.models.service.AddressServiceModel;
+import pizzaco.domain.models.service.OfferServiceModel;
 import pizzaco.domain.models.service.UserServiceModel;
 import pizzaco.domain.models.service.menu.DipServiceModel;
 import pizzaco.domain.models.service.menu.DrinkServiceModel;

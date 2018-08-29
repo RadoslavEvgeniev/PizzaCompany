@@ -1,5 +1,6 @@
 package pizzaco.service;
 
+import pizzaco.domain.models.service.OfferServiceModel;
 import pizzaco.domain.models.service.menu.DipServiceModel;
 import pizzaco.domain.models.service.menu.DrinkServiceModel;
 import pizzaco.domain.models.service.menu.PastaServiceModel;
@@ -32,4 +33,6 @@ public interface MenuService {
     DipServiceModel getDipByName(String name);
 
     DrinkServiceModel getDrinkByName(String name);
+
+    List<OfferServiceModel> getOffers();
 }

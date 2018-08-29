@@ -1,6 +1,7 @@
 package pizzaco.domain.models.view.order;
 
 import pizzaco.domain.models.view.AddressViewModel;
+import pizzaco.domain.models.view.OfferViewModel;
 import pizzaco.domain.models.view.UserViewModel;
 import pizzaco.domain.models.view.menu.DipViewModel;
 import pizzaco.domain.models.view.menu.DrinkViewModel;

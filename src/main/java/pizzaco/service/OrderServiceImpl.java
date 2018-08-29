@@ -14,6 +14,7 @@ import pizzaco.domain.models.service.menu.DrinkServiceModel;
 import pizzaco.domain.models.service.menu.PastaServiceModel;
 import pizzaco.domain.models.service.order.OrderedPizzaServiceModel;
 import pizzaco.errors.IdNotFoundException;
+import pizzaco.repository.OfferRepository;
 import pizzaco.repository.OrderRepository;
 import pizzaco.repository.OrderedPizzaRepository;
 import pizzaco.repository.UserRepository;
@@ -250,6 +251,10 @@ public class OrderServiceImpl implements OrderService {
                 .map(order -> this.modelMapper.map(order, OrderServiceModel.class))
                 .collect(Collectors.toList());
     }
+
+//    public boolean addOfferToOrder(OrderServiceModel orderServiceModel, String offerId) {
+//
+//    }
 
     private OrderServiceModel startOrder(String email) {
         User userEntity = this.userRepository.findByUsername(email).orElse(null);

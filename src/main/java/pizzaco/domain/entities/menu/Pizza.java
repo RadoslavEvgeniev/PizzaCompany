@@ -40,7 +40,7 @@ public class Pizza extends MenuItem {
         this.sauce = sauce;
     }
 
-    @ManyToMany(targetEntity = Spice.class)
+    @ManyToMany(targetEntity = Spice.class, fetch = FetchType.EAGER)
     @JoinTable(name = "pizzas_spices"
             , joinColumns = @JoinColumn(name = "pizza_id")
             , inverseJoinColumns = @JoinColumn(name = "spice_id"))
@@ -52,7 +52,7 @@ public class Pizza extends MenuItem {
         this.spices = spices;
     }
 
-    @ManyToMany(targetEntity = Cheese.class)
+    @ManyToMany(targetEntity = Cheese.class, fetch = FetchType.EAGER)
     @JoinTable(name = "pizzas_cheeses"
             , joinColumns = @JoinColumn(name = "pizza_id")
             , inverseJoinColumns = @JoinColumn(name = "cheese_id"))
@@ -64,7 +64,7 @@ public class Pizza extends MenuItem {
         this.cheeses = cheeses;
     }
 
-    @ManyToMany(targetEntity = Meat.class)
+    @ManyToMany(targetEntity = Meat.class, fetch = FetchType.EAGER)
     @JoinTable(name = "pizzas_meats"
             , joinColumns = @JoinColumn(name = "pizza_id")
             , inverseJoinColumns = @JoinColumn(name = "meat_id"))
@@ -76,7 +76,7 @@ public class Pizza extends MenuItem {
         this.meats = meats;
     }
 
-    @ManyToMany(targetEntity = Vegetable.class)
+    @ManyToMany(targetEntity = Vegetable.class, fetch = FetchType.EAGER)
     @JoinTable(name = "pizzas_vegetables"
             , joinColumns = @JoinColumn(name = "pizza_id")
             , inverseJoinColumns = @JoinColumn(name = "vegetable_id"))
