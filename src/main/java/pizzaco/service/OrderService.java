@@ -1,11 +1,13 @@
 package pizzaco.service;
 
 import pizzaco.domain.models.service.AddressServiceModel;
-import pizzaco.domain.models.service.OrderServiceModel;
+import pizzaco.domain.models.service.order.OrderServiceModel;
 import pizzaco.domain.models.service.menu.DipServiceModel;
 import pizzaco.domain.models.service.menu.DrinkServiceModel;
 import pizzaco.domain.models.service.menu.PastaServiceModel;
-import pizzaco.domain.models.service.menu.PizzaServiceModel;
+import pizzaco.domain.models.service.order.OrderedPizzaServiceModel;
+
+import java.util.List;
 
 public interface OrderService {
 
@@ -15,9 +17,9 @@ public interface OrderService {
 
     boolean setOrderAddress(OrderServiceModel orderServiceModel, AddressServiceModel addressServiceModel);
 
-    boolean addPizzaToOrder(OrderServiceModel orderServiceModel, PizzaServiceModel pizzaServiceModel);
+    boolean addPizzaToOrder(OrderServiceModel orderServiceModel, OrderedPizzaServiceModel orderedPizzaServiceModel);
 
-    boolean removePizzaFromOrder(OrderServiceModel orderServiceModel, PizzaServiceModel pizzaServiceModel);
+    boolean removePizzaFromOrder(OrderServiceModel orderServiceModel, OrderedPizzaServiceModel orderedPizzaServiceModel);
 
     boolean addPastaToOrder(OrderServiceModel orderServiceModel, PastaServiceModel pastaServiceModel);
 
@@ -32,4 +34,10 @@ public interface OrderService {
     boolean removeDrinkFromOrder(OrderServiceModel orderServiceModel, DrinkServiceModel drinkServiceModel);
 
     boolean finishOrder(OrderServiceModel orderServiceModel);
+
+    boolean cancelOrder(OrderServiceModel orderServiceModel);
+
+    List<OrderServiceModel> getUserFinishedOrdersOrderedByDate(String email);
+
+    List<OrderServiceModel> getAllFinishedOrdersOrderedByDate();
 }

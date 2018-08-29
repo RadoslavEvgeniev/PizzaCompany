@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.binding.order.OrderAddressBindingModel;
 import pizzaco.domain.models.binding.order.OrderItemBindingModel;
-import pizzaco.domain.models.service.OrderServiceModel;
+import pizzaco.domain.models.binding.order.OrderPizzaBindingModel;
+import pizzaco.domain.models.service.order.OrderServiceModel;
+import pizzaco.domain.models.service.order.OrderedPizzaServiceModel;
 import pizzaco.domain.models.view.AddressViewModel;
 import pizzaco.domain.models.view.AllIngredientsViewModel;
-import pizzaco.domain.models.view.OrderPizzaViewModel;
-import pizzaco.domain.models.view.OrderViewModel;
+import pizzaco.domain.models.view.order.OrderPizzaViewModel;
+import pizzaco.domain.models.view.order.OrderViewModel;
 import pizzaco.domain.models.view.ingredients.*;
 import pizzaco.domain.models.view.menu.DipViewModel;
 import pizzaco.domain.models.view.menu.DrinkViewModel;
@@ -90,7 +92,7 @@ public class OrderController extends BaseController {
     @GetMapping(value = "/prepare-pizza", produces = "application/json", consumes = "application/json")
     @PreAuthorize("isAuthenticated()")
     @ResponseBody
-    public OrderPizzaViewModel orderPizza(@RequestParam(name = "pizzaName") String pizzaName) {
+    public OrderPizzaViewModel orderPizzaDetails(@RequestParam(name = "pizzaName") String pizzaName) {
         OrderPizzaViewModel orderPizzaViewModel = new OrderPizzaViewModel();
         orderPizzaViewModel.setPizza(this.modelMapper.map(this.menuService.getPizzaByName(pizzaName), PizzaViewModel.class));
 
@@ -99,6 +101,21 @@ public class OrderController extends BaseController {
         orderPizzaViewModel.setIngredients(allIngredientsViewModel);
 
         return orderPizzaViewModel;
+    }
+
+    @PostMapping(value = "/pizza", consumes = "application/json")
+    @PreAuthorize("isAuthenticated()")
+    @ResponseBody
+    public ResponseEntity<String> orderPizzaConfirm(@RequestBody OrderPizzaBindingModel orderPizzaBindingModel, Principal principal) {
+        OrderServiceModel orderServiceModel = this.orderService.getUserUnfinishedOrder(principal.getName());
+
+        if (orderPizzaBindingModel.isAdded()) {
+            this.orderService.addPizzaToOrder(orderServiceModel, this.preparePizzaServiceModel(orderPizzaBindingModel));
+        } else {
+            this.orderService.removePizzaFromOrder(orderServiceModel, this.modelMapper.map(orderPizzaBindingModel, OrderedPizzaServiceModel.class));
+        }
+
+        return ResponseEntity.ok("success");
     }
 
     @GetMapping(value = "/pasta", produces = "application/json")
@@ -187,9 +204,17 @@ public class OrderController extends BaseController {
     @PreAuthorize("isAuthenticated()")
     @ResponseBody
     public ResponseEntity<String> orderConfirm(@RequestBody String body, Principal principal) {
-        this.orderService.finishOrder(this.orderService.getOrderById(body.split("=")[1]));
+        OrderServiceModel orderServiceModel = this.orderService.getOrderById(body.split("&")[0].split("=")[1]);
 
-        // TODO : Log
+        if (Boolean.parseBoolean(body.split("&")[1].split("=")[1])) {
+            this.orderService.finishOrder(orderServiceModel);
+        } else {
+            this.orderService.cancelOrder(orderServiceModel);
+        }
+        String message = String.format("Order no.%s for %s"
+                , orderServiceModel.getId(), String.valueOf(orderServiceModel.getTotalPrice()));
+
+        this.logAction(principal.getName(), message);
 
         return ResponseEntity.ok("success");
     }
@@ -254,5 +279,39 @@ public class OrderController extends BaseController {
                                 .map(vegetable -> this.modelMapper.map(vegetable, VegetableViewModel.class))
                                 .collect(Collectors.toList())
                 );
+    }
+
+    private OrderedPizzaServiceModel preparePizzaServiceModel(OrderPizzaBindingModel orderPizzaBindingModel) {
+        OrderedPizzaServiceModel orderedPizzaServiceModel = this.modelMapper.map(orderPizzaBindingModel, OrderedPizzaServiceModel.class);
+
+        orderedPizzaServiceModel.setSize(this.ingredientService.getSizeBySize(orderPizzaBindingModel.getSize()));
+        orderedPizzaServiceModel.setDough(this.ingredientService.getDoughByName(orderPizzaBindingModel.getDough()));
+        orderedPizzaServiceModel.setSauce(this.ingredientService.getSauceByName(orderPizzaBindingModel.getSauce()));
+        orderedPizzaServiceModel.setSpices(
+                orderPizzaBindingModel.getSpices()
+                .stream()
+                .map(this.ingredientService::getSpiceByName)
+                .collect(Collectors.toList())
+        );
+        orderedPizzaServiceModel.setCheeses(
+                orderPizzaBindingModel.getCheeses()
+                .stream()
+                .map(this.ingredientService::getCheeseByName)
+                .collect(Collectors.toList())
+        );
+        orderedPizzaServiceModel.setVegetables(
+                orderPizzaBindingModel.getVegetables()
+                .stream()
+                .map(this.ingredientService::getVegetableByName)
+                .collect(Collectors.toList())
+        );
+        orderedPizzaServiceModel.setMeats(
+                orderPizzaBindingModel.getMeats()
+                .stream()
+                .map(this.ingredientService::getMeatByName)
+                .collect(Collectors.toList())
+        );
+
+        return orderedPizzaServiceModel;
     }
 }

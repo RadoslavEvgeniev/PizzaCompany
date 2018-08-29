@@ -89,6 +89,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean editUser(UserServiceModel userServiceModel) {
         User userEntity = this.userRepository.findByUsername(userServiceModel.getEmail()).orElse(null);
+
+        if (userEntity == null) {
+            throw new UsernameNotFoundException("Wrong or non-existent email.");
+        }
+
         userEntity = this.modelMapper.map(userServiceModel, User.class);
         userEntity.setId(userServiceModel.getId());
         userEntity.setUsername(userServiceModel.getEmail());

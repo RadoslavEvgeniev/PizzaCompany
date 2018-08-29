@@ -4,6 +4,7 @@ import pizzaco.domain.entities.menu.Dip;
 import pizzaco.domain.entities.menu.Drink;
 import pizzaco.domain.entities.menu.Pasta;
 import pizzaco.domain.entities.menu.Pizza;
+import pizzaco.domain.entities.order.OrderedPizza;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -21,7 +22,7 @@ public class Order extends BaseEntity {
     private List<Drink> drinks;
     private List<Dip> dips;
     private List<Pasta> pastas;
-//    private List<Pizza> pizzas;
+    private List<OrderedPizza> pizzas;
     private BigDecimal totalPrice;
 
     public Order() {
@@ -59,7 +60,7 @@ public class Order extends BaseEntity {
         isFinished = finished;
     }
 
-    @Column(name = "finish_date_time", updatable = false)
+    @Column(name = "finish_date_time")
     public LocalDateTime getFinishDateTime() {
         return this.finishDateTime;
     }
@@ -104,17 +105,17 @@ public class Order extends BaseEntity {
         this.pastas = pastas;
     }
 
-//    @ManyToMany(targetEntity = Pizza.class)
-//    @JoinTable(name = "orders_pizzas"
-//            , joinColumns = @JoinColumn(name = "order_id")
-//            , inverseJoinColumns = @JoinColumn(name = "drink_id"))
-//    public List<Pizza> getPizzas() {
-//        return this.pizzas;
-//    }
-//
-//    public void setPizzas(List<Pizza> pizzas) {
-//        this.pizzas = pizzas;
-//    }
+    @ManyToMany(targetEntity = OrderedPizza.class)
+    @JoinTable(name = "orders_pizzas"
+            , joinColumns = @JoinColumn(name = "order_id")
+            , inverseJoinColumns = @JoinColumn(name = "pizza_id"))
+    public List<OrderedPizza> getPizzas() {
+        return this.pizzas;
+    }
+
+    public void setPizzas(List<OrderedPizza> pizzas) {
+        this.pizzas = pizzas;
+    }
 
     public BigDecimal getTotalPrice() {
         return this.totalPrice;

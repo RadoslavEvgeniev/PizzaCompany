@@ -199,13 +199,24 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public SizeServiceModel getSizeBySize(String size) {
-        return null;
+        Size sizeEntity = this.sizeRepository.findBySize(size).orElse(null);
+
+        if (sizeEntity == null) {
+            throw new NameNotFoundException("");
+        }
+
+        return this.modelMapper.map(sizeEntity, SizeServiceModel.class);
     }
 
     @Override
     public DoughServiceModel getDoughByName(String name) {
+        Dough doughEntity = this.doughRepository.findByName(name).orElse(null);
 
-        return null;
+        if (doughEntity == null) {
+            throw new NameNotFoundException("");
+        }
+
+        return this.modelMapper.map(doughEntity, DoughServiceModel.class);
     }
 
     @Override

@@ -1,5 +1,7 @@
-package pizzaco.domain.models.view;
+package pizzaco.domain.models.view.order;
 
+import pizzaco.domain.models.view.AddressViewModel;
+import pizzaco.domain.models.view.UserViewModel;
 import pizzaco.domain.models.view.menu.DipViewModel;
 import pizzaco.domain.models.view.menu.DrinkViewModel;
 import pizzaco.domain.models.view.menu.PastaViewModel;
@@ -13,11 +15,12 @@ public class OrderViewModel {
     private String id;
     private UserViewModel user;
     private AddressViewModel address;
-    private LocalDateTime finishedDateTime;
+    private LocalDateTime finishDateTime;
     private List<DrinkViewModel> drinks;
     private List<DipViewModel> dips;
     private List<PastaViewModel> pastas;
-    // TODO : pizzas
+    private List<OrderedPizzaViewModel> pizzas;
+    private String description;
     private BigDecimal totalPrice;
 
     public OrderViewModel() {
@@ -47,12 +50,12 @@ public class OrderViewModel {
         this.address = address;
     }
 
-    public LocalDateTime getFinishedDateTime() {
-        return this.finishedDateTime;
+    public LocalDateTime getFinishDateTime() {
+        return this.finishDateTime;
     }
 
-    public void setFinishedDateTime(LocalDateTime finishedDateTime) {
-        this.finishedDateTime = finishedDateTime;
+    public void setFinishDateTime(LocalDateTime finishDateTime) {
+        this.finishDateTime = finishDateTime;
     }
 
     public List<DrinkViewModel> getDrinks() {
@@ -77,6 +80,22 @@ public class OrderViewModel {
 
     public void setPastas(List<PastaViewModel> pastas) {
         this.pastas = pastas;
+    }
+
+    public List<OrderedPizzaViewModel> getPizzas() {
+        return this.pizzas;
+    }
+
+    public void setPizzas(List<OrderedPizzaViewModel> pizzas) {
+        this.pizzas = pizzas;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public BigDecimal getTotalPrice() {

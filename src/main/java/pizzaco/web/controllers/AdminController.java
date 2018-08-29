@@ -9,15 +9,23 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pizzaco.domain.models.service.UserRoleServiceModel;
 import pizzaco.domain.models.service.UserServiceModel;
+import pizzaco.domain.models.service.order.OrderServiceModel;
 import pizzaco.domain.models.view.AllUsersViewModel;
 import pizzaco.domain.models.view.LogViewModel;
 import pizzaco.domain.models.view.UserViewModel;
+import pizzaco.domain.models.view.menu.DipViewModel;
+import pizzaco.domain.models.view.menu.DrinkViewModel;
+import pizzaco.domain.models.view.menu.PastaViewModel;
+import pizzaco.domain.models.view.order.OrderViewModel;
+import pizzaco.domain.models.view.order.OrderedPizzaViewModel;
 import pizzaco.errors.UserEditFailureException;
 import pizzaco.service.LogService;
+import pizzaco.service.OrderService;
 import pizzaco.service.UserService;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -25,13 +33,15 @@ public class AdminController extends BaseController {
 
     private final UserService userService;
     private final LogService logService;
+    private final OrderService orderService;
     private final JmsTemplate jmsTemplate;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AdminController(UserService userService, LogService logService, JmsTemplate jmsTemplate, ModelMapper modelMapper) {
+    public AdminController(UserService userService, LogService logService, OrderService orderService, JmsTemplate jmsTemplate, ModelMapper modelMapper) {
         this.userService = userService;
         this.logService = logService;
+        this.orderService = orderService;
         this.jmsTemplate = jmsTemplate;
         this.modelMapper = modelMapper;
     }
@@ -89,6 +99,40 @@ public class AdminController extends BaseController {
                         .map(log -> this.modelMapper.map(log, LogViewModel.class))
                         .collect(Collectors.toList())
         );
+    }
+
+    @GetMapping("/orders/all")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ModelAndView allOrders() {
+        List<OrderServiceModel> orderServiceModels = this.orderService.getAllFinishedOrdersOrderedByDate();
+
+        return super.view("order/orders-all", "orderViewModels", orderServiceModels
+                .stream()
+                .map(order -> this.modelMapper.map(order, OrderViewModel.class))
+                .map(order -> {
+                    order.setDescription(order.getPizzas()
+                            .stream()
+                            .map(OrderedPizzaViewModel::getDescription)
+                            .collect(Collectors.joining(" "))
+                            + " "
+                            + order.getPastas()
+                            .stream()
+                            .map(PastaViewModel::getDescription)
+                            .collect(Collectors.joining(" "))
+                            + " "
+                            + order.getDips()
+                            .stream()
+                            .map(DipViewModel::getName)
+                            .collect(Collectors.joining(" "))
+                            + " "
+                            + order.getDrinks()
+                            .stream()
+                            .map(DrinkViewModel::getName)
+                            .collect(Collectors.joining(" ")));
+
+                    return order;
+                })
+                .collect(Collectors.toList()));
     }
 
     private void logAction(UserServiceModel userServiceModel, String event) {

@@ -155,10 +155,10 @@ public class MenuController extends BaseController {
         boolean result = this.menuService.addPizza(pizzaServiceModel);
 
         if (!result) {
-            throw new ItemAddFailureException("Adding ingredients " + pizzaServiceModel.getName() + " failed.");
+            throw new ItemAddFailureException("Adding pizza " + pizzaServiceModel.getName() + " failed.");
         }
 
-        this.logAction(principal.getName(), "Added ingredients " + pizzaServiceModel.getName() + " with description " + pizzaServiceModel.getDescription() + ".");
+        this.logAction(principal.getName(), "Added pizza " + pizzaServiceModel.getName() + " with description " + pizzaServiceModel.getDescription() + ".");
 
         return super.redirect("/menu/addMenuItems");
     }

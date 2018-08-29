@@ -11,7 +11,7 @@ public class PizzaServiceModel {
     private String name;
     private BigDecimal price;
     private String description;
-    private DoughServiceModel dough;
+//    private DoughServiceModel dough;
     private SauceServiceModel sauce;
     private List<SpiceServiceModel> spices;
     private List<CheeseServiceModel> cheeses;
@@ -55,13 +55,13 @@ public class PizzaServiceModel {
         this.description = description;
     }
 
-    public DoughServiceModel getDough() {
-        return this.dough;
-    }
-
-    public void setDough(DoughServiceModel dough) {
-        this.dough = dough;
-    }
+//    public DoughServiceModel getDough() {
+//        return this.dough;
+//    }
+//
+//    public void setDough(DoughServiceModel dough) {
+//        this.dough = dough;
+//    }
 
     public SauceServiceModel getSauce() {
         return this.sauce;

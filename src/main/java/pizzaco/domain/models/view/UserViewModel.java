@@ -9,7 +9,6 @@ public class UserViewModel {
     private String firstName;
     private String lastName;
     private List<String> roles;
-    // TODO : Orders
 
 
     public UserViewModel() {

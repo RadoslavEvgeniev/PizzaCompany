@@ -1,5 +1,6 @@
-package pizzaco.domain.models.view;
+package pizzaco.domain.models.view.order;
 
+import pizzaco.domain.models.view.AllIngredientsViewModel;
 import pizzaco.domain.models.view.menu.PizzaViewModel;
 
 public class OrderPizzaViewModel {

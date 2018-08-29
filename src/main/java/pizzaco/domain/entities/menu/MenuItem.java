@@ -4,6 +4,7 @@ import pizzaco.domain.entities.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 
 @MappedSuperclass
@@ -26,6 +27,7 @@ public abstract class MenuItem extends BaseEntity {
     }
 
     @Column(name = "price", nullable = false)
+    @DecimalMin("0.01")
     public BigDecimal getPrice() {
         return this.price;
     }

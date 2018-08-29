@@ -1,8 +1,11 @@
-package pizzaco.domain.models.service;
+package pizzaco.domain.models.service.order;
 
+import pizzaco.domain.models.service.AddressServiceModel;
+import pizzaco.domain.models.service.UserServiceModel;
 import pizzaco.domain.models.service.menu.DipServiceModel;
 import pizzaco.domain.models.service.menu.DrinkServiceModel;
 import pizzaco.domain.models.service.menu.PastaServiceModel;
+import pizzaco.domain.models.service.order.OrderedPizzaServiceModel;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,17 +18,18 @@ public class OrderServiceModel {
     private UserServiceModel user;
     private AddressServiceModel address;
     private boolean isFinished;
-    private LocalDateTime finishedDateTime;
+    private LocalDateTime finishDateTime;
     private List<DrinkServiceModel> drinks;
     private List<DipServiceModel> dips;
     private List<PastaServiceModel> pastas;
-    // TODO : pizzas
+    private List<OrderedPizzaServiceModel> pizzas;
     private BigDecimal totalPrice;
 
     public OrderServiceModel() {
         this.drinks = new ArrayList<>();
         this.dips = new ArrayList<>();
         this.pastas = new ArrayList<>();
+        this.pizzas = new ArrayList<>();
     }
 
     public String getId() {
@@ -60,12 +64,12 @@ public class OrderServiceModel {
         isFinished = finished;
     }
 
-    public LocalDateTime getFinishedDateTime() {
-        return this.finishedDateTime;
+    public LocalDateTime getFinishDateTime() {
+        return this.finishDateTime;
     }
 
-    public void setFinishedDateTime(LocalDateTime finishedDateTime) {
-        this.finishedDateTime = finishedDateTime;
+    public void setFinishDateTime(LocalDateTime finishDateTime) {
+        this.finishDateTime = finishDateTime;
     }
 
     public List<DrinkServiceModel> getDrinks() {
@@ -90,6 +94,14 @@ public class OrderServiceModel {
 
     public void setPastas(List<PastaServiceModel> pastas) {
         this.pastas = pastas;
+    }
+
+    public List<OrderedPizzaServiceModel> getPizzas() {
+        return this.pizzas;
+    }
+
+    public void setPizzas(List<OrderedPizzaServiceModel> pizzas) {
+        this.pizzas = pizzas;
     }
 
     public BigDecimal getTotalPrice() {
