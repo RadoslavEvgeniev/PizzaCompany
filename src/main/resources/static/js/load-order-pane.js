@@ -109,7 +109,6 @@ function loadOrder(order) {
                         '<th scope="col">Name</th>' +
                         '<th scope="col">Description</th>' +
                         '<th scope="col">Price</th>' +
-                        '<th scope="col">Remove</th>' +
                     '</tr>' +
                 '</thead>' +
                 '<tbody>' +
@@ -169,9 +168,6 @@ function loadOrderPizza(order, table) {
             '<td class="price">' +
                 Number(pizza.price).toFixed(2) + '$' +
             '</td>' +
-            '<td>' +
-                '<button class="btn btn-danger" id="remove-item-btn" value="'+ 'pizza:' + pizza.description +'" onclick="removeItemFromOrder()">' +
-            '</td>' +
             '</tr>'
 
         ;
@@ -204,9 +200,6 @@ function loadOrderPasta(order, table) {
                     '<td class="price">' +
                         Number(pasta.price).toFixed(2) + '$' +
                     '</td>' +
-                    '<td>' +
-                        '<button class="btn btn-danger" id="remove-item-btn" value="'+ 'pasta:' + pasta.name +'" onclick="removeItemFromOrder()">' +
-                    '</td>' +
                 '</tr>'
 
         ;
@@ -237,9 +230,6 @@ function loadOrderDips(order, table) {
                 '<td class="price">' +
                     Number(dip.price).toFixed(2) + '$' +
                 '</td>' +
-                '<td>' +
-                    '<button class="btn btn-danger" id="remove-item-btn" value="'+ 'dips:' + dip.name +'" onclick="removeItemFromOrder()">' +
-                '</td>' +
             '</tr>'
         ;
 
@@ -268,9 +258,6 @@ function loadOrderDrinks(order, table) {
                 '</td>' +
                 '<td class="price">' +
                     Number(drink.price).toFixed(2) + '$' +
-                '</td>' +
-                '<td>' +
-                    '<button class="btn btn-danger" id="remove-item-btn" value="'+ 'drinks:' + drink.name +'" onclick="removeItemFromOrder()">' +
                 '</td>' +
             '</tr>'
         ;

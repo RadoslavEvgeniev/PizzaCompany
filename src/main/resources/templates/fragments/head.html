@@ -2,7 +2,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Company &copy;</title>
+    <title th:text="${title} + ' &copy;'"></title>
+    <link rel="shortcut icon" th:href="${favicon}">
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">

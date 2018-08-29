@@ -56,10 +56,6 @@ public class AddressController extends BaseController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView addAddress(@Valid @ModelAttribute(name = "addAddressBindingModel") AddEditAddressBindingModel addAddressBindingModel
             , BindingResult bindingResult, Principal principal) {
-        if (bindingResult.hasErrors()) {
-            // TODO : see what to do if has errors
-        }
-
         AddressServiceModel addressServiceModel = this.modelMapper.map(addAddressBindingModel, AddressServiceModel.class);
         addressServiceModel.setOwner(this.userService.extractUserByEmail(principal.getName()));
 
@@ -90,10 +86,6 @@ public class AddressController extends BaseController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView addressEditConfirm(@Valid @ModelAttribute(name = "editAddressBindingModel") AddEditAddressBindingModel editAddressBindingModel
             , BindingResult bindingResult, Principal principal) {
-        if (bindingResult.hasErrors()) {
-            // TODO : see what to do if has errors
-        }
-
         AddressServiceModel addressServiceModel = this.modelMapper.map(editAddressBindingModel, AddressServiceModel.class);
         addressServiceModel.setOwner(this.userService.extractUserByEmail(principal.getName()));
 

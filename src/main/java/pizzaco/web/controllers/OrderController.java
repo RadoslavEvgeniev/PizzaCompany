@@ -208,13 +208,14 @@ public class OrderController extends BaseController {
 
         if (Boolean.parseBoolean(body.split("&")[1].split("=")[1])) {
             this.orderService.finishOrder(orderServiceModel);
+
+            String message = String.format("Order no.%s for %s"
+                    , orderServiceModel.getId(), String.valueOf(orderServiceModel.getTotalPrice()));
+
+            this.logAction(principal.getName(), message);
         } else {
             this.orderService.cancelOrder(orderServiceModel);
         }
-        String message = String.format("Order no.%s for %s"
-                , orderServiceModel.getId(), String.valueOf(orderServiceModel.getTotalPrice()));
-
-        this.logAction(principal.getName(), message);
 
         return ResponseEntity.ok("success");
     }
