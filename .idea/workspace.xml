@@ -1,33 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e5741fb-dea8-48e2-9d04-4e6e43b93c09" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/view/order/OrderedPizzaViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6d9e621f-84c1-4c6b-af71-5ebd29f70d26.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6d9e621f-84c1-4c6b-af71-5ebd29f70d26.xml" afterDir="false" />
+    <list default="true" id="7e5741fb-dea8-48e2-9d04-4e6e43b93c09" name="Default Changelist" comment="Added&#10;                      &#10;Finish or cancel orders, view my orders, admins can view all orders">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/domain/entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/entities/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/domain/entities/menu/MenuItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/entities/menu/MenuItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/OrderServiceModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/order/OrderServiceModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/UserServiceModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/UserServiceModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/PizzaServiceModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/service/menu/PizzaServiceModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/view/OrderPizzaViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/view/order/OrderPizzaViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/view/OrderViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/view/order/OrderViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/view/UserViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/domain/models/view/UserViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/service/IngredientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/IngredientServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/service/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pizzaco/web/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/load-order-pane.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/load-order-pane.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/templates/order-pizza-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/templates/order-pizza-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/templates/order-pizza-template.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/templates/order-pizza-template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/order/order-pane.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/order/order-pane.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/users/details-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/details-user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/Order.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/menu/MenuItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/entities/menu/MenuItem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/menu/PizzaServiceModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pizzaco/domain/models/service/menu/PizzaServiceModel.class" afterDir="false" />
@@ -87,7 +62,7 @@
     <session id="493398509">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.32" value="1" />
@@ -159,7 +134,7 @@
           <entry key="java" value="23292" />
           <entry key="js" value="13402" />
           <entry key="properties" value="2" />
-          <entry key="txt" value="480" />
+          <entry key="txt" value="601" />
           <entry key="xml" value="4" />
         </counts>
       </usages-collector>
@@ -169,7 +144,7 @@
           <entry key="HTML" value="9238" />
           <entry key="JAVA" value="23292" />
           <entry key="JavaScript" value="13396" />
-          <entry key="PLAIN_TEXT" value="512" />
+          <entry key="PLAIN_TEXT" value="633" />
           <entry key="Properties" value="2" />
           <entry key="XML" value="4" />
         </counts>
@@ -401,7 +376,7 @@
     <property name="SearchEverywhereHistoryKey" value="TODO&#9;ACTION&#9;ActivateTODOToolWindow&#10;add-pizza&#9;FILE&#9;file://D:/Repositories/BitBucket/PizzaCompany/src/main/resources/templates/menu/add-pizza-form.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535530723588" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535530997908" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -671,7 +646,7 @@
       <workItem from="1535264822988" duration="34729000" />
       <workItem from="1535350559996" duration="23029000" />
       <workItem from="1535440095470" duration="22702000" />
-      <workItem from="1535519942950" duration="10116000" />
+      <workItem from="1535519942950" duration="10445000" />
     </task>
     <task id="LOCAL-00001" summary="Added&#10;&#10;Add pizza into the menu functionality&#10;&#10;Fixed&#10;&#10;Minor fixes">
       <created>1534883315318</created>
@@ -764,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535300247215</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added&#10;                      &#10;Finish or cancel orders, view my orders, admins can view all orders">
+      <created>1535530931109</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1535530931109</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -800,7 +782,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251068000" />
+    <option name="totallyTimeSpent" value="251397000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -821,7 +803,7 @@
       <window_info id="Capture Tool" order="4" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Web" order="6" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.49913943" visible="true" weight="0.19174758" />
+      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.49913943" visible="true" weight="0.19174758" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290993" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919093" weight="0.3290993" />
@@ -836,7 +818,7 @@
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3290993" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.3290993" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" visible="true" weight="0.3290993" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -931,7 +913,8 @@
     <MESSAGE value="Added&#10;&#10;Add address, Edit address, List user's addresses into order and profile." />
     <MESSAGE value="Added&#10;&#10;Order pasta, dips and drinks functionality." />
     <MESSAGE value="Added&#10;&#10;Order pizza and modify" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added&#10;&#10;Order pizza and modify" />
+    <MESSAGE value="Added&#10;                      &#10;Finish or cancel orders, view my orders, admins can view all orders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added&#10;                      &#10;Finish or cancel orders, view my orders, admins can view all orders" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/Assert.java">
