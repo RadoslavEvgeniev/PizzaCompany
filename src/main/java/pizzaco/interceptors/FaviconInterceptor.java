@@ -1,4 +1,4 @@
-package pizzaco.common;
+package pizzaco.interceptors;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
-public class TitleInterceptor extends HandlerInterceptorAdapter {
+public class FaviconInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        String title = "Pizza Company";
+        String faviconPath = "https://res.cloudinary.com/rado-cloud/image/upload/v1535556277/pizza-favicon.jpg";
 
-        modelAndView.addObject("title", title);
+        modelAndView.addObject("favicon", faviconPath);
     }
 }

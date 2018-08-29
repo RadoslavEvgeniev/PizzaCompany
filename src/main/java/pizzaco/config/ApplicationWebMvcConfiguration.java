@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import pizzaco.common.FaviconInterceptor;
-import pizzaco.common.TitleInterceptor;
+import pizzaco.interceptors.FaviconInterceptor;
+import pizzaco.interceptors.TitleInterceptor;
 
 @Configuration
 public class ApplicationWebMvcConfiguration implements WebMvcConfigurer {
