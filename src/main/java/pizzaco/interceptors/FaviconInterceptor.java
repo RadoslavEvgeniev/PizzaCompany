@@ -14,6 +14,10 @@ public class FaviconInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         String faviconPath = "https://res.cloudinary.com/rado-cloud/image/upload/v1535556277/pizza-favicon.jpg";
 
+        if (modelAndView == null) {
+            modelAndView = new ModelAndView();
+        }
+
         modelAndView.addObject("favicon", faviconPath);
     }
 }

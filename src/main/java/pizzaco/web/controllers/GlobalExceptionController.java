@@ -10,9 +10,15 @@ public class GlobalExceptionController extends BaseController {
 
     @ExceptionHandler(RuntimeException.class)
     public ModelAndView getException(RuntimeException re) {
-
-        return super.view("error-template", "message", re.getClass().isAnnotationPresent(ResponseStatus.class)
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/error/error-template");
+        modelAndView.addObject("message", re.getClass().isAnnotationPresent(ResponseStatus.class)
                 ? re.getClass().getAnnotation(ResponseStatus.class).reason()
                 : "Something went wrong");
+
+        return modelAndView;
+//        return super.view("error/error-template", "message", re.getClass().isAnnotationPresent(ResponseStatus.class)
+//                ? re.getClass().getAnnotation(ResponseStatus.class).reason()
+//                : "Something went wrong");
     }
 }

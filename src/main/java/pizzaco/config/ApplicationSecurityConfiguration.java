@@ -53,7 +53,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                     .tokenValiditySeconds(1200)
                 .and()
                     .exceptionHandling()
-                    .accessDeniedPage("/unauthorized")
+                    .accessDeniedPage("/error/unauthorized")
                 ;
     }
 

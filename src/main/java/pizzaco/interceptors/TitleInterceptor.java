@@ -14,6 +14,10 @@ public class TitleInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         String title = "Pizza Company";
 
+        if (modelAndView == null) {
+            modelAndView = new ModelAndView();
+        }
+
         modelAndView.addObject("title", title);
     }
 }
