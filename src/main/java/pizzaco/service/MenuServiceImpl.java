@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import pizzaco.common.Constants;
 import pizzaco.domain.entities.Offer;
 import pizzaco.domain.entities.ingredients.Size;
 import pizzaco.domain.entities.menu.Dip;
@@ -55,9 +56,7 @@ public class MenuServiceImpl implements MenuService {
     public boolean addPizza(PizzaServiceModel pizzaServiceModel) {
         Pizza pizzaEntity = this.pizzaRepository.findByName(pizzaServiceModel.getName()).orElse(null);
 
-        if (pizzaEntity != null) {
-            throw new ItemAlreadyExistsException("Pizza already exists.");
-        }
+        this.checkItemExistence(pizzaEntity, Pizza.class.getSimpleName());
 
         pizzaEntity = this.modelMapper.map(pizzaServiceModel, Pizza.class);
 
@@ -70,9 +69,7 @@ public class MenuServiceImpl implements MenuService {
     public boolean addPasta(PastaServiceModel pastaServiceModel) {
         Pasta pastaEntity = this.pastaRepository.findByName(pastaServiceModel.getName()).orElse(null);
 
-        if (pastaEntity != null) {
-            throw new ItemAlreadyExistsException("Pasta already exists.");
-        }
+        this.checkItemExistence(pastaEntity, Pasta.class.getSimpleName());
 
         pastaEntity = this.modelMapper.map(pastaServiceModel, Pasta.class);
 
@@ -85,9 +82,7 @@ public class MenuServiceImpl implements MenuService {
     public boolean addDip(DipServiceModel dipServiceModel) {
         Dip dipEntity = this.dipRepository.findByName(dipServiceModel.getName()).orElse(null);
 
-        if (dipEntity != null) {
-            throw new ItemAlreadyExistsException("Dip already exists.");
-        }
+        this.checkItemExistence(dipEntity, Dip.class.getSimpleName());
 
         dipEntity = this.modelMapper.map(dipServiceModel, Dip.class);
 
@@ -100,9 +95,7 @@ public class MenuServiceImpl implements MenuService {
     public boolean addDrink(DrinkServiceModel drinkServiceModel) {
         Drink drinkEntity = this.drinkRepository.findByName(drinkServiceModel.getName()).orElse(null);
 
-        if (drinkEntity != null) {
-            throw new ItemAlreadyExistsException("Drink already exists.");
-        }
+        this.checkItemExistence(drinkEntity, Drink.class.getSimpleName());
 
         drinkEntity = this.modelMapper.map(drinkServiceModel, Drink.class);
 
@@ -147,9 +140,7 @@ public class MenuServiceImpl implements MenuService {
     public PizzaServiceModel getPizzaByName(String name) {
         Pizza pizzaEntity = this.pizzaRepository.findByName(name).orElse(null);
 
-        if (pizzaEntity == null) {
-            throw new NameNotFoundException("Wrong or non-existent name.");
-        }
+        this.checkItemExistence(pizzaEntity);
 
         return this.modelMapper.map(pizzaEntity, PizzaServiceModel.class);
     }
@@ -158,9 +149,7 @@ public class MenuServiceImpl implements MenuService {
     public PastaServiceModel getPastaByName(String name) {
         Pasta pastaEntity = this.pastaRepository.findByName(name).orElse(null);
 
-        if (pastaEntity == null) {
-            throw new NameNotFoundException("Wrong or non-existent name.");
-        }
+        this.checkItemExistence(pastaEntity);
 
         return this.modelMapper.map(pastaEntity, PastaServiceModel.class);
     }
@@ -169,9 +158,7 @@ public class MenuServiceImpl implements MenuService {
     public DipServiceModel getDipByName(String name) {
         Dip dipEntity = this.dipRepository.findByName(name).orElse(null);
 
-        if (dipEntity == null) {
-            throw new NameNotFoundException("Wrong or non-existent name.");
-        }
+        this.checkItemExistence(dipEntity);
 
         return this.modelMapper.map(dipEntity, DipServiceModel.class);
     }
@@ -180,9 +167,7 @@ public class MenuServiceImpl implements MenuService {
     public DrinkServiceModel getDrinkByName(String name) {
         Drink drinkEntity = this.drinkRepository.findByName(name).orElse(null);
 
-        if (drinkEntity == null) {
-            throw new NameNotFoundException("Wrong or non-existent name.");
-        }
+        this.checkItemExistence(drinkEntity);
 
         return this.modelMapper.map(drinkEntity, DrinkServiceModel.class);
     }
@@ -200,37 +185,73 @@ public class MenuServiceImpl implements MenuService {
         this.offerRepository.deleteAll();
 
         for (int i = 0; i < 4; i++) {
-            Random rnd = new Random();
-
-            int index = rnd.nextInt((int)this.pizzaRepository.count());
-            Pizza pizzaEntity = this.pizzaRepository.findAll().get(index);
-
-            index = rnd.nextInt((int)this.sizeRepository.count());
-            Size sizeEntity = this.sizeRepository.findAll().get(index);
-
-            index = rnd.nextInt((int)this.dipRepository.count());
-            Dip dipEntity = this.dipRepository.findAll().get(index);
-
-            index = rnd.nextInt((int)this.drinkRepository.count());
-            Drink drinkEntity = this.drinkRepository.findAll().get(index);
-
-            Offer offer = new Offer();
-            offer.setPizza(pizzaEntity);
-            offer.setSize(sizeEntity);
-            offer.setDip(dipEntity);
-            offer.setDrink(drinkEntity);
-            this.calculateOfferPrice(offer);
+            Offer offer = this.prepareOfferEntity();
 
             this.offerRepository.save(offer);
         }
     }
 
-    private void calculateOfferPrice(Offer offer) {
-        offer.setPrice(BigDecimal.ZERO);
-        offer.setPrice(offer.getPrice().add(offer.getPizza().getPrice()));
-        offer.setPrice(offer.getPrice().add(offer.getSize().getPrice()));
-        offer.setPrice(offer.getPrice().add(offer.getDip().getPrice()));
-        offer.setPrice(offer.getPrice().add(offer.getDrink().getPrice()));
-        offer.setPrice(offer.getPrice().multiply(BigDecimal.valueOf(0.8)));
+    private Offer prepareOfferEntity() {
+        Offer offerEntity = new Offer();
+        offerEntity.setPizza(this.getRandomPizzaEntity());
+        offerEntity.setSize(this.getRandomSizeEntity());
+        offerEntity.setDip(this.getRandomDipEntity());
+        offerEntity.setDrink(this.getRandomDrinkEntity());
+        this.calculateOfferPrice(offerEntity);
+
+        return offerEntity;
+    }
+
+    private Pizza getRandomPizzaEntity() {
+        Random rnd = new Random();
+
+        int index = rnd.nextInt((int)this.pizzaRepository.count());
+
+        return this.pizzaRepository.findAll().get(index);
+    }
+
+    private Size getRandomSizeEntity() {
+        Random rnd = new Random();
+
+        int index = rnd.nextInt((int)this.sizeRepository.count());
+
+        return this.sizeRepository.findAll().get(index);
+    }
+
+    private Dip getRandomDipEntity() {
+        Random rnd = new Random();
+
+        int index = rnd.nextInt((int)this.dipRepository.count());
+
+        return this.dipRepository.findAll().get(index);
+    }
+
+    private Drink getRandomDrinkEntity() {
+        Random rnd = new Random();
+
+        int index = rnd.nextInt((int)this.drinkRepository.count());
+
+        return this.drinkRepository.findAll().get(index);
+    }
+
+    private void calculateOfferPrice(Offer offerEntity) {
+        offerEntity.setPrice(BigDecimal.ZERO);
+        offerEntity.setPrice(offerEntity.getPrice().add(offerEntity.getPizza().getPrice()));
+        offerEntity.setPrice(offerEntity.getPrice().add(offerEntity.getSize().getPrice()));
+        offerEntity.setPrice(offerEntity.getPrice().add(offerEntity.getDip().getPrice()));
+        offerEntity.setPrice(offerEntity.getPrice().add(offerEntity.getDrink().getPrice()));
+        offerEntity.setPrice(offerEntity.getPrice().multiply(BigDecimal.valueOf(0.8)));
+    }
+
+    private void checkItemExistence(Object itemEntity, String itemName) {
+        if (itemEntity != null) {
+            throw new ItemAlreadyExistsException(String.format(Constants.ITEM_ALREADY_EXISTS, itemName));
+        }
+    }
+
+    private void checkItemExistence(Object itemEntity) {
+        if (itemEntity == null) {
+            throw new NameNotFoundException(Constants.WRONG_NON_EXISTENT_NAME);
+        }
     }
 }

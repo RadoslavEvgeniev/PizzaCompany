@@ -3,6 +3,7 @@ package pizzaco.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pizzaco.common.Constants;
 import pizzaco.domain.entities.ingredients.*;
 import pizzaco.domain.models.service.ingredients.*;
 import pizzaco.errors.IngredientAlreadyExistsException;
@@ -40,9 +41,7 @@ public class IngredientServiceImpl implements IngredientService {
     public boolean addSize(SizeServiceModel sizeServiceModel) {
         Size sizeEntity = this.sizeRepository.findBySize(sizeServiceModel.getSize()).orElse(null);
 
-        if (sizeEntity != null) {
-            throw new IngredientAlreadyExistsException("Size already exists.");
-        }
+        this.checkIngredientExistence(sizeEntity, Size.class.getSimpleName());
 
         sizeEntity = this.modelMapper.map(sizeServiceModel, Size.class);
 
@@ -55,9 +54,7 @@ public class IngredientServiceImpl implements IngredientService {
     public boolean addDough(DoughServiceModel doughServiceModel) {
         Dough doughEntity = this.doughRepository.findByName(doughServiceModel.getName()).orElse(null);
 
-        if (doughEntity != null) {
-            throw new IngredientAlreadyExistsException("Dough already exists.");
-        }
+        this.checkIngredientExistence(doughEntity, Dough.class.getSimpleName());
 
         doughEntity = this.modelMapper.map(doughServiceModel, Dough.class);
 
@@ -70,9 +67,7 @@ public class IngredientServiceImpl implements IngredientService {
     public boolean addSauce(SauceServiceModel sauceServiceModel) {
         Sauce sauceEntity = this.sauceRepository.findByName(sauceServiceModel.getName()).orElse(null);
 
-        if (sauceEntity != null) {
-            throw new IngredientAlreadyExistsException("Sauce already exists.");
-        }
+        this.checkIngredientExistence(sauceEntity, Sauce.class.getSimpleName());
 
         sauceEntity = this.modelMapper.map(sauceServiceModel, Sauce.class);
 
@@ -85,9 +80,7 @@ public class IngredientServiceImpl implements IngredientService {
     public boolean addSpice(SpiceServiceModel spiceServiceModel) {
         Spice spiceEntity = this.spiceRepository.findByName(spiceServiceModel.getName()).orElse(null);
 
-        if (spiceEntity != null) {
-            throw new IngredientAlreadyExistsException("Spice already exists.");
-        }
+        this.checkIngredientExistence(spiceEntity, Spice.class.getSimpleName());
 
         spiceEntity = this.modelMapper.map(spiceServiceModel, Spice.class);
 
@@ -100,9 +93,7 @@ public class IngredientServiceImpl implements IngredientService {
     public boolean addCheese(CheeseServiceModel cheeseServiceModel) {
         Cheese cheeseEntity = this.cheeseRepository.findByName(cheeseServiceModel.getName()).orElse(null);
 
-        if (cheeseEntity != null) {
-            throw new IngredientAlreadyExistsException("Cheese already exists.");
-        }
+        this.checkIngredientExistence(cheeseEntity, Cheese.class.getSimpleName());
 
         cheeseEntity = this.modelMapper.map(cheeseServiceModel, Cheese.class);
 
@@ -115,9 +106,7 @@ public class IngredientServiceImpl implements IngredientService {
     public boolean addMeat(MeatServiceModel meatServiceModel) {
         Meat meatEntity = this.meatRepository.findByName(meatServiceModel.getName()).orElse(null);
 
-        if (meatEntity != null) {
-            throw new IngredientAlreadyExistsException("Meat already exists.");
-        }
+        this.checkIngredientExistence(meatEntity, Meat.class.getSimpleName());
 
         meatEntity = this.modelMapper.map(meatServiceModel, Meat.class);
 
@@ -130,9 +119,7 @@ public class IngredientServiceImpl implements IngredientService {
     public boolean addVegetable(VegetableServiceModel vegetableServiceModel) {
         Vegetable vegetableEntity = this.vegetableRepository.findByName(vegetableServiceModel.getName()).orElse(null);
 
-        if (vegetableEntity != null) {
-            throw new IngredientAlreadyExistsException("Vegetable already exists.");
-        }
+        this.checkIngredientExistence(vegetableEntity, Vegetable.class.getSimpleName());
 
         vegetableEntity = this.modelMapper.map(vegetableServiceModel, Vegetable.class);
 
@@ -201,9 +188,7 @@ public class IngredientServiceImpl implements IngredientService {
     public SizeServiceModel getSizeBySize(String size) {
         Size sizeEntity = this.sizeRepository.findBySize(size).orElse(null);
 
-        if (sizeEntity == null) {
-            throw new NameNotFoundException("");
-        }
+        this.checkIngredientExistence(sizeEntity);
 
         return this.modelMapper.map(sizeEntity, SizeServiceModel.class);
     }
@@ -212,9 +197,7 @@ public class IngredientServiceImpl implements IngredientService {
     public DoughServiceModel getDoughByName(String name) {
         Dough doughEntity = this.doughRepository.findByName(name).orElse(null);
 
-        if (doughEntity == null) {
-            throw new NameNotFoundException("");
-        }
+        this.checkIngredientExistence(doughEntity);
 
         return this.modelMapper.map(doughEntity, DoughServiceModel.class);
     }
@@ -223,9 +206,7 @@ public class IngredientServiceImpl implements IngredientService {
     public SauceServiceModel getSauceByName(String name) {
         Sauce sauceEntity = this.sauceRepository.findByName(name).orElse(null);
 
-        if (sauceEntity == null) {
-            throw new NameNotFoundException("");
-        }
+        this.checkIngredientExistence(sauceEntity);
 
         return this.modelMapper.map(sauceEntity, SauceServiceModel.class);
     }
@@ -234,9 +215,7 @@ public class IngredientServiceImpl implements IngredientService {
     public SpiceServiceModel getSpiceByName(String name) {
         Spice spiceEntity = this.spiceRepository.findByName(name).orElse(null);
 
-        if (spiceEntity == null) {
-            throw new NameNotFoundException("");
-        }
+        this.checkIngredientExistence(spiceEntity);
 
         return this.modelMapper.map(spiceEntity, SpiceServiceModel.class);
     }
@@ -245,9 +224,7 @@ public class IngredientServiceImpl implements IngredientService {
     public CheeseServiceModel getCheeseByName(String name) {
         Cheese cheeseEntity = this.cheeseRepository.findByName(name).orElse(null);
 
-        if (cheeseEntity == null) {
-            throw new NameNotFoundException("");
-        }
+        this.checkIngredientExistence(cheeseEntity);
 
         return this.modelMapper.map(cheeseEntity, CheeseServiceModel.class);
     }
@@ -256,9 +233,7 @@ public class IngredientServiceImpl implements IngredientService {
     public MeatServiceModel getMeatByName(String name) {
         Meat meatEntity = this.meatRepository.findByName(name).orElse(null);
 
-        if (meatEntity == null) {
-            throw new NameNotFoundException("");
-        }
+        this.checkIngredientExistence(meatEntity);
 
         return this.modelMapper.map(meatEntity, MeatServiceModel.class);
     }
@@ -267,10 +242,20 @@ public class IngredientServiceImpl implements IngredientService {
     public VegetableServiceModel getVegetableByName(String name) {
         Vegetable vegetableEntity = this.vegetableRepository.findByName(name).orElse(null);
 
-        if (vegetableEntity == null) {
-            throw new NameNotFoundException("");
-        }
+        this.checkIngredientExistence(vegetableEntity);
 
         return this.modelMapper.map(vegetableEntity, VegetableServiceModel.class);
+    }
+
+    private void checkIngredientExistence(Object ingredientEntity, String ingredientName) {
+        if (ingredientEntity != null) {
+            throw new IngredientAlreadyExistsException(String.format(Constants.INGREDIENT_ALREADY_EXISTS, ingredientName));
+        }
+    }
+
+    private void checkIngredientExistence(Object ingredientEntity) {
+        if (ingredientEntity == null) {
+            throw new NameNotFoundException(Constants.WRONG_NON_EXISTENT_NAME);
+        }
     }
 }

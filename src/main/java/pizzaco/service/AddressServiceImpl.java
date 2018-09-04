@@ -2,6 +2,7 @@ package pizzaco.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import pizzaco.common.Constants;
 import pizzaco.domain.entities.Address;
 import pizzaco.domain.models.service.AddressServiceModel;
 import pizzaco.errors.IdNotFoundException;
@@ -32,9 +33,7 @@ public class AddressServiceImpl implements AddressService {
     public AddressServiceModel getAddressById(String id) {
         Address addressEntity = this.addressRepository.findById(id).orElse(null);
 
-        if (addressEntity == null) {
-            throw new IdNotFoundException("Wrong or non-existent id.");
-        }
+        this.checkAddressExistence(addressEntity);
 
         return this.modelMapper.map(addressEntity, AddressServiceModel.class);
     }
@@ -43,9 +42,7 @@ public class AddressServiceImpl implements AddressService {
     public boolean editAddress(AddressServiceModel addressServiceModel) {
         Address addressEntity = this.addressRepository.findById(addressServiceModel.getId()).orElse(null);
 
-        if (addressEntity == null) {
-            throw new IdNotFoundException("Wrong or non-existent id.");
-        }
+        this.checkAddressExistence(addressEntity);
 
         addressEntity = this.modelMapper.map(addressServiceModel, Address.class);
 
@@ -60,5 +57,11 @@ public class AddressServiceImpl implements AddressService {
                 .stream()
                 .map(address -> this.modelMapper.map(address, AddressServiceModel.class))
                 .collect(Collectors.toList());
+    }
+
+    private void checkAddressExistence(Address addressEntity) {
+        if (addressEntity == null) {
+            throw new IdNotFoundException(Constants.WRONG_NON_EXISTENT_ID);
+        }
     }
 }

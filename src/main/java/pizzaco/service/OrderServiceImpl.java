@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import pizzaco.common.Constants;
 import pizzaco.domain.entities.Order;
 import pizzaco.domain.entities.User;
 import pizzaco.domain.entities.order.OrderedPizza;
@@ -59,9 +60,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderServiceModel getOrderById(String id) {
         Order orderEntity = this.orderRepository.findById(id).orElse(null);
 
-        if (orderEntity == null) {
-            throw new IdNotFoundException("Wrong or non-existent id.");
-        }
+        this.checkOrderExistence(orderEntity);
 
         return this.modelMapper.map(orderEntity, OrderServiceModel.class);
     }
@@ -252,23 +251,33 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
-//    public boolean addOfferToOrder(OrderServiceModel orderServiceModel, String offerId) {
-//
-//    }
-
     private OrderServiceModel startOrder(String email) {
+        return this.modelMapper.map(this.prepareOrderEntity(email), OrderServiceModel.class);
+    }
+
+    private Order prepareOrderEntity(String email) {
         User userEntity = this.userRepository.findByUsername(email).orElse(null);
 
-        if (userEntity == null) {
-            throw new UsernameNotFoundException("Wrong or non-existent email.");
-        }
+        this.checkUserExistence(userEntity);
 
         Order orderEntity = new Order();
         orderEntity.setUser(userEntity);
 
         this.orderRepository.save(orderEntity);
 
-        return this.modelMapper.map(orderEntity, OrderServiceModel.class);
+        return orderEntity;
+    }
+
+    private void checkUserExistence(User userEntity) {
+        if (userEntity == null) {
+            throw new UsernameNotFoundException(Constants.WRONG_NON_EXISTENT_EMAIL);
+        }
+    }
+
+    private void checkOrderExistence(Order orderEntity) {
+        if (orderEntity == null) {
+            throw new IdNotFoundException(Constants.WRONG_NON_EXISTENT_ID);
+        }
     }
 
     private void calculateOrderTotalPrice(OrderServiceModel orderServiceModel) {

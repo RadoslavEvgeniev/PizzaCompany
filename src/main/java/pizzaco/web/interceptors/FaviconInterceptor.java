@@ -1,4 +1,4 @@
-package pizzaco.interceptors;
+package pizzaco.web.interceptors;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
